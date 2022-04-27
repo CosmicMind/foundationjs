@@ -290,96 +290,96 @@ export interface ProxySchema {
  * @returns {ProxyHandler<TProxyTarget>}
  */
 export const createProxyHandlerForSchema = <TProxyTarget extends { new (...args: unknown[]): TProxyTarget }>({ immutable, mutable, virtual }: ProxySchema): ProxyHandler<TProxyTarget> => ({
-    /**
-     * @template TProxyTarget
-     *
-     * @constructor
-     *
-     * @param {TProxyTarget} target
-     * @param {unknown[]} argArray
-     * @param {() => void} newTarget
-     * @returns {object}
-     */
-    construct(target: TProxyTarget, argArray: unknown[], newTarget: () => void): object {
-      return Reflect.construct(target, argArray, newTarget)
-    },
+  /**
+   * @template TProxyTarget
+   *
+   * @constructor
+   *
+   * @param {TProxyTarget} target
+   * @param {unknown[]} argArray
+   * @param {() => void} newTarget
+   * @returns {object}
+   */
+  construct(target: TProxyTarget, argArray: unknown[], newTarget: () => void): object {
+    return Reflect.construct(target, argArray, newTarget)
+  },
 
-    /**
-     * @template TProxyTarget
-     *
-     * The `has` checks whether a value exists in the
-     * `ProxySchema` definition, or in the instance itself.
-     * The search is ordered as: immutable, mutable, virtual,
-     * and then instance.
-     *
-     * @param {TProxyTarget} target
-     * @param {ProxyPropertyKey} p
-     * @returns {boolean}
-     */
-    has(target: TProxyTarget, p: ProxyPropertyKey): boolean {
-      return p in immutable || p in mutable || p in virtual || Reflect.has(target, p)
-    },
+  /**
+   * @template TProxyTarget
+   *
+   * The `has` checks whether a value exists in the
+   * `ProxySchema` definition, or in the instance itself.
+   * The search is ordered as: immutable, mutable, virtual,
+   * and then instance.
+   *
+   * @param {TProxyTarget} target
+   * @param {ProxyPropertyKey} p
+   * @returns {boolean}
+   */
+  has(target: TProxyTarget, p: ProxyPropertyKey): boolean {
+    return p in immutable || p in mutable || p in virtual || Reflect.has(target, p)
+  },
 
-    /**
-     * @template TProxyTarget
-     *
-     * The `get` fetches the property value for the give property
-     * key. The search is ordered as: immutable, mutable, virtual,
-     * and then instance.
-     *
-     * @param {TProxyTarget} target
-     * @param {ProxyPropertyKey} p
-     * @param {unknown} receiver
-     * @returns {unknown}
-     */
-    get(target: TProxyTarget, p: ProxyPropertyKey, receiver: unknown): unknown {
-      if (p in immutable) return Reflect.get(target, p, receiver)
-      if (p in mutable) return Reflect.get(target, p, receiver)
-      if (p in virtual) return Reflect.get(virtual, p, receiver)
-      return Reflect.get(target, p, receiver)
-    },
+  /**
+   * @template TProxyTarget
+   *
+   * The `get` fetches the property value for the give property
+   * key. The search is ordered as: immutable, mutable, virtual,
+   * and then instance.
+   *
+   * @param {TProxyTarget} target
+   * @param {ProxyPropertyKey} p
+   * @param {unknown} receiver
+   * @returns {unknown}
+   */
+  get(target: TProxyTarget, p: ProxyPropertyKey, receiver: unknown): unknown {
+    if (p in immutable) return Reflect.get(target, p, receiver)
+    if (p in mutable) return Reflect.get(target, p, receiver)
+    if (p in virtual) return Reflect.get(virtual, p, receiver)
+    return Reflect.get(target, p, receiver)
+  },
 
-    /**
-     * @template TProxyTarget
-     * @throws {ProxyImmutableError, ProxyMutableError, ProxyVirtualError, ProxyTypeError, ProxyNotDefinedError}
-     *
-     * The `set` updates the given property with the given value.
-     * The property key and value are checked against the
-     * `ProxySchema`. The search is ordered as: immutable, virtual,
-     * and then mutable.
-     *
-     * @param {TProxyTarget} target
-     * @param {ProxyPropertyKey} p
-     * @param {any} value
-     * @param {any} receiver
-     * @returns {boolean}
-     */
-    set(target: TProxyTarget, p: ProxyPropertyKey, value: unknown, receiver: unknown): boolean {
-      if (p in immutable) throw new ProxyImmutableError(`property (${String(p)}) is immutable`)
-      else if (p in virtual) throw new ProxyVirtualError(`property (${String(p)}) is virtual`)
-      else if (p in mutable) try { mutable[String(p)].validateSync(value) } catch(e) { throw new ProxyTypeError(e.message) }
-      else throw new ProxyNotDefinedError(`property (${String(p)}) is not defined`)
-      return Reflect.set(target, p, value, receiver)
-    },
+  /**
+   * @template TProxyTarget
+   * @throws {ProxyImmutableError, ProxyMutableError, ProxyVirtualError, ProxyTypeError, ProxyNotDefinedError}
+   *
+   * The `set` updates the given property with the given value.
+   * The property key and value are checked against the
+   * `ProxySchema`. The search is ordered as: immutable, virtual,
+   * and then mutable.
+   *
+   * @param {TProxyTarget} target
+   * @param {ProxyPropertyKey} p
+   * @param {any} value
+   * @param {any} receiver
+   * @returns {boolean}
+   */
+  set(target: TProxyTarget, p: ProxyPropertyKey, value: unknown, receiver: unknown): boolean {
+    if (p in immutable) throw new ProxyImmutableError(`property (${String(p)}) is immutable`)
+    else if (p in virtual) throw new ProxyVirtualError(`property (${String(p)}) is virtual`)
+    else if (p in mutable) try { mutable[String(p)].validateSync(value) } catch(e) { throw new ProxyTypeError(e.message) }
+    else throw new ProxyNotDefinedError(`property (${String(p)}) is not defined`)
+    return Reflect.set(target, p, value, receiver)
+  },
 
-    /**
-     * @template TProxyTarget
-     * @throws {ProxyImmutableError, ProxyMutableError, ProxyVirtualError}
-     *
-     * The `deleteProperty` deletes the given property so long as
-     * the property is not defined in the `ProxySchema`. The
-     * search is ordered as: immutable, mutable, and then virtual.
-     *
-     * @param {TProxyTarget} target
-     * @param {ProxyPropertyKey} p
-     */
-    deleteProperty(target: TProxyTarget, p: ProxyPropertyKey): boolean {
-      if (p in immutable) throw new ProxyImmutableError(`property (${String(p)}) is immutable`)
-      if (p in mutable) throw new ProxyMutableError(`property (${String(p)}) is mutable`)
-      if (p in virtual) throw new ProxyVirtualError(`property (${String(p)}) is virtual`)
-      return Reflect.deleteProperty(target, p)
-    },
-  })
+  /**
+   * @template TProxyTarget
+   * @throws {ProxyImmutableError, ProxyMutableError, ProxyVirtualError}
+   *
+   * The `deleteProperty` deletes the given property so long as
+   * the property is not defined in the `ProxySchema`. The
+   * search is ordered as: immutable, mutable, and then virtual.
+   *
+   * @param {TProxyTarget} target
+   * @param {ProxyPropertyKey} p
+   */
+  deleteProperty(target: TProxyTarget, p: ProxyPropertyKey): boolean {
+    if (p in immutable) throw new ProxyImmutableError(`property (${String(p)}) is immutable`)
+    if (p in mutable) throw new ProxyMutableError(`property (${String(p)}) is mutable`)
+    if (p in virtual) throw new ProxyVirtualError(`property (${String(p)}) is virtual`)
+    return Reflect.deleteProperty(target, p)
+  },
+})
 
 /**
  * @template TProxyTarget
