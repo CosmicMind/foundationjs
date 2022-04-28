@@ -2,8 +2,8 @@
   "maxNodeModuleJsDepth": 5,
   "compilerOptions": {
     "types": ["vite/client"],
-    "target": "esnext",
-    "module": "esnext",
+    "target": "es6",
+    "module": "CommonJS",
     "declaration": true,
     "strict": true,
     "importHelpers": true,
@@ -28,6 +28,7 @@
     ],
     "rootDir": ".",
     "baseUrl": ".",
+    "outDir": "dist",
     "paths": {
       "@/*": [
         "src/*"
