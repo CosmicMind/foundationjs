@@ -7,7 +7,7 @@
 		"name": "Daniel Jonathan",
 		"email": "daniel@cosmicverse.org"
 	},
-	"license" : "BSD-3-Clause",
+	"license": "BSD-3-Clause",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/Cosmicverse/Foundation.git"
@@ -49,6 +49,7 @@
 		"lib0": "^0.2.51",
 		"ts-node": "^10.7.0",
 		"tslib": "^2.4.0",
-		"vite-tsconfig-paths": "^3.4.1"
+		"vite-tsconfig-paths": "^3.4.1",
+		"yup": "^0.32.11"
 	}
 }
