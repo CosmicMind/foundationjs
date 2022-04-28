@@ -5,7 +5,6 @@
     "target": "esnext",
     "module": "esnext",
     "declaration": true,
-    "declarationMap": true,
     "strict": true,
     "importHelpers": true,
     "moduleResolution": "node",
