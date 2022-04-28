@@ -2,9 +2,10 @@
   "maxNodeModuleJsDepth": 5,
   "compilerOptions": {
     "types": ["vite/client"],
-    "target": "es2018",
-    "module": "commonjs",
+    "target": "esnext",
+    "module": "esnext",
     "declaration": true,
+    "declarationMap": true,
     "strict": true,
     "importHelpers": true,
     "moduleResolution": "node",
@@ -22,8 +23,9 @@
     "useUnknownInCatchVariables": false,
     "preserveConstEnums": true,
     "sourceMap": true,
+    "forceConsistentCasingInFileNames": true,
     "lib": [
-      "es2018"
+      "esnext"
     ],
     "rootDir": ".",
     "baseUrl": ".",
@@ -37,10 +39,8 @@
     }
   },
   "include": [
-    "src/**/*.json",
-    "src/**/*.ts",
-    "src/**/*.js",
-    "tests/**/*.ts"
+    "src",
+    "tests"
   ],
   "exclude": [
     "dist",
