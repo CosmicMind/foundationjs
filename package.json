@@ -1,25 +1,28 @@
 {
 	"name": "@cosmicverse/foundation",
-	"version": "0.0.1-rc-a",
+	"version": "0.0.1-rc-b",
 	"description": "A library of helpful tools for developing projects in TypeScript.",
 	"keywords": [],
 	"author": {
 		"name": "Daniel Jonathan",
 		"email": "daniel@cosmicverse.org"
 	},
-	"license" : "BSD-3-Clause",
+	"license": "BSD-3-Clause",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/Cosmicverse/Foundation.git"
 	},
-	"main": "src/index.ts",
-	"module": "dist/lib.es.js",
+	"main": "dist/lib.cjs",
+	"module": "dist/lib.cjs",
 	"type": "module",
 	"config": {
 		"main": "src/index.ts",
-		"module": "lib.es.js",
+		"module": "lib.cjs",
 		"tests": "lib.tests.mjs"
 	},
+	"files": [
+		"dist/**/*"
+	],
 	"directories": {
 		"lib": "src",
 		"test": "tests"
@@ -46,6 +49,7 @@
 		"lib0": "^0.2.51",
 		"ts-node": "^10.7.0",
 		"tslib": "^2.4.0",
-		"vite-tsconfig-paths": "^3.4.1"
+		"vite-tsconfig-paths": "^3.4.1",
+		"yup": "^0.32.11"
 	}
 }
