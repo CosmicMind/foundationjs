@@ -1,6 +1,6 @@
 {
 	"name": "@cosmicverse/foundation",
-	"version": "0.0.1-rc-d",
+	"version": "0.0.1-rc-e",
 	"description": "A library of helpful tools for developing projects in TypeScript.",
 	"keywords": [],
 	"author": {
@@ -23,7 +23,12 @@
 		"tests": "lib.tests.mjs"
 	},
 	"files": [
-		"dist"
+		"dist",
+		"package.json",
+		"package-lock.json",
+		"tsconfig.json",
+		"LICENSE",
+		"README.md"
 	],
 	"scripts": {
 		"test:build": "vite build --config vite.config.tests.js --mode development",
