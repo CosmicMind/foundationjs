@@ -2,8 +2,9 @@
   "maxNodeModuleJsDepth": 5,
   "compilerOptions": {
     "types": ["vite/client"],
-    "target": "esnext",
-    "module": "esnext",
+    "target": "es2018",
+    "module": "commonjs",
+    "declaration": true,
     "strict": true,
     "importHelpers": true,
     "moduleResolution": "node",
@@ -22,7 +23,7 @@
     "preserveConstEnums": true,
     "sourceMap": true,
     "lib": [
-      "esnext"
+      "es2018"
     ],
     "rootDir": ".",
     "baseUrl": ".",
