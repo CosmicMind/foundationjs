@@ -35,18 +35,19 @@
  */
 
 import { async } from '@/utils/tools'
+import { Optional } from '@/utils/type-defs'
 
- /**
-  * A `type` definition for listener callbacks used
-  * within the `Observable` class.
-  *
-  * @type {(...args: any[]) => void}
-  */
+/**
+ * A `type` definition for listener callbacks used
+ * within the `Observable` class.
+ *
+ * @type {(...args: any[]) => void}
+ */
 export type ObservableCallback = (...args: unknown[]) => void
 
 /**
- The `Observable` class is a vanilla implementation of an
- `event emitter` for observing messages.
+ * The `Observable` class is a vanilla implementation of an
+ * `event emitter` for observing messages.
  */
 export class Observable {
   /**
@@ -72,10 +73,8 @@ export class Observable {
    */
   on(event: string, ...f: ObservableCallback[]) {
     const s = this._events.get(event) || new Set<ObservableCallback>()
-    if (s instanceof Set) {
-      for (const x of f) s.add(x)
-      this._events.set(event, s)
-    }
+    for (const x of f) s.add(x)
+    this._events.set(event, s)
   }
 
   /**
@@ -86,8 +85,8 @@ export class Observable {
    * @param {...ObservableCallback} f
    */
   off(event: string, ...f: ObservableCallback[]) {
-    const s = this._events.get(event)
-    if (s instanceof Set) {
+    const s: Optional<Set<ObservableCallback>> = this._events.get(event)
+    if ('undefined' !== typeof s) {
       for (const x of f) s.delete(x)
       this._events.set(event, s)
     }

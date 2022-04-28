@@ -54,7 +54,7 @@ export function stringify(value: Optional<object>, replacer?: (this: unknown, ke
  * the parent object is.
  * @returns {Optional<object>}
  */
- export function parse(text: Optional<string>, reviver?: (this: unknown, key: string, value: unknown) => unknown): Optional<object> {
+export function parse(text: Optional<string>, reviver?: (this: unknown, key: string, value: unknown) => unknown): Optional<object> {
   return 'undefined' === typeof text ? undefined : JSON.parse(text, reviver)
 }
 
