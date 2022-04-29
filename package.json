@@ -1,6 +1,6 @@
 {
 	"name": "@cosmicverse/foundation",
-	"version": "0.0.1-rc-g",
+	"version": "0.0.1-rc-h",
 	"description": "A library of helpful tools for developing projects in TypeScript.",
 	"keywords": [],
 	"author": {
@@ -12,10 +12,10 @@
 		"type": "git",
 		"url": "https://github.com/Cosmicverse/Foundation.git"
 	},
-	"main": "dist/lib.es.js",
-	"types": "dist/src/index.d.ts",
-	"typings": "dist/src/index.d.ts",
-	"module": "dist/lib.es.js",
+	"main": "dist/lib.common.js",
+	"types": "dist/lib.common.d.ts",
+	"typings": "dist/lib.common.d.ts",
+	"module": "dist/lib.common.js",
 	"type": "module",
 	"config": {
 		"main": "src/index.ts",
@@ -23,7 +23,9 @@
 		"tests": "lib.tests.mjs"
 	},
 	"files": [
-		"dist",
+		"dist/lib.common,js",
+		"dist/lib.common.d.ts",
+		"dist/lib.common.js.map",
 		"package.json",
 		"package-lock.json",
 		"tsconfig.json",
@@ -39,7 +41,7 @@
 		"prod:build": "vite build --config vite.config.js --mode production",
 		"lint:run": "eslint . --ext .ts",
 		"package:npm": "tsc -p tsconfig.json",
-		"package:npm:publish": "npm publish --access public"
+		"package:publish": "npm publish --access public"
 	},
 	"devDependencies": {
 		"@types/node": "^17.0.26",
@@ -47,6 +49,7 @@
 		"@typescript-eslint/parser": "^5.20.0",
 		"@vue/eslint-config-typescript": "^10.0.0",
 		"ava": "^4.2.0",
+		"better-npm-run": "^0.1.1",
 		"eslint": "^8.14.0",
 		"typescript": "^4.6.3",
 		"vite-plugin-dts": "^1.1.1"

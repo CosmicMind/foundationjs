@@ -60,13 +60,8 @@ export default ({ mode }) => {
     outDir,
     plugins: [
       tsconfigPaths({
-        root: './',
         projects: [
           'tsconfig.json'
-        ],
-        extensions: [
-          '.ts',
-          '.js'
         ],
       })
     ],

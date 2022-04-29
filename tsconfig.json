@@ -21,7 +21,7 @@
     "noFallthroughCasesInSwitch": true,
     "useUnknownInCatchVariables": false,
 //    "preserveConstEnums": true,
-//    "sourceMap": true,
+    "sourceMap": true,
 //    "forceConsistentCasingInFileNames": true,
     "removeComments": true,
     "lib": [

@@ -35,7 +35,7 @@ import tsconfigPaths from 'vite-tsconfig-paths'
 
 const main = process.env.npm_package_config_main
 const outDir = 'dist'
-const fileName = format => `${process.env.npm_package_config_module}.${format}.js`
+const fileName = () => process.env.npm_package_config_tests
 const name = process.env.npm_package_name
 const entry = main
 const formats = [ 'es' ]
@@ -60,13 +60,8 @@ export default ({ mode }) => {
     outDir,
     plugins: [
       tsconfigPaths({
-        root: './',
         projects: [
           'tsconfig.dev.json'
-        ],
-        extensions: [
-          '.ts',
-          '.js'
         ],
       })
     ],

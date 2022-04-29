@@ -58,7 +58,11 @@ export default ({ mode }) => {
 
   return defineConfig({
     plugins: [
-      tsconfigPaths()
+      tsconfigPaths({
+        projects: [
+          'tsconfig.dev.json'
+        ],
+      })
     ],
     build: {
       outDir,
