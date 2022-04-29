@@ -9,7 +9,7 @@
 
 name: ESLint
 
-on: [push, fork]
+on: [push]
 
 jobs:
   eslint:
