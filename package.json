@@ -1,6 +1,6 @@
 {
 	"name": "@cosmicverse/foundation",
-	"version": "0.0.1-rc-f",
+	"version": "0.0.1-rc-g",
 	"description": "A library of helpful tools for developing projects in TypeScript.",
 	"keywords": [],
 	"author": {
@@ -34,10 +34,12 @@
 		"test:build": "vite build --config vite.config.tests.js --mode development",
 		"test:watch": "vite build --config vite.config.tests.js --mode watch",
 		"test:run": "ava build/lib.tests.mjs",
-		"dev:build": "vite build --config vite.config.js --mode development",
-		"dev:watch": "vite build --config vite.config.js --mode watch",
+		"dev:build": "vite build --config vite.config.dev.js --mode development",
+		"dev:watch": "vite build --config vite.config.dev.js --mode watch",
 		"prod:build": "vite build --config vite.config.js --mode production",
-		"lint:run": "eslint . --ext .ts"
+		"lint:run": "eslint . --ext .ts",
+		"package:npm": "tsc -p tsconfig.json",
+		"package:npm:publish": "npm publish --access public"
 	},
 	"devDependencies": {
 		"@types/node": "^17.0.26",

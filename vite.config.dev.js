@@ -62,7 +62,7 @@ export default ({ mode }) => {
       tsconfigPaths({
         root: './',
         projects: [
-          'tsconfig.json'
+          'tsconfig.dev.json'
         ],
         extensions: [
           '.ts',

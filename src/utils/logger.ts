@@ -30,11 +30,11 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-const log = (...messages: any[]): void => console.log(new Date(), ...messages)
-const trace = (...messages: any[]): void => console.trace(new Date(), ...messages)
-const info = (...messages: any[]): void => console.info(new Date(), ...messages)
-const warn = (...messages: any[]): void => console.warn(new Date(), ...messages)
-const error = (...messages: any[]): void => console.error(new Date(), ':', ...messages)
+const log = (...messages: unknown[]): void => console.log(new Date(), ...messages)
+const trace = (...messages: unknown[]): void => console.trace(new Date(), ...messages)
+const info = (...messages: unknown[]): void => console.info(new Date(), ...messages)
+const warn = (...messages: unknown[]): void => console.warn(new Date(), ...messages)
+const error = (...messages: unknown[]): void => console.error(new Date(), ':', ...messages)
 
 export const logger = {
   log,

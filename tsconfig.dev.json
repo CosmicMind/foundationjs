@@ -1,17 +1,17 @@
 {
   "maxNodeModuleJsDepth": 5,
   "compilerOptions": {
-//    "types": ["vite/client"],
+    "types": ["vite/client"],
     "target": "es6",
-    "module": "amd",
+    "module": "commonjs",
     "declaration": true,
     "strict": true,
-//    "importHelpers": true,
+    "importHelpers": true,
     "moduleResolution": "node",
-//    "skipLibCheck": true,
-//    "resolveJsonModule": true,
-//    "esModuleInterop": true,
-//    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "allowJs": true,
     "checkJs": true,
     "noImplicitAny": true,
@@ -20,26 +20,27 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "useUnknownInCatchVariables": false,
-//    "preserveConstEnums": true,
-//    "sourceMap": true,
-//    "forceConsistentCasingInFileNames": true,
-    "removeComments": true,
+    "preserveConstEnums": true,
+    "sourceMap": true,
+    "forceConsistentCasingInFileNames": true,
     "lib": [
       "esnext"
     ],
     "rootDir": ".",
     "baseUrl": ".",
     "outDir": "dist",
-    "outFile": "dist/lib.common.js",
     "paths": {
       "@/*": [
-        "src/*",
-        "dist/src/*"
+        "src/*"
+      ],
+      "@tests/*": [
+        "tests/*"
       ]
     }
   },
   "include": [
-    "src/"
+    "src/",
+    "tests/"
   ],
   "typeRoots": [
     "typings",
