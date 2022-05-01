@@ -1,6 +1,6 @@
 {
 	"name": "@cosmicverse/foundation",
-	"version": "0.0.1-rc-o",
+	"version": "0.0.1-rc-p",
 	"description": "A library of helpful tools for developing projects in TypeScript.",
 	"keywords": [],
 	"author": {
@@ -13,14 +13,8 @@
 		"url": "https://github.com/Cosmicverse/Foundation.git"
 	},
 	"main": "dist/index.js",
-	"types": "dist/lib.index.d.ts",
-	"typings": "dist/lib.index.d.ts",
+	"typings": "dist/index.d.ts",
 	"module": "dist/index.js",
-	"config": {
-		"main": "src/index.ts",
-		"module": "lib",
-		"tests": "lib.tests.mjs"
-	},
 	"files": [
 		"dist/",
 		"package.json",
@@ -41,7 +35,7 @@
 		"package:publish": "npm publish --access public"
 	},
 	"_moduleAliases": {
-        "@/*": "dist/src/*"
+        "@/*": "./*"
     },
 	"devDependencies": {
 		"@types/node": "^17.0.26",

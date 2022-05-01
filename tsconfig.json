@@ -27,17 +27,17 @@
     "lib": [
       "esnext"
     ],
-    "rootDir": "./src",
-    "baseUrl": ".",
+    // "rootDir": "./src",
+    "baseUrl": "./src",
     "outDir": "dist",
     "paths": {
       "@/*": [
-        "src/*"
+        "./*"
       ]
     }
   },
   "include": [
-    "src/"
+    "src/**/*"
   ],
   "typeRoots": [
     "typings",
