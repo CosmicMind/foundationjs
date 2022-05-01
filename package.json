@@ -1,6 +1,6 @@
 {
 	"name": "@cosmicverse/foundation",
-	"version": "0.0.1-rc-k",
+	"version": "0.0.1-rc-l",
 	"description": "A library of helpful tools for developing projects in TypeScript.",
 	"keywords": [],
 	"author": {
@@ -16,7 +16,6 @@
 	"types": "dist/lib.index.d.ts",
 	"typings": "dist/lib.index.d.ts",
 	"module": "dist/index.js",
-	"type": "module",
 	"config": {
 		"main": "src/index.ts",
 		"module": "lib",
