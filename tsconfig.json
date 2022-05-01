@@ -27,7 +27,7 @@
     "lib": [
       "esnext"
     ],
-    // "rootDir": ".",
+    "rootDir": "./src",
     "baseUrl": ".",
     "outDir": "dist",
     "paths": {
@@ -37,7 +37,7 @@
     }
   },
   "include": [
-    "src/"
+    "src/**/*.ts"
   ],
   "typeRoots": [
     "typings",
