@@ -1,6 +1,6 @@
 {
 	"name": "@cosmicverse/foundation",
-	"version": "0.0.1-rc-j",
+	"version": "0.0.1-rc-k",
 	"description": "A library of helpful tools for developing projects in TypeScript.",
 	"keywords": [],
 	"author": {
@@ -12,10 +12,10 @@
 		"type": "git",
 		"url": "https://github.com/Cosmicverse/Foundation.git"
 	},
-	"main": "dist/lib.common.js",
-	"types": "dist/lib.common.d.ts",
-	"typings": "dist/lib.common.d.ts",
-	"module": "dist/lib.common.js",
+	"main": "dist/index.js",
+	"types": "dist/lib.index.d.ts",
+	"typings": "dist/lib.index.d.ts",
+	"module": "dist/index.js",
 	"type": "module",
 	"config": {
 		"main": "src/index.ts",
@@ -23,9 +23,7 @@
 		"tests": "lib.tests.mjs"
 	},
 	"files": [
-		"dist/lib.common,js",
-		"dist/lib.common.d.ts",
-		"dist/lib.common.js.map",
+		"dist/",
 		"package.json",
 		"package-lock.json",
 		"tsconfig.json",
@@ -40,7 +38,7 @@
 		"dev:watch": "vite build --config vite.config.dev.js --mode watch",
 		"prod:build": "vite build --config vite.config.js --mode production",
 		"lint:run": "eslint . --ext .ts",
-		"package:npm": "tsc -p tsconfig.json",
+		"package:build": "tsc -p tsconfig.json",
 		"package:publish": "npm publish --access public"
 	},
 	"devDependencies": {
@@ -51,7 +49,6 @@
 		"ava": "^4.2.0",
 		"better-npm-run": "^0.1.1",
 		"eslint": "^8.14.0",
-		"typescript": "^4.6.3",
 		"vite-plugin-dts": "^1.1.1"
 	},
 	"dependencies": {
