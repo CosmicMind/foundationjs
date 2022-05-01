@@ -2,8 +2,8 @@
   "maxNodeModuleJsDepth": 5,
   "compilerOptions": {
    "types": ["vite/client"],
-    "target": "es6",
-    "module": "commonjs",
+    "target": "esnext",
+    "module": "esnext",
     "declaration": true,
     "strict": true,
     "importHelpers": true,
@@ -37,7 +37,7 @@
     }
   },
   "include": [
-    "src/**/*.ts"
+    "src/"
   ],
   "typeRoots": [
     "typings",
