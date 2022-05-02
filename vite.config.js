@@ -32,6 +32,7 @@
 
 import { defineConfig } from 'vite'
 import tsconfigPaths from 'vite-tsconfig-paths'
+import dts from 'vite-plugin-dts'
 
 const main = process.env.npm_package_config_main
 const outDir = 'dist'
@@ -67,7 +68,8 @@ export default ({ mode }) => {
         projects: [
           'tsconfig.json'
         ],
-      })
+      }),
+      dts()
     ],
     build: {
       manifest,

@@ -44,7 +44,7 @@ import { BaseSchema } from 'yup'
 import {
   FoundationError,
   FoundationTypeError,
-} from '@/utils/error'
+} from './error'
 
 /**
  * @extends {FoundationTypeError}
