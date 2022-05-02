@@ -34,8 +34,8 @@
  * @module Observable
  */
 
-import { async } from '../utils/tools'
-import { Optional } from '../utils/type-defs'
+import { async } from '@/utils/tools'
+import { Optional } from '@/utils/type-defs'
 
 /**
  * A `type` definition for listener callbacks used

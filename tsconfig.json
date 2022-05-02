@@ -26,12 +26,20 @@
     "lib": [
       "esnext"
     ],
-    "rootDir": ".",
-    "baseUrl": "./",
-    "outDir": "./dist"
+    "rootDir": "src",
+    "baseUrl": ".",
+    "outDir": "dist",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ],
+      "@tests/*": [
+        "tests/*"
+      ]
+    }
   },
   "include": [
-    "./src"
+    "src"
   ],
   "typeRoots": [
     "typings",

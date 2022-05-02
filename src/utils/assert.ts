@@ -34,7 +34,7 @@
  * @module Assert
  */
 
-import { FoundationError } from './error'
+import { FoundationError } from '@/utils/error'
 
 /**
  * @extends {FoundationError}

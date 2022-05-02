@@ -36,10 +36,10 @@ import dts from 'vite-plugin-dts'
 
 const main = process.env.npm_package_config_main
 const outDir = 'dist'
-const fileName = format => `${process.env.npm_package_config_module}.${'es' == format ? 'mjs' : 'cjs'}`
+const fileName = format => `${process.env.npm_package_config_module}.${format}.${'es' == format ? 'js' : 'cjs'}`
 const name = process.env.npm_package_name
 const entry = main
-const formats = [ 'es', 'cjs' ]
+const formats = [ 'es' ]
 const external = [
   'ava',
   'dotenv',

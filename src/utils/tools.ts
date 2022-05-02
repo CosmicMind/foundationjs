@@ -30,7 +30,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { Optional } from './type-defs'
+import { Optional } from '@/utils/type-defs'
 
 /**
  * Converts a JavaScript value to a JavaScript Object Notation (JSON) string.
