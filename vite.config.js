@@ -40,7 +40,11 @@ const name = process.env.npm_package_name
 const entry = main
 const formats = [ 'es', 'cjs' ]
 const external = [
-  
+  'ava',
+  'dotenv',
+  'eslint',
+  'lib0',
+  'yup'
 ]
 const globals = {}
 
