@@ -15,7 +15,7 @@
 	"type": "module",
 	"main": "dist/org.cosmicverse.foundation.es.js",
 	"module": "dist/org.cosmicverse.foundation.es.js",
-	"types": "dist/libs/foundation/src/index.d.js",
+	"types": "dist/index.d.ts",
 	"config": {
 		"main": "src/index.ts",
 		"module": "org.cosmicverse.foundation",
