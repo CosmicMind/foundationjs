@@ -27,12 +27,11 @@
     "lib": [
       "esnext"
     ],
-    "rootDir": ".",
-    "baseUrl": ".",
+    "baseUrl": "./src",
     "outDir": "dist/",
     "paths": {
       "@/*": [
-        "src/*"
+        "./*"
       ],
       "@tests/*": [
         "tests/*"
