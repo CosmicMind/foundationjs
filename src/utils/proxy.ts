@@ -44,7 +44,7 @@ import { BaseSchema } from 'yup'
 import {
   FoundationError,
   FoundationTypeError,
-} from '@cosmicverse/foundation'
+} from '@/utils/error'
 
 /**
  * @extends {FoundationTypeError}

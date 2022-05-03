@@ -34,7 +34,7 @@
  * @module Assert
  */
 
-import { FoundationError } from '@cosmicverse/foundation'
+import { FoundationError } from '@/utils/error'
 
 /**
  * @extends {FoundationError}

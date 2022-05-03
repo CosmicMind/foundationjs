@@ -34,10 +34,8 @@
  * @module Observable
  */
 
-import { 
-  async,
-  Optional, 
-} from '@cosmicverse/foundation'
+ import { async } from '@/utils/tools'
+import { Optional } from '@/utils/type-defs'
 
 /**
  * A `type` definition for listener callbacks used
@@ -45,7 +43,7 @@ import {
  *
  * @type {(...args: any[]) => void}
  */
-export type ObservableCallback = (...args: any[]) => void
+export type ObservableCallback = (...args: unknown[]) => void
 
 /**
  * The `Observable` class is a vanilla implementation of an

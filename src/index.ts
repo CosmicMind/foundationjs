@@ -30,25 +30,27 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-export { logger } from './utils/logger'
+import 'module-alias/register';
 
-export type { Serializable } from './protocols/Serializable'
-export type { Versionable } from './protocols/Versionable'
+export { logger } from '@/utils/logger'
 
-export type { ObservableCallback } from './protocols/Observable'
-export { Observable } from './protocols/Observable'
+export type { Serializable } from '@/protocols/Serializable'
+export type { Versionable } from '@/protocols/Versionable'
+
+export type { ObservableCallback } from '@/protocols/Observable'
+export { Observable } from '@/protocols/Observable'
 
 export {
   assert,
   AssertError,
-} from './utils/assert'
+} from '@/utils/assert'
 
 export {
   FoundationError,
   FoundationTypeError,
-} from './utils/error'
+} from '@/utils/error'
 
-export { uuidv4 } from './utils/uuid'
+export { uuidv4 } from '@/utils/uuid'
 
 export type {
   ProxyValidator,
@@ -56,7 +58,7 @@ export type {
   ProxyMutable,
   ProxyVirtual,
   ProxySchema,
-} from './utils/proxy'
+} from '@/utils/proxy'
 
 export {
   ProxyTypeError,
@@ -65,7 +67,7 @@ export {
   ProxyMutableError,
   ProxyVirtualError,
   createProxyFor,
-} from './utils/proxy'
+} from '@/utils/proxy'
 
 export type {
   Class,
@@ -73,7 +75,7 @@ export type {
   Optional,
   Voidable,
   Omit,
-} from './utils/type-defs'
+} from '@/utils/type-defs'
 
 export {
   stringify,
@@ -91,4 +93,4 @@ export {
   equals,
   unique,
   assign,
-} from './utils/tools'
+} from '@/utils/tools'

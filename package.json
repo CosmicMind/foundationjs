@@ -22,7 +22,7 @@
 		"tests": "org.cosmicverse.foundation.tests.mjs"
 	},
 	"_moduleAliases": {
-    "@cosmicverse/foundation": "dist/src/index"
+    "@/*": "dist/src/*"
   },
 	"files": [
 		"dist",
