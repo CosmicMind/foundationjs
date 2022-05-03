@@ -45,7 +45,7 @@ import {
  *
  * @type {(...args: any[]) => void}
  */
-export type ObservableCallback = (...args: unknown[]) => void
+export type ObservableCallback = (...args: any[]) => void
 
 /**
  * The `Observable` class is a vanilla implementation of an
