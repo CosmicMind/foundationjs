@@ -30,10 +30,11 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { Optional } from '@/utils/type-defs'
+import { Optional } from '@cosmicverse/foundation'
 
 /**
  * Converts a JavaScript value to a JavaScript Object Notation (JSON) string.
+ * 
  * @param {Optional<object>} value A JavaScript value, usually an object or array, to be converted.
  * @param {Optional<(this: any, key: string, value: unknown) => any>} replacer An array of strings
  * and numbers that acts as an approved list for selecting the object properties that will be
@@ -48,6 +49,7 @@ export function stringify(value: Optional<object>, replacer?: (this: unknown, ke
 
 /**
  * Converts a JavaScript Object Notation (JSON) string into an object.
+ * 
  * @param {Optional<string>} text A valid JSON string.
  * @param {Optional<(this: any, key: string, value: unknown) => any>} reviver A function that transforms the results. This function is called for each member
  * of the object. If a member contains nested objects, the nested objects are transformed before
@@ -76,6 +78,7 @@ export function async(fn: () => unknown, timeout = 0): Promise<unknown> {
 
 /**
  * Deep clones the passed value using JSON stringify and parse methods.
+ * 
  * @param {Optional<object>} value
  * @returns {Optional<object>}
  */
@@ -85,6 +88,7 @@ export function clone(value: Optional<object>): Optional<object> {
 
 /**
  * Cleans the empty values within an object.
+ * 
  * @param {object} o
  */
 export function clean(o: Record<string | number, unknown>): object {
@@ -96,6 +100,7 @@ export function clean(o: Record<string | number, unknown>): object {
 
 /**
  * Strips all non-alphabetic characters.
+ * 
  * @param {string} s
  * @returns {string}
  */
@@ -106,6 +111,7 @@ export function stripNonAlphaChars(s: string): string {
 /**
  * Condenses sequential space characters to a single space
  * that wraps the character string.
+ * 
  * @param {string} c
  * @returns {string}
  */
@@ -115,6 +121,7 @@ export const normalizeOuterSpace = (c: string): string =>
 /**
  * Condenses sequential space characters to a single space
  * that is within the character string.
+ * 
  * @param {string} c
  * @returns {string}
  */
@@ -123,6 +130,7 @@ export const normalizeInnerSpace = (c: string): string =>
 
 /**
  * Capitalizes the character string.
+ * 
  * @param {string} c
  * @returns {string}
  */
@@ -133,6 +141,7 @@ export const toCapitalize = (c: string): string =>
 
 /**
  * Converts the character string to camel case.
+ * 
  * @param {string} c
  * @returns {string}
  */
@@ -143,6 +152,7 @@ export const toCamelCase = (c: string): string =>
 
 /**
  * Converts the character string to a kebab-case.
+ * 
  * @param {string} c
  * @returns {string}
  */
@@ -153,6 +163,7 @@ export const toKebabCase = (c: string): string =>
 
 /**
  * Converts the character string to snake case.
+ * 
  * @param {string} c
  * @returns {string}
  */
@@ -162,6 +173,7 @@ export const toSnakeCase = (c: string): string =>
   }).toLowerCase() : c
 /**
  * Checks equality of two objects by comparing their JSON string.
+ * 
  * @param {Object} a
  * @param {Object} b
  * @returns {boolean}

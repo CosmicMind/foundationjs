@@ -44,7 +44,7 @@ import { BaseSchema } from 'yup'
 import {
   FoundationError,
   FoundationTypeError,
-} from '@/utils/error'
+} from '@cosmicverse/foundation'
 
 /**
  * @extends {FoundationTypeError}
@@ -289,7 +289,7 @@ export interface ProxySchema {
  * @param {ProxyVirtual} virtual
  * @returns {ProxyHandler<TProxyTarget>}
  */
-export const createProxyHandlerForSchema = <TProxyTarget extends { new (...args: unknown[]): TProxyTarget }>({ immutable, mutable, virtual }: ProxySchema): ProxyHandler<TProxyTarget> => ({
+export const createProxyHandlerForSchema = <TProxyTarget extends { new (): TProxyTarget }>({ immutable, mutable, virtual }: ProxySchema): ProxyHandler<TProxyTarget> => ({
   /**
    * @template TProxyTarget
    *
@@ -391,7 +391,7 @@ export const createProxyHandlerForSchema = <TProxyTarget extends { new (...args:
  * @param {TProxyTarget} target
  * @returns {TProxyTarget}
  */
-export const createProxyFor = <TProxyTarget extends { new (...args: unknown[]): TProxyTarget }>(schema: Partial<ProxySchema>, target: TProxyTarget): TProxyTarget =>
+export const createProxyFor = <TProxyTarget extends { new (): TProxyTarget }>(schema: Partial<ProxySchema>, target: TProxyTarget): TProxyTarget =>
   new Proxy<TProxyTarget>(target, createProxyHandlerForSchema<TProxyTarget>(generateProxySchemaFor(schema, target)))
 
 /**
@@ -407,7 +407,7 @@ export const createProxyFor = <TProxyTarget extends { new (...args: unknown[]): 
  * @param {TProxyTarget} target
  * @returns {ProxySchema}
  */
-const generateProxySchemaFor = <TProxyTarget extends { new (...args: unknown[]): TProxyTarget }>({ immutable, mutable, virtual }: Partial<ProxySchema>, target: TProxyTarget): ProxySchema => {
+const generateProxySchemaFor = <TProxyTarget extends { new (): TProxyTarget }>({ immutable, mutable, virtual }: Partial<ProxySchema>, target: TProxyTarget): ProxySchema => {
   if ('object' !== typeof immutable) immutable = {}
   if ('object' !== typeof mutable) mutable = {}
   if ('object' !== typeof virtual) virtual = {}

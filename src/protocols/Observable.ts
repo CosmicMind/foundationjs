@@ -34,8 +34,10 @@
  * @module Observable
  */
 
-import { async } from '@/utils/tools'
-import { Optional } from '@/utils/type-defs'
+ import { 
+   async,
+   Optional, 
+} from '@cosmicverse/foundation'
 
 /**
  * A `type` definition for listener callbacks used

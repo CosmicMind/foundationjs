@@ -31,7 +31,7 @@
  */
 
 export interface Class<TClass> {
-  new (...args: unknown[]): TClass
+  new (): TClass
 }
 
 export type Nullable<TNullable> = TNullable | null

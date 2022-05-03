@@ -1,6 +1,7 @@
 {
   "maxNodeModuleJsDepth": 5,
   "compilerOptions": {
+    // "traceResolution": true,
     "types": ["vite/client"],
     "target": "esnext",
     "declaration": true,
@@ -26,12 +27,12 @@
     "lib": [
       "esnext"
     ],
-    "rootDir": "src",
+    "rootDir": ".",
     "baseUrl": ".",
-    "outDir": "dist",
+    "outDir": "dist/",
     "paths": {
-      "@/*": [
-        "src/*"
+      "@cosmicverse/foundation": [
+        "src/index"
       ],
       "@tests/*": [
         "tests/*"
@@ -39,10 +40,11 @@
     }
   },
   "include": [
-    "src"
+    "src/**/*.ts",
+    "src/**/*.js"
   ],
   "typeRoots": [
-    "typings",
+    "@types",
     "node_modules/@types"
   ]
 }
