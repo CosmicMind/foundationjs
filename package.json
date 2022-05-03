@@ -13,17 +13,14 @@
 		"url": "https://github.com/Cosmicverse/Foundation.git"
 	},
 	"type": "module",
-	"main": "dist/index.js",
-	"module": "dist/index.js",
-	"types": "dist/index.d.ts",
+	"main": "dist/org.cosmicverse.foundation.es.js",
+	"module": "dist/org.cosmicverse.foundation.es.js",
+	"types": "dist/libs/foundation/src/index.d.js",
 	"config": {
 		"main": "src/index.ts",
 		"module": "org.cosmicverse.foundation",
 		"tests": "org.cosmicverse.foundation.tests.mjs"
 	},
-	"_moduleAliases": {
-    "@/*": "dist/src/*"
-  },
 	"files": [
 		"dist",
 		"LICENSE",
@@ -40,7 +37,7 @@
 		"dev:watch": "vite build --config vite.config.js --mode watch",
 		"prod:build": "vite build --config vite.config.js --mode production",
 		"lint:run": "eslint . --ext .ts",
-		"package:build": "tsc -p tsconfig.json",
+		"package:build": "vite build --config vite.config.js --mode development",
 		"package:publish": "npm publish --access public"
 	},
 	"devDependencies": {
@@ -58,7 +55,6 @@
 	},
 	"dependencies": {
 		"lib0": "^0.2.51",
-		"module-alias": "^2.2.2",
 		"yup": "^0.32.11"
 	}
 }
