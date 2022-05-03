@@ -1,6 +1,6 @@
 {
 	"name": "@cosmicverse/foundation",
-	"version": "0.0.1-rc-zi",
+	"version": "0.0.1-rc-zj",
 	"description": "A library of helpful tools for developing projects in TypeScript.",
 	"keywords": [],
 	"author": {
@@ -13,13 +13,13 @@
 		"url": "https://github.com/Cosmicverse/Foundation.git"
 	},
 	"type": "module",
-	"main": "dist/org.cosmicverse.foundation.es.js",
-	"module": "dist/org.cosmicverse.foundation.es.js",
+	"main": "dist/lib.es.js",
+	"module": "dist/lib.es.js",
 	"types": "dist/index.d.ts",
 	"config": {
 		"main": "src/index.ts",
-		"module": "org.cosmicverse.foundation",
-		"tests": "org.cosmicverse.foundation.tests.mjs"
+		"module": "lib",
+		"tests": "lib.tests.mjs"
 	},
 	"files": [
 		"dist",
@@ -38,6 +38,7 @@
 		"prod:build": "vite build --config vite.config.js --mode production",
 		"lint:run": "eslint . --ext .ts",
 		"package:build": "vite build --config vite.config.js --mode development",
+		"package:watch": "vite build --config vite.config.js --mode watch",
 		"package:publish": "npm publish --access public"
 	},
 	"devDependencies": {
