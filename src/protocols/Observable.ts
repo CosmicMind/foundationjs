@@ -34,7 +34,7 @@
  * @module Observable
  */
 
- import { async } from '@/utils/tools'
+import { async } from '@/utils/tools'
 import { Optional } from '@/utils/type-defs'
 
 /**
