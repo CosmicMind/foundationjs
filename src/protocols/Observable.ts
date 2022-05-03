@@ -34,9 +34,9 @@
  * @module Observable
  */
 
- import { 
-   async,
-   Optional, 
+import { 
+  async,
+  Optional, 
 } from '@cosmicverse/foundation'
 
 /**

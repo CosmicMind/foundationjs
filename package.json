@@ -48,11 +48,13 @@
 		"ava": "^4.2.0",
 		"dotenv": "^16.0.0",
 		"eslint": "^8.14.0",
-		"lib0": "^0.2.51",
 		"ts-node": "^10.7.0",
 		"tslib": "^2.4.0",
 		"vite-plugin-dts": "^1.1.1",
-		"vite-tsconfig-paths": "^3.4.1",
+		"vite-tsconfig-paths": "^3.4.1"
+	},
+	"dependencies": {
+		"lib0": "^0.2.51",
 		"yup": "^0.32.11"
 	}
 }
