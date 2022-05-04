@@ -43,6 +43,11 @@ export {
   AssertError,
 } from '@/utils/assert'
 
+export { 
+  guard,
+  guardForTypeOf,
+} from '@/utils/guard'
+
 export {
   FoundationError,
   FoundationTypeError,

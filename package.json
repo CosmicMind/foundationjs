@@ -1,6 +1,6 @@
 {
 	"name": "@cosmicverse/foundation",
-	"version": "0.0.1-rc-zj",
+	"version": "0.0.1-rc-zk",
 	"description": "A library of helpful tools for developing projects in TypeScript.",
 	"keywords": [],
 	"author": {
@@ -16,11 +16,6 @@
 	"main": "dist/lib.es.js",
 	"module": "dist/lib.es.js",
 	"types": "dist/index.d.ts",
-	"config": {
-		"main": "src/index.ts",
-		"module": "lib",
-		"tests": "lib.tests.mjs"
-	},
 	"files": [
 		"dist",
 		"LICENSE",
@@ -30,16 +25,16 @@
 		"tsconfig.json"
 	],
 	"scripts": {
-		"test:build": "vite build --config vite.config.js --mode development",
-		"test:watch": "vite build --config vite.config.js --mode watch",
-		"test:run": "ava build/lib.tests.mjs",
+		"lint:run": "eslint . --ext .ts",
+		"test:build": "vite build --config vite.config.tests.js --mode development",
+		"test:watch": "vite build --config vite.config.tests.js --mode watch",
+		"test:run": "ava dist/lib.es.tests.mjs",
 		"dev:build": "vite build --config vite.config.js --mode development",
 		"dev:watch": "vite build --config vite.config.js --mode watch",
-		"prod:build": "vite build --config vite.config.js --mode production",
-		"lint:run": "eslint . --ext .ts",
 		"package:build": "vite build --config vite.config.js --mode development",
 		"package:watch": "vite build --config vite.config.js --mode watch",
-		"package:publish": "npm publish --access public"
+		"package:publish": "npm publish --access public",
+		"prod:build": "vite build --config vite.config.js --mode production"
 	},
 	"devDependencies": {
 		"@types/node": "^17.0.31",
