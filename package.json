@@ -1,6 +1,6 @@
 {
 	"name": "@cosmicverse/foundation",
-	"version": "0.0.1-rc-zk",
+	"version": "0.0.1-rc-zl",
 	"description": "A library of helpful tools for developing projects in TypeScript.",
 	"keywords": [],
 	"author": {
@@ -38,8 +38,8 @@
 	},
 	"devDependencies": {
 		"@types/node": "^17.0.31",
-		"@typescript-eslint/eslint-plugin": "^5.21.0",
-		"@typescript-eslint/parser": "^5.21.0",
+		"@typescript-eslint/eslint-plugin": "^5.22.0",
+		"@typescript-eslint/parser": "^5.22.0",
 		"@vue/eslint-config-typescript": "^10.0.0",
 		"ava": "^4.2.0",
 		"dotenv": "^16.0.0",
