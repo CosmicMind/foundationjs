@@ -30,61 +30,22 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { defineConfig } from 'vite'
-import tsconfigPaths from 'vite-tsconfig-paths'
-import dts from 'vite-plugin-dts'
+/**
+ * A guard statement. It is important to understand that
+ * guards are somewhat a reverse logic, if it fails, it
+ * returns `true`, in order to pass into a failure block. 
+ *
+ * @param {boolean} statement
+ * @returns {boolean}
+ */
+export const guard = (statement: boolean): boolean => !statement
 
-const main = 'src/index.ts'
-const outDir = process.env.npm_out_dir
-const fileName = format => `lib.${format}.js`
-const name = process.env.npm_package_name
-const entry = main
-const formats = [ 'es' ]
-const external = [
-  'dotenv',
-  'eslint',
-  'lib0',
-  'yup'
-]
-const globals = {}
-
-const isWatch = mode => 'watch' === mode
-const isDev = mode => 'development' === mode || isWatch(mode)
-
-export default ({ mode }) => {
-  const manifest = false
-  const emptyOutDir = false
-  const cssCodeSplit = true
-  const sourcemap = false
-
-  const minify = isDev(mode) ? false : 'terser'
-  const watch = isWatch(mode)
-
-  return defineConfig({
-    outDir,
-    plugins: [
-      tsconfigPaths(),
-      dts()
-    ],
-    build: {
-      manifest,
-      emptyOutDir,
-      cssCodeSplit,
-      sourcemap,
-      lib: {
-        name,
-        entry,
-        formats,
-        fileName,
-      },
-      rollupOptions: {
-        external,
-        output: {
-          globals,
-        },
-      },
-      minify,
-      watch,
-    },
-  })
-}
+/**
+ * @template TType
+ * Checks if a value is a subtype or equal to `T`. 
+ *
+ * @param {unknown} value
+ * @param {keyof T} propertyToCheckFor
+ * @returns {boolean}
+ */
+export const guardForTypeOf = <TType>(value: unknown, propertyToCheckFor: keyof TType): value is TType => propertyToCheckFor in (value as TType)
