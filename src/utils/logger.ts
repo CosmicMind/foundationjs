@@ -30,6 +30,8 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+/* eslint no-console: 0 */  // --> OFF
+
 const log = (...messages: unknown[]): void => console.log(new Date(), ...messages)
 const trace = (...messages: unknown[]): void => console.trace(new Date(), ...messages)
 const info = (...messages: unknown[]): void => console.info(new Date(), ...messages)

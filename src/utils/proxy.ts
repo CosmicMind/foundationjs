@@ -41,6 +41,8 @@
 
 import { BaseSchema } from 'yup'
 
+import { Optional } from '@/utils/type-defs'
+
 import {
   FoundationError,
   FoundationTypeError,
@@ -260,7 +262,7 @@ export interface ProxyMutable {
  * The `ProxyMutable` type is used to define mutable
  * property keys for the `ProxySchema`.
  */
-export interface ProxyVirtual { [key: string]: unknown }
+export interface ProxyVirtual { [key: string]: Optional<unknown> }
 
 /**
  * The `ProxySchema` type defines the structure of
