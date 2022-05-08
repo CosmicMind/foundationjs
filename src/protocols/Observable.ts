@@ -41,7 +41,7 @@ import { Optional } from '@/utils/type-defs'
  * A `type` definition for listener callbacks used
  * within the `Observable` class.
  *
- * @type {(...args: any[]) => void}
+ * @type {(...args: unknown[]) => void}
  */
 export type ObservableCallback = (...args: unknown[]) => void
 
@@ -55,13 +55,13 @@ export class Observable {
    *
    * @type {Map<string, Set<ObservableCallback>>()}
    */
-  private _events: Map<string, Set<ObservableCallback>>
+  #events: Map<string, Set<ObservableCallback>>
 
   /**
    * @constructor
    */
   constructor() {
-    this._events = new Map()
+    this.#events = new Map()
   }
 
   /**
@@ -72,9 +72,9 @@ export class Observable {
    * @param {...ObservableCallback} f
    */
   on(event: string, ...f: ObservableCallback[]) {
-    const s = this._events.get(event) || new Set<ObservableCallback>()
+    const s = this.#events.get(event) || new Set<ObservableCallback>()
     for (const x of f) s.add(x)
-    this._events.set(event, s)
+    this.#events.set(event, s)
   }
 
   /**
@@ -85,10 +85,10 @@ export class Observable {
    * @param {...ObservableCallback} f
    */
   off(event: string, ...f: ObservableCallback[]) {
-    const s: Optional<Set<ObservableCallback>> = this._events.get(event)
+    const s: Optional<Set<ObservableCallback>> = this.#events.get(event)
     if ('undefined' !== typeof s) {
       for (const x of f) s.delete(x)
-      this._events.set(event, s)
+      this.#events.set(event, s)
     }
   }
 
@@ -100,7 +100,7 @@ export class Observable {
    */
   emitAsync(event: string, ...args: unknown[]): Promise<unknown> {
     return async((): void => {
-      const f = this._events.get(event)
+      const f = this.#events.get(event)
       if (f instanceof Set) for (const x of f) x(...args)
     })
   }
@@ -112,7 +112,7 @@ export class Observable {
    * @param {...unknown} args
    */
   emitSync(event: string, ...args: unknown[]) {
-    const f = this._events.get(event)
+    const f = this.#events.get(event)
     if (f instanceof Set) for (const x of f) x(...args)
   }
 

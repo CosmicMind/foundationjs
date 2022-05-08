@@ -59,18 +59,18 @@ export class ProxyTypeError extends FoundationTypeError {
   /**
    * Fetches the `name` value for the class.
    *
-   * @type {Readonly<string>}
+   * @type {string}
    */
-  get name(): Readonly<string> {
+  get name(): string {
     return super.name
   }
 
   /**
    * Fetches the `message` value for the class.
    *
-   * @type {Readonly<string>}
+   * @type {string}
    */
-  get message(): Readonly<string> {
+  get message(): string {
     return super.message
   }
 
@@ -94,18 +94,18 @@ export class ProxyNotDefinedError extends FoundationError {
   /**
    * Fetches the `name` value for the class.
    *
-   * @type {Readonly<string>}
+   * @type {string}
    */
-  get name(): Readonly<string> {
+  get name(): string {
     return super.name
   }
 
   /**
    * Fetches the `message` value for the class.
    *
-   * @type {Readonly<string>}
+   * @type {string}
    */
-  get message(): Readonly<string> {
+  get message(): string {
     return super.message
   }
 
@@ -130,18 +130,18 @@ export class ProxyImmutableError extends FoundationError {
   /**
    * Fetches the `name` value for the class.
    *
-   * @type {Readonly<string>}
+   * @type {string}
    */
-  get name(): Readonly<string> {
+  get name(): string {
     return super.name
   }
 
   /**
    * Fetches the `message` value for the class.
    *
-   * @type {Readonly<string>}
+   * @type {string}
    */
-  get message(): Readonly<string> {
+  get message(): string {
     return super.message
   }
 
@@ -165,18 +165,18 @@ export class ProxyMutableError extends FoundationError {
   /**
    * Fetches the `name` value for the class.
    *
-   * @type {Readonly<string>}
+   * @type {string}
    */
-  get name(): Readonly<string> {
+  get name(): string {
     return super.name
   }
 
   /**
    * Fetches the `message` value for the class.
    *
-   * @type {Readonly<string>}
+   * @type {string}
    */
-  get message(): Readonly<string> {
+  get message(): string {
     return super.message
   }
 
@@ -201,18 +201,18 @@ export class ProxyVirtualError extends FoundationError {
   /**
    * Fetches the `name` value for the class.
    *
-   * @type {Readonly<string>}
+   * @type {string}
    */
-  get name(): Readonly<string> {
+  get name(): string {
     return super.name
   }
 
   /**
    * Fetches the `message` value for the class.
    *
-   * @type {Readonly<string>}
+   * @type {string}
    */
-  get message(): Readonly<string> {
+  get message(): string {
     return super.message
   }
 
@@ -352,8 +352,8 @@ export const createProxyHandlerForSchema = <TProxyTarget extends { new (): TProx
    *
    * @param {TProxyTarget} target
    * @param {ProxyPropertyKey} p
-   * @param {any} value
-   * @param {any} receiver
+   * @param {unknown} value
+   * @param {unknown} receiver
    * @returns {boolean}
    */
   set(target: TProxyTarget, p: ProxyPropertyKey, value: unknown, receiver: unknown): boolean {

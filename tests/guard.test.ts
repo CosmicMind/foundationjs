@@ -30,6 +30,48 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-export * from '@tests/assert.test'
-export * from '@tests/guard.test'
-export * from '@tests/uuid.test'
+import test from 'ava'
+
+import {
+  guard,
+  guardFor,
+} from '@/utils/guard'
+
+type GuardTypeA = {
+  name: string
+  age: number
+}
+
+type GuardTypeB = {
+  name: string
+  version: number
+}
+
+test('Guard', async t => {
+  t.false(guard(true))
+  t.true(guard(false))
+})
+
+test('Guard Type', async t => {
+  const a: GuardTypeA = {
+    name: 'daniel',
+    age: 38,
+  }
+
+  const b: GuardTypeB = {
+    name: 'token',
+    version: 1,
+  }
+
+  t.true(guardFor<GuardTypeA>(a, 'name'))
+  t.true(guardFor<GuardTypeA>(a, 'age'))
+  
+  t.true(guardFor<GuardTypeB>(b, 'name'))
+  t.true(guardFor<GuardTypeB>(b, 'version'))
+
+  t.true(guardFor<GuardTypeA>(b, 'name'))
+  t.false(guardFor<GuardTypeA>(b, 'age'))
+
+  t.true(guardFor<GuardTypeB>(a, 'name'))
+  t.false(guardFor<GuardTypeB>(a, 'version'))
+})

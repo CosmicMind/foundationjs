@@ -33,7 +33,7 @@
 /**
  * A guard statement. It is important to understand that
  * guards are somewhat a reverse logic, if it fails, it
- * returns `true`, in order to pass into a failure block. 
+ * returns `true`, in order to pass into a failure block.
  *
  * @param {boolean} statement
  * @returns {boolean}
@@ -42,10 +42,12 @@ export const guard = (statement: boolean): boolean => !statement
 
 /**
  * @template TType
- * Checks if a value is a subtype or equal to `T`. 
+ *
+ * Checks if a value is a subtype or equal to `TType`.
  *
  * @param {unknown} value
- * @param {keyof T} propertyToCheckFor
+ * @param {keyof TType} key
  * @returns {boolean}
  */
-export const guardForTypeOf = <TType>(value: unknown, propertyToCheckFor: keyof TType): value is TType => propertyToCheckFor in (value as TType)
+export const guardFor = <TType>(value: unknown, key: keyof TType): value is TType =>
+  key in (value as TType)

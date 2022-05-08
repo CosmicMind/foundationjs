@@ -43,9 +43,9 @@ export {
   AssertError,
 } from '@/utils/assert'
 
-export { 
+export {
   guard,
-  guardForTypeOf,
+  guardFor,
 } from '@/utils/guard'
 
 export {
@@ -85,8 +85,6 @@ export {
   parse,
   async,
   clone,
-  clean,
-  stripNonAlphaChars,
   normalizeOuterSpace,
   normalizeInnerSpace,
   toCapitalize,

@@ -38,16 +38,16 @@ export interface IFoundationError {
   /**
    * Fetches the `name` value for the class.
    *
-   * @type {Readonly<string>}
+   * @type {string}
    */
-  get name(): Readonly<string>
+  get name(): string
 
   /**
    * Fetches the `message` value for the class.
    *
-   * @type {Readonly<string>}
+   * @type {string}
    */
-  get message(): Readonly<string>
+  get message(): string
 }
 
 /**
@@ -63,18 +63,18 @@ export abstract class FoundationError extends Error implements IFoundationError 
   /**
    * Fetches the `name` value for the class.
    *
-   * @type {Readonly<string>}
+   * @type {string}
    */
-  get name(): Readonly<string> {
+  get name(): string {
     return this.constructor.name
   }
 
   /**
    * Fetches the `message` value for the class.
    *
-   * @type {Readonly<string>}
+   * @type {string}
    */
-  get message(): Readonly<string> {
+  get message(): string {
     return super.message
   }
 
@@ -96,7 +96,7 @@ export abstract class FoundationError extends Error implements IFoundationError 
  * The `FoundationTypeError` is the base `TypeError` class. It
  * is used in specific type error situations.
  *
- * @property {Readonly<string>} name
+ * @property {string} name
  * @property {string} message
  */
 export abstract class FoundationTypeError extends TypeError implements IFoundationError {
@@ -105,16 +105,16 @@ export abstract class FoundationTypeError extends TypeError implements IFoundati
    *
    * @type {string}
    */
-  get name(): Readonly<string> {
+  get name(): string {
     return this.constructor.name
   }
 
   /**
    * Fetches the `message` value for the class.
    *
-   * @type {Readonly<string>}
+   * @type {string}
    */
-  get message(): Readonly<string> {
+  get message(): string {
     return super.message
   }
 

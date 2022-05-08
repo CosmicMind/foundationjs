@@ -34,31 +34,24 @@ import { Optional } from '@/utils/type-defs'
 
 /**
  * Converts a JavaScript value to a JavaScript Object Notation (JSON) string.
- * 
- * @param {Optional<object>} value A JavaScript value, usually an object or array, to be converted.
- * @param {Optional<(this: any, key: string, value: unknown) => any>} replacer An array of strings
- * and numbers that acts as an approved list for selecting the object properties that will be
- * stringified.
- * @param {string | number} space Adds indentation, white space, and line break characters to
- * the return-value JSON text to make it easier to read.
+ *
+ * @param {Optional<object>} value
+ * @param {Optional<(this: unknown, key: string, value: unknown) => Optional<string>>} replacer
+ * @param {Optional<string | number>} space
  * @returns {Optional<string>}
  */
-export function stringify(value: Optional<object>, replacer?: (this: unknown, key: string, value: unknown) => unknown, space?: string | number): Optional<string> {
-  return 'undefined' === typeof value ? undefined : JSON.stringify(value, replacer, space)
-}
+export const stringify = (value: Optional<object>, replacer?: (this: unknown, key: string, value: unknown) => unknown, space?: string | number): Optional<string> =>
+  'undefined' === typeof value ? undefined : JSON.stringify(value, replacer, space)
 
 /**
  * Converts a JavaScript Object Notation (JSON) string into an object.
- * 
- * @param {Optional<string>} text A valid JSON string.
- * @param {Optional<(this: any, key: string, value: unknown) => any>} reviver A function that transforms the results. This function is called for each member
- * of the object. If a member contains nested objects, the nested objects are transformed before
- * the parent object is.
+ *
+ * @param {Optional<string>} text
+ * @param {Optional<(this: unknown, key: string, value: unknown) => unknown>} reviver
  * @returns {Optional<object>}
  */
-export function parse(text: Optional<string>, reviver?: (this: unknown, key: string, value: unknown) => unknown): Optional<object> {
-  return 'undefined' === typeof text ? undefined : JSON.parse(text, reviver)
-}
+export const parse = (text: Optional<string>, reviver?: (this: unknown, key: string, value: unknown) => unknown): Optional<object> =>
+  'undefined' === typeof text ? undefined : JSON.parse(text, reviver)
 
 /**
  * A helper function that returns a promise and creates an `async` block.
@@ -67,51 +60,26 @@ export function parse(text: Optional<string>, reviver?: (this: unknown, key: str
  * @param {number} timeout
  * @returns {Promise<unknown>}
  */
-export function async(fn: () => unknown, timeout = 0): Promise<unknown> {
-  return new Promise((resolve, reject): void => {
+export const async = (fn: () => unknown, timeout = 0): Promise<unknown> =>
+  new Promise((resolve, reject): void => {
     setTimeout((): void => {
       try { resolve(fn() || true) }
       catch (e) { reject(e) }
     }, timeout)
   })
-}
 
 /**
  * Deep clones the passed value using JSON stringify and parse methods.
- * 
+ *
  * @param {Optional<object>} value
  * @returns {Optional<object>}
  */
-export function clone(value: Optional<object>): Optional<object> {
-  return parse(stringify(value))
-}
-
-/**
- * Cleans the empty values within an object.
- * 
- * @param {object} o
- */
-export function clean(o: Record<string | number, unknown>): object {
-  for (const k of Object.getOwnPropertyNames(o)) {
-    if (null === o[k] || undefined === o[k] || false === o[k]) delete o[k]
-  }
-  return o
-}
-
-/**
- * Strips all non-alphabetic characters.
- * 
- * @param {string} s
- * @returns {string}
- */
-export function stripNonAlphaChars(s: string): string {
-  return `${s.replace(/[^a-zA-Z]/g, "")}`
-}
+export const clone = (value: Optional<object>): Optional<object> => parse(stringify(value))
 
 /**
  * Condenses sequential space characters to a single space
  * that wraps the character string.
- * 
+ *
  * @param {string} c
  * @returns {string}
  */
@@ -121,7 +89,7 @@ export const normalizeOuterSpace = (c: string): string =>
 /**
  * Condenses sequential space characters to a single space
  * that is within the character string.
- * 
+ *
  * @param {string} c
  * @returns {string}
  */
@@ -130,7 +98,7 @@ export const normalizeInnerSpace = (c: string): string =>
 
 /**
  * Capitalizes the character string.
- * 
+ *
  * @param {string} c
  * @returns {string}
  */
@@ -141,7 +109,7 @@ export const toCapitalize = (c: string): string =>
 
 /**
  * Converts the character string to camel case.
- * 
+ *
  * @param {string} c
  * @returns {string}
  */
@@ -152,7 +120,7 @@ export const toCamelCase = (c: string): string =>
 
 /**
  * Converts the character string to a kebab-case.
- * 
+ *
  * @param {string} c
  * @returns {string}
  */
@@ -163,7 +131,7 @@ export const toKebabCase = (c: string): string =>
 
 /**
  * Converts the character string to snake case.
- * 
+ *
  * @param {string} c
  * @returns {string}
  */
@@ -173,7 +141,7 @@ export const toSnakeCase = (c: string): string =>
   }).toLowerCase() : c
 /**
  * Checks equality of two objects by comparing their JSON string.
- * 
+ *
  * @param {Object} a
  * @param {Object} b
  * @returns {boolean}

@@ -38,13 +38,13 @@
  * The `Serializable` protocol defines the implementation
  * criteria that adheres to the given protocol.
  *
- * @property {Readonly<string>} serialized
+ * @property {string} serialized
  */
 export interface Serializable {
   /**
    * Converts the implementation class to a serialized value.
    *
-   * @type {Readonly<string>}
+   * @type {string}
    */
-  get serialized(): Readonly<string>
+  get serialized(): string
 }
