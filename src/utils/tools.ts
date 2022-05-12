@@ -30,17 +30,17 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { Optional } from '@/utils/type-defs'
+import { Optional } from './type-defs'
 
 /**
  * Converts a JavaScript value to a JavaScript Object Notation (JSON) string.
  *
- * @param {Optional<object>} value
+ * @param {Optional<unknown>} value
  * @param {Optional<(this: unknown, key: string, value: unknown) => Optional<string>>} replacer
  * @param {Optional<string | number>} space
  * @returns {Optional<string>}
  */
-export const stringify = (value: Optional<object>, replacer?: (this: unknown, key: string, value: unknown) => unknown, space?: string | number): Optional<string> =>
+export const stringify = (value: Optional<unknown>, replacer?: (this: unknown, key: string, value: unknown) => unknown, space?: string | number): Optional<string> =>
   'undefined' === typeof value ? undefined : JSON.stringify(value, replacer, space)
 
 /**

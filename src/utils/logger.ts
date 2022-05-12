@@ -32,7 +32,7 @@
 
 /* eslint no-console: 0 */  // --> OFF
 
-import { Optional } from '@/utils/type-defs'
+import { Optional } from './type-defs'
 
 const log = (...messages: Optional<unknown>[]): void => console.log(new Date(), ...messages)
 const trace = (...messages: Optional<unknown>[]): void => console.trace(new Date(), ...messages)
