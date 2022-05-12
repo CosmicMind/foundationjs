@@ -34,7 +34,8 @@
     "outDir": "dist",
     "paths": {
       "@/*": [
-        "src/*"
+        "src/*",
+        "dist/*"
       ],
       "@tests/*": [
         "tests/*"
