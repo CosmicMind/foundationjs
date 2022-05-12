@@ -298,11 +298,11 @@ export const createProxyHandlerForSchema = <TProxyTarget extends { new (): TProx
    * @constructor
    *
    * @param {TProxyTarget} target
-   * @param {unknown[]} argArray
+   * @param {Optional<unknown>[]} argArray
    * @param {() => void} newTarget
    * @returns {object}
    */
-  construct(target: TProxyTarget, argArray: unknown[], newTarget: () => void): object {
+  construct(target: TProxyTarget, argArray: Optional<unknown>[], newTarget: () => void): object {
     return Reflect.construct(target, argArray, newTarget)
   },
 
@@ -335,9 +335,15 @@ export const createProxyHandlerForSchema = <TProxyTarget extends { new (): TProx
    * @returns {unknown}
    */
   get(target: TProxyTarget, p: ProxyPropertyKey, receiver: unknown): unknown {
-    if (p in immutable) return Reflect.get(target, p, receiver)
-    if (p in mutable) return Reflect.get(target, p, receiver)
-    if (p in virtual) return Reflect.get(virtual, p, receiver)
+    if (p in immutable) {
+      return Reflect.get(target, p, receiver)
+    }
+    if (p in mutable) {
+      return Reflect.get(target, p, receiver)
+    }
+    if (p in virtual) {
+      return Reflect.get(virtual, p, receiver)
+    }
     return Reflect.get(target, p, receiver)
   },
 
@@ -357,10 +363,18 @@ export const createProxyHandlerForSchema = <TProxyTarget extends { new (): TProx
    * @returns {boolean}
    */
   set(target: TProxyTarget, p: ProxyPropertyKey, value: unknown, receiver: unknown): boolean {
-    if (p in immutable) throw new ProxyImmutableError(`property (${String(p)}) is immutable`)
-    else if (p in virtual) throw new ProxyVirtualError(`property (${String(p)}) is virtual`)
-    else if (p in mutable) try { mutable[String(p)].validateSync(value) } catch(e) { throw new ProxyTypeError(e.message) }
-    else throw new ProxyNotDefinedError(`property (${String(p)}) is not defined`)
+    if (p in immutable) {
+      throw new ProxyImmutableError(`property (${String(p)}) is immutable`)
+    }
+    else if (p in virtual) {
+      throw new ProxyVirtualError(`property (${String(p)}) is virtual`)
+    }
+    else if (p in mutable) {
+      try { mutable[String(p)].validateSync(value) } catch(e) { throw new ProxyTypeError(e.message) }
+    }
+    else {
+      throw new ProxyNotDefinedError(`property (${String(p)}) is not defined`)
+    }
     return Reflect.set(target, p, value, receiver)
   },
 
@@ -376,9 +390,15 @@ export const createProxyHandlerForSchema = <TProxyTarget extends { new (): TProx
    * @param {ProxyPropertyKey} p
    */
   deleteProperty(target: TProxyTarget, p: ProxyPropertyKey): boolean {
-    if (p in immutable) throw new ProxyImmutableError(`property (${String(p)}) is immutable`)
-    if (p in mutable) throw new ProxyMutableError(`property (${String(p)}) is mutable`)
-    if (p in virtual) throw new ProxyVirtualError(`property (${String(p)}) is virtual`)
+    if (p in immutable) {
+      throw new ProxyImmutableError(`property (${String(p)}) is immutable`)
+    }
+    if (p in mutable) {
+      throw new ProxyMutableError(`property (${String(p)}) is mutable`)
+    }
+    if (p in virtual) {
+      throw new ProxyVirtualError(`property (${String(p)}) is virtual`)
+    }
     return Reflect.deleteProperty(target, p)
   },
 })
@@ -410,15 +430,31 @@ export const createProxyFor = <TProxyTarget extends { new (): TProxyTarget }>(sc
  * @returns {ProxySchema}
  */
 const generateProxySchemaFor = <TProxyTarget extends { new (): TProxyTarget }>({ immutable, mutable, virtual }: Partial<ProxySchema>, target: TProxyTarget): ProxySchema => {
-  if ('object' !== typeof immutable) immutable = {}
-  if ('object' !== typeof mutable) mutable = {}
-  if ('object' !== typeof virtual) virtual = {}
+  if ('object' !== typeof immutable) {
+    immutable = {}
+  }
+  
+  if ('object' !== typeof mutable) {
+    mutable = {}
+  }
+
+  if ('object' !== typeof virtual) {
+    virtual = {}
+  }
 
   for (const [ p, v ] of Object.entries(target)) {
-    if (p in immutable) try { immutable[p].validateSync(v) } catch(e) {  throw new ProxyTypeError(e.message) }
-    else if (p in mutable) try { mutable[p].validateSync(v) } catch(e) { throw new ProxyTypeError(e.message) }
-    else if (p in virtual) throw new ProxyVirtualError(`property (${String(p)}) is virtual`)
-    else throw new ProxyNotDefinedError(`property (${String(p)}) is not defined`)
+    if (p in immutable) {
+      try { immutable[p].validateSync(v) } catch(e) {  throw new ProxyTypeError(e.message) }
+    }
+    else if (p in mutable) {
+      try { mutable[p].validateSync(v) } catch(e) { throw new ProxyTypeError(e.message) }
+    }
+    else if (p in virtual) {
+      throw new ProxyVirtualError(`property (${String(p)}) is virtual`)
+    }
+    else {
+      throw new ProxyNotDefinedError(`property (${String(p)}) is not defined`)
+    }
   }
 
   return {

@@ -151,10 +151,10 @@ export const equals = (a: object, b: object): boolean => stringify(a) == stringi
 /**
  * Filters the `Array` and returns only the unique values.
  *
- * @param {unknown[]}data
- * @returns {unknown[]}
+ * @param {Optional<unknown>[]}data
+ * @returns {Optional<unknown>[]}
  */
-export const unique = (data: unknown[]): unknown[] => [ ...new Set(data) ]
+export const unique = (data: Optional<unknown>[]): Optional<unknown>[] => [ ...new Set(data) ]
 
 /**
  * Define a new `assign` function that works like
@@ -183,12 +183,16 @@ export const assign = (target: object, ...sources: object[]): object => {
   for(const source of sources) {
     for(const name of Object.getOwnPropertyNames(source)) {
       const desc = Object.getOwnPropertyDescriptor(source, name)
-      if ('undefined' !== typeof desc) Object.defineProperty(target, name, desc)
+      if ('undefined' !== typeof desc) {
+        Object.defineProperty(target, name, desc)
+      }
     }
 
     for(const symbol of Object.getOwnPropertySymbols(source)) {
       const desc = Object.getOwnPropertyDescriptor(source, symbol)
-      if ('undefined' !== typeof desc) Object.defineProperty(target, symbol, desc)
+      if ('undefined' !== typeof desc) {
+        Object.defineProperty(target, symbol, desc)
+      }
     }
   }
 

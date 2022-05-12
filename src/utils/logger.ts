@@ -32,11 +32,13 @@
 
 /* eslint no-console: 0 */  // --> OFF
 
-const log = (...messages: unknown[]): void => console.log(new Date(), ...messages)
-const trace = (...messages: unknown[]): void => console.trace(new Date(), ...messages)
-const info = (...messages: unknown[]): void => console.info(new Date(), ...messages)
-const warn = (...messages: unknown[]): void => console.warn(new Date(), ...messages)
-const error = (...messages: unknown[]): void => console.error(new Date(), ':', ...messages)
+import { Optional } from '@/utils/type-defs'
+
+const log = (...messages: Optional<unknown>[]): void => console.log(new Date(), ...messages)
+const trace = (...messages: Optional<unknown>[]): void => console.trace(new Date(), ...messages)
+const info = (...messages: Optional<unknown>[]): void => console.info(new Date(), ...messages)
+const warn = (...messages: Optional<unknown>[]): void => console.warn(new Date(), ...messages)
+const error = (...messages: Optional<unknown>[]): void => console.error(new Date(), ':', ...messages)
 
 export const logger = {
   log,
