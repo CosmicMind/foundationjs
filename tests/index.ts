@@ -30,6 +30,6 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-export * from '@tests/assert.test'
-export * from '@tests/guard.test'
-export * from '@tests/uuid.test'
+export * from './assert.test'
+export * from './guard.test'
+export * from './uuid.test'

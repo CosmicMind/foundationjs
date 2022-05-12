@@ -35,7 +35,7 @@ import test from 'ava'
 import {
   guard,
   guardFor,
-} from '@/utils/guard'
+} from '../src'
 
 type GuardTypeA = {
   name: string
