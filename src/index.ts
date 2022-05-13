@@ -73,7 +73,7 @@ export {
 } from './utils/proxy'
 
 export type {
-  Class,
+  Newable,
   Nullable,
   Optional,
   Voidable,

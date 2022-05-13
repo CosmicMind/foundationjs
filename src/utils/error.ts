@@ -59,7 +59,7 @@ export interface IFoundationError {
  * in non-specific situations. This is ideally used as a base
  * class to inherit from when making custom error types.
  */
-export abstract class FoundationError extends Error implements IFoundationError {
+export class FoundationError extends Error implements IFoundationError {
   /**
    * Fetches the `name` value for the class.
    *
@@ -70,20 +70,11 @@ export abstract class FoundationError extends Error implements IFoundationError 
   }
 
   /**
-   * Fetches the `message` value for the class.
-   *
-   * @type {string}
-   */
-  get message(): string {
-    return super.message
-  }
-
-  /**
    * @constructor
    *
    * @param {string} message
    */
-  protected constructor(message: string) {
+  constructor(message: string) {
     super(message)
   }
 }

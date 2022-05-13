@@ -42,16 +42,7 @@ import { FoundationError } from './error'
  * The `AssertError` defines an error that arises when
  * a given assertion fails.
  */
-export class AssertError extends FoundationError {
-  /**
-   * @constructor
-   *
-   * @param {string} message
-   */
-  constructor(message: string) {
-    super(message)
-  }
-}
+export class AssertError extends FoundationError {}
 
 /**
  * @throws {AssertError}
@@ -63,6 +54,8 @@ export class AssertError extends FoundationError {
  * @returns {boolean}
  */
 export const assert = (statement: boolean, message: string): boolean => {
-  if (statement) return true
+  if (statement) {
+    return true
+  }
   throw new AssertError(message)
 }
