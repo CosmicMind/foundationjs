@@ -41,7 +41,10 @@
 
 import { BaseSchema } from 'yup'
 
-import { Optional } from './type-defs'
+import {
+  Newable,
+  Optional,
+} from './type-defs'
 
 import {
   FoundationError,
@@ -298,12 +301,12 @@ export const createProxyHandlerForSchema = <TProxyTarget extends object>({ immut
    * @constructor
    *
    * @param {TProxyTarget} target
-   * @param {Optional<unknown>[]} argArray
+   * @param {unknown[]} argArray
    * @param {() => void} newTarget
    * @returns {object}
    */
-  construct(target: TProxyTarget, argArray: Optional<unknown>[], newTarget: () => void): object {
-    return Reflect.construct(target, argArray, newTarget)
+  construct(target: TProxyTarget, argArray: unknown[], newTarget: () => void): object {
+    return Reflect.construct(target as Newable<object>, argArray, newTarget)
   },
 
   /**
@@ -410,11 +413,11 @@ export const createProxyHandlerForSchema = <TProxyTarget extends object>({ immut
  * a new Proxy instance for the given `target`.
  *
  * @param {Partial<ProxySchema>} schema
- * @param {TProxyTarget} target
+ * @param {Newable<TProxyTarget>} target
  * @returns {TProxyTarget}
  */
 export const createProxyFor = <TProxyTarget extends object>(schema: Partial<ProxySchema>, target: TProxyTarget): TProxyTarget =>
-  new Proxy<TProxyTarget>(target, createProxyHandlerForSchema<TProxyTarget>(generateProxySchemaFor(schema, target)))
+  new Proxy<TProxyTarget>(target, createProxyHandlerForSchema(generateProxySchemaFor(schema, target)) as ProxyHandler<TProxyTarget>)
 
 /**
  * @template TProxyTarget
