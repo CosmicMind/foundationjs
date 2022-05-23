@@ -32,9 +32,6 @@
 
 export { logger } from './utils/logger'
 
-export type { Serializable } from './protocols/Serializable'
-export type { Versionable } from './protocols/Versionable'
-
 export type { ObservableCallback } from './protocols/Observable'
 export { Observable } from './protocols/Observable'
 

@@ -126,7 +126,7 @@ export class ProxyNotDefinedError extends FoundationError {
  * @extends {FoundationError}
  *
  * The `ProxyImmutableError` defines an error that arises when
- * immutable property values are either invalid or tyring to
+ * immutable property values are either invalid or trying to
  * be set after construction.
  */
 export class ProxyImmutableError extends FoundationError {
@@ -373,7 +373,14 @@ export const createProxyHandlerForSchema = <TProxyTarget extends object>({ immut
       throw new ProxyVirtualError(`property (${String(p)}) is virtual`)
     }
     else if (p in mutable) {
-      try { mutable[String(p)].validateSync(value) } catch(e) { throw new ProxyTypeError(e.message) }
+      try {
+        mutable[String(p)].validateSync(value)
+      }
+      catch(e) {
+        if (e instanceof Error) {
+          throw new ProxyTypeError(e.message)
+        }
+      }
     }
     else {
       throw new ProxyNotDefinedError(`property (${String(p)}) is not defined`)
@@ -447,10 +454,24 @@ const generateProxySchemaFor = <TProxyTarget extends object>({ immutable, mutabl
 
   for (const [ p, v ] of Object.entries(target)) {
     if (p in immutable) {
-      try { immutable[p].validateSync(v) } catch(e) {  throw new ProxyTypeError(e.message) }
+      try {
+        immutable[p].validateSync(v)
+      }
+      catch(e) {
+        if (e instanceof Error) {
+          throw new ProxyTypeError(e.message)
+        }
+      }
     }
     else if (p in mutable) {
-      try { mutable[p].validateSync(v) } catch(e) { throw new ProxyTypeError(e.message) }
+      try {
+        mutable[p].validateSync(v)
+      }
+      catch(e) {
+        if (e instanceof Error) {
+          throw new ProxyTypeError(e.message)
+        }
+      }
     }
     else if (p in virtual) {
       throw new ProxyVirtualError(`property (${String(p)}) is virtual`)
