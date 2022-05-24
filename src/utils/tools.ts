@@ -146,7 +146,7 @@ export const toSnakeCase = (c: string): string =>
  * @param {Object} b
  * @returns {boolean}
  */
-export const equals = (a: object, b: object): boolean => stringify(a) == stringify(b)
+export const equals = (a: object, b: object): boolean => stringify(a) === stringify(b)
 
 /**
  * Filters the `Array` and returns only the unique values.

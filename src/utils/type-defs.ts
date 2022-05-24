@@ -33,8 +33,3 @@
 export type Nullable<TNullable> = TNullable | null
 export type Optional<TOptional> = TOptional | undefined
 export type Voidable<TVoidable> = TVoidable | void
-export type Omit<TClass, TClassProps extends keyof TClass> = Pick<TClass, Exclude<keyof TClass, TClassProps>>
-
-export interface Newable<TNewable> {
-  new (...args: Optional<unknown>[]): TNewable
-}

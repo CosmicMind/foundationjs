@@ -41,10 +41,7 @@
 
 import { BaseSchema } from 'yup'
 
-import {
-  Newable,
-  Optional,
-} from './type-defs'
+import { Optional } from './type-defs'
 
 import {
   FoundationError,
@@ -298,20 +295,6 @@ export const createProxyHandlerForSchema = <TProxyTarget extends object>({ immut
   /**
    * @template TProxyTarget
    *
-   * @constructor
-   *
-   * @param {TProxyTarget} target
-   * @param {unknown[]} argArray
-   * @param {() => void} newTarget
-   * @returns {object}
-   */
-  construct(target: TProxyTarget, argArray: unknown[], newTarget: () => void): object {
-    return Reflect.construct(target as Newable<object>, argArray, newTarget)
-  },
-
-  /**
-   * @template TProxyTarget
-   *
    * The `has` checks whether a value exists in the
    * `ProxySchema` definition, or in the instance itself.
    * The search is ordered as: immutable, mutable, virtual,
@@ -420,7 +403,7 @@ export const createProxyHandlerForSchema = <TProxyTarget extends object>({ immut
  * a new Proxy instance for the given `target`.
  *
  * @param {Partial<ProxySchema>} schema
- * @param {Newable<TProxyTarget>} target
+ * @param {TProxyTarget} target
  * @returns {TProxyTarget}
  */
 export const createProxyFor = <TProxyTarget extends object>(schema: Partial<ProxySchema>, target: TProxyTarget): TProxyTarget =>

@@ -70,11 +70,9 @@ export {
 } from './utils/proxy'
 
 export type {
-  Newable,
   Nullable,
   Optional,
   Voidable,
-  Omit,
 } from './utils/type-defs'
 
 export {
