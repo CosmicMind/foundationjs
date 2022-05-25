@@ -180,15 +180,15 @@ export const unique = (data: Optional<unknown>[]): Optional<unknown>[] => [ ...n
  * @returns {object}
  */
 export const assign = (target: object, ...sources: object[]): object => {
-  for(const source of sources) {
-    for(const name of Object.getOwnPropertyNames(source)) {
+  for (const source of sources) {
+    for (const name of Object.getOwnPropertyNames(source)) {
       const desc = Object.getOwnPropertyDescriptor(source, name)
       if ('undefined' !== typeof desc) {
         Object.defineProperty(target, name, desc)
       }
     }
 
-    for(const symbol of Object.getOwnPropertySymbols(source)) {
+    for (const symbol of Object.getOwnPropertySymbols(source)) {
       const desc = Object.getOwnPropertyDescriptor(source, symbol)
       if ('undefined' !== typeof desc) {
         Object.defineProperty(target, symbol, desc)
