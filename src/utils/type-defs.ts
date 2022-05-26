@@ -30,6 +30,6 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-export type Nullable<TNullable> = TNullable | null
-export type Optional<TOptional> = TOptional | undefined
-export type Voidable<TVoidable> = TVoidable | void
+export type Nullable<T> = T | null
+export type Optional<T> = T | undefined
+export type Voidable<T> = T | void
