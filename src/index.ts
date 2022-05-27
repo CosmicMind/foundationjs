@@ -30,52 +30,34 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-export { logger } from './utils/logger'
-
-export type { ObservableCallback } from './protocols/Observable'
-export { Observable } from './protocols/Observable'
-
-export {
-  assert,
-  AssertError,
-} from './utils/assert'
-
-export {
-  guard,
-  guardFor,
-} from './utils/guard'
-
-export {
-  FoundationError,
-  FoundationTypeError,
-} from './utils/error'
-
-export { uuidv4 } from './utils/uuid'
-
 export type {
+  Nullable,
+  Optional,
+  Voidable,
+  ObservableCallback,
   ProxyValidator,
   ProxyImmutable,
   ProxyMutable,
   ProxyVirtual,
   ProxySchema,
-} from './utils/proxy'
+} from './internal'
 
 export {
+  logger,
+  assert,
+  AssertError,
+  Observable,
+  guard,
+  guardFor,
+  FoundationError,
+  FoundationTypeError,
+  uuidv4,
   ProxyTypeError,
   ProxyNotDefinedError,
   ProxyImmutableError,
   ProxyMutableError,
   ProxyVirtualError,
   createProxyFor,
-} from './utils/proxy'
-
-export type {
-  Nullable,
-  Optional,
-  Voidable,
-} from './utils/type-defs'
-
-export {
   stringify,
   parse,
   async,
@@ -89,4 +71,4 @@ export {
   equals,
   unique,
   assign,
-} from './utils/tools'
+} from './internal'

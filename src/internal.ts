@@ -30,48 +30,63 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import test from 'ava'
+export { logger } from './utils/logger'
 
-import {
+export type { ObservableCallback } from './protocols/Observable'
+export { Observable } from './protocols/Observable'
+
+export {
+  assert,
+  AssertError,
+} from './utils/assert'
+
+export {
   guard,
   guardFor,
-} from '../src/internal'
+} from './utils/guard'
 
-type GuardTypeA = {
-  name: string
-  age: number
-}
+export {
+  FoundationError,
+  FoundationTypeError,
+} from './utils/error'
 
-type GuardTypeB = {
-  name: string
-  version: number
-}
+export { uuidv4 } from './utils/uuid'
 
-test('Guard', async t => {
-  t.false(guard(true))
-  t.true(guard(false))
-})
+export type {
+  ProxyValidator,
+  ProxyImmutable,
+  ProxyMutable,
+  ProxyVirtual,
+  ProxySchema,
+} from './utils/proxy'
 
-test('Guard Type', async t => {
-  const a: GuardTypeA = {
-    name: 'daniel',
-    age: 38,
-  }
+export {
+  ProxyTypeError,
+  ProxyNotDefinedError,
+  ProxyImmutableError,
+  ProxyMutableError,
+  ProxyVirtualError,
+  createProxyFor,
+} from './utils/proxy'
 
-  const b: GuardTypeB = {
-    name: 'token',
-    version: 1,
-  }
+export type {
+  Nullable,
+  Optional,
+  Voidable,
+} from './utils/type-defs'
 
-  t.true(guardFor<GuardTypeA>(a, 'name'))
-  t.true(guardFor<GuardTypeA>(a, 'age'))
-  
-  t.true(guardFor<GuardTypeB>(b, 'name'))
-  t.true(guardFor<GuardTypeB>(b, 'version'))
-
-  t.true(guardFor<GuardTypeA>(b, 'name'))
-  t.false(guardFor<GuardTypeA>(b, 'age'))
-
-  t.true(guardFor<GuardTypeB>(a, 'name'))
-  t.false(guardFor<GuardTypeB>(a, 'version'))
-})
+export {
+  stringify,
+  parse,
+  async,
+  clone,
+  normalizeOuterSpace,
+  normalizeInnerSpace,
+  toCapitalize,
+  toCamelCase,
+  toKebabCase,
+  toSnakeCase,
+  equals,
+  unique,
+  assign,
+} from './utils/tools'

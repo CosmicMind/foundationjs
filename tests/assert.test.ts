@@ -32,12 +32,12 @@
 
 import test from 'ava'
 
-import { FoundationError } from '../src'
+import { FoundationError } from '../src/internal'
 
 import {
   assert,
   AssertError,
-} from '../src'
+} from '../src/internal'
 
 test('Assert: success', async t => {
   t.true(assert(true, 'not a number'))
