@@ -65,7 +65,7 @@ test('Guard Type', async t => {
 
   t.true(guardFor<GuardTypeA>(a, 'name'))
   t.true(guardFor<GuardTypeA>(a, 'age'))
-  
+
   t.true(guardFor<GuardTypeB>(b, 'name'))
   t.true(guardFor<GuardTypeB>(b, 'version'))
 
