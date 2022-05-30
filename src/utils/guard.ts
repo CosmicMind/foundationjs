@@ -41,13 +41,13 @@
 export const guard = (statement: boolean): boolean => !statement
 
 /**
- * @template TType
+ * @template T
  *
- * Checks if a value is a subtype or equal to `TType`.
+ * Checks if a value is a subtype or equal to `T`.
  *
  * @param {unknown} value
- * @param {keyof TType} key
+ * @param {keyof T} key
  * @returns {boolean}
  */
-export const guardFor = <TType>(value: unknown, key: keyof TType): value is TType =>
-  key in (value as TType)
+export const guardFor = <T>(value: unknown, key: keyof T): value is T =>
+  key in (value as T)
