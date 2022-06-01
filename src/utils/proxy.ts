@@ -39,13 +39,13 @@
  * properties that define the structure of the class.
  */
 
-import { BaseSchema } from 'yup'
+import {BaseSchema} from 'yup'
 
-import { Optional } from './type-defs'
+import {Optional} from './type-defs'
 
 import {
-  FoundationError,
-  FoundationTypeError,
+    FoundationError,
+    FoundationTypeError,
 } from './error'
 
 /**
@@ -56,32 +56,32 @@ import {
  * for a given property key.
  */
 export class ProxyTypeError extends FoundationTypeError {
-  /**
-   * Fetches the `name` value for the class.
-   *
-   * @type {string}
-   */
-  get name(): string {
-    return super.name
-  }
+    /**
+     * Fetches the `name` value for the class.
+     *
+     * @type {string}
+     */
+    get name(): string {
+        return super.name
+    }
 
-  /**
-   * Fetches the `message` value for the class.
-   *
-   * @type {string}
-   */
-  get message(): string {
-    return super.message
-  }
+    /**
+     * Fetches the `message` value for the class.
+     *
+     * @type {string}
+     */
+    get message(): string {
+        return super.message
+    }
 
-  /**
-   * @constructor
-   *
-   * @param {string} message
-   */
-  constructor(message: string) {
-    super(message)
-  }
+    /**
+     * @constructor
+     *
+     * @param {string} message
+     */
+    constructor(message: string) {
+        super(message)
+    }
 }
 
 /**
@@ -91,32 +91,32 @@ export class ProxyTypeError extends FoundationTypeError {
  * when a given property value is not part of the schema.
  */
 export class ProxyNotDefinedError extends FoundationError {
-  /**
-   * Fetches the `name` value for the class.
-   *
-   * @type {string}
-   */
-  get name(): string {
-    return super.name
-  }
+    /**
+     * Fetches the `name` value for the class.
+     *
+     * @type {string}
+     */
+    get name(): string {
+        return super.name
+    }
 
-  /**
-   * Fetches the `message` value for the class.
-   *
-   * @type {string}
-   */
-  get message(): string {
-    return super.message
-  }
+    /**
+     * Fetches the `message` value for the class.
+     *
+     * @type {string}
+     */
+    get message(): string {
+        return super.message
+    }
 
-  /**
-   * @constructor
-   *
-   * @param {string} message
-   */
-  constructor(message: string) {
-    super(message)
-  }
+    /**
+     * @constructor
+     *
+     * @param {string} message
+     */
+    constructor(message: string) {
+        super(message)
+    }
 }
 
 /**
@@ -127,32 +127,32 @@ export class ProxyNotDefinedError extends FoundationError {
  * be set after construction.
  */
 export class ProxyImmutableError extends FoundationError {
-  /**
-   * Fetches the `name` value for the class.
-   *
-   * @type {string}
-   */
-  get name(): string {
-    return super.name
-  }
+    /**
+     * Fetches the `name` value for the class.
+     *
+     * @type {string}
+     */
+    get name(): string {
+        return super.name
+    }
 
-  /**
-   * Fetches the `message` value for the class.
-   *
-   * @type {string}
-   */
-  get message(): string {
-    return super.message
-  }
+    /**
+     * Fetches the `message` value for the class.
+     *
+     * @type {string}
+     */
+    get message(): string {
+        return super.message
+    }
 
-  /**
-   * @constructor
-   *
-   * @param {string} message
-   */
-  constructor(message: string) {
-    super(message)
-  }
+    /**
+     * @constructor
+     *
+     * @param {string} message
+     */
+    constructor(message: string) {
+        super(message)
+    }
 }
 
 /**
@@ -162,32 +162,32 @@ export class ProxyImmutableError extends FoundationError {
  * mutable property values either invalid.
  */
 export class ProxyMutableError extends FoundationError {
-  /**
-   * Fetches the `name` value for the class.
-   *
-   * @type {string}
-   */
-  get name(): string {
-    return super.name
-  }
+    /**
+     * Fetches the `name` value for the class.
+     *
+     * @type {string}
+     */
+    get name(): string {
+        return super.name
+    }
 
-  /**
-   * Fetches the `message` value for the class.
-   *
-   * @type {string}
-   */
-  get message(): string {
-    return super.message
-  }
+    /**
+     * Fetches the `message` value for the class.
+     *
+     * @type {string}
+     */
+    get message(): string {
+        return super.message
+    }
 
-  /**
-   * @constructor
-   *
-   * @param {string} message
-   */
-  constructor(message: string) {
-    super(message)
-  }
+    /**
+     * @constructor
+     *
+     * @param {string} message
+     */
+    constructor(message: string) {
+        super(message)
+    }
 }
 
 /**
@@ -198,32 +198,32 @@ export class ProxyMutableError extends FoundationError {
  * for a given property key.
  */
 export class ProxyVirtualError extends FoundationError {
-  /**
-   * Fetches the `name` value for the class.
-   *
-   * @type {string}
-   */
-  get name(): string {
-    return super.name
-  }
+    /**
+     * Fetches the `name` value for the class.
+     *
+     * @type {string}
+     */
+    get name(): string {
+        return super.name
+    }
 
-  /**
-   * Fetches the `message` value for the class.
-   *
-   * @type {string}
-   */
-  get message(): string {
-    return super.message
-  }
+    /**
+     * Fetches the `message` value for the class.
+     *
+     * @type {string}
+     */
+    get message(): string {
+        return super.message
+    }
 
-  /**
-   * @constructor
-   *
-   * @param {string} message
-   */
-  constructor(message: string) {
-    super(message)
-  }
+    /**
+     * @constructor
+     *
+     * @param {string} message
+     */
+    constructor(message: string) {
+        super(message)
+    }
 }
 
 /**
@@ -247,7 +247,7 @@ export type ProxyValidator = BaseSchema
  * property keys for the `ProxySchema`.
  */
 export interface ProxyImmutable {
-  [key: ProxyPropertyKey]: ProxyValidator
+    [key: ProxyPropertyKey]: ProxyValidator
 }
 
 /**
@@ -255,14 +255,16 @@ export interface ProxyImmutable {
  * property keys for the `ProxySchema`.
  */
 export interface ProxyMutable {
-  [key: ProxyPropertyKey]: ProxyValidator
+    [key: ProxyPropertyKey]: ProxyValidator
 }
 
 /**
  * The `ProxyMutable` type is used to define mutable
  * property keys for the `ProxySchema`.
  */
-export interface ProxyVirtual { [key: string]: Optional<unknown> }
+export interface ProxyVirtual {
+    [key: string]: Optional<unknown>
+}
 
 /**
  * The `ProxySchema` type defines the structure of
@@ -273,9 +275,9 @@ export interface ProxyVirtual { [key: string]: Optional<unknown> }
  * @property {ProxyVirtual} virtual
  */
 export interface ProxySchema {
-  immutable: ProxyImmutable
-  mutable: ProxyMutable
-  virtual: ProxyVirtual
+    immutable: ProxyImmutable
+    mutable: ProxyMutable
+    virtual: ProxyVirtual
 }
 
 /**
@@ -291,109 +293,109 @@ export interface ProxySchema {
  * @param {ProxyVirtual} virtual
  * @returns {ProxyHandler<TProxyTarget>}
  */
-export const createProxyHandlerForSchema = <TProxyTarget extends object>({ immutable, mutable, virtual }: ProxySchema): ProxyHandler<TProxyTarget> => ({
-  /**
-   * @template TProxyTarget
-   *
-   * The `has` checks whether a value exists in the
-   * `ProxySchema` definition, or in the instance itself.
-   * The search is ordered as: immutable, mutable, virtual,
-   * and then instance.
-   *
-   * @param {TProxyTarget} target
-   * @param {ProxyPropertyKey} p
-   * @returns {boolean}
-   */
-  has(target: TProxyTarget, p: ProxyPropertyKey): boolean {
-    return p in immutable || p in mutable || p in virtual || Reflect.has(target, p)
-  },
+export const createProxyHandlerForSchema = <TProxyTarget extends object>({
+                                                                             immutable,
+                                                                             mutable,
+                                                                             virtual
+                                                                         }: ProxySchema): ProxyHandler<TProxyTarget> => ({
+    /**
+     * @template TProxyTarget
+     *
+     * The `has` checks whether a value exists in the
+     * `ProxySchema` definition, or in the instance itself.
+     * The search is ordered as: immutable, mutable, virtual,
+     * and then instance.
+     *
+     * @param {TProxyTarget} target
+     * @param {ProxyPropertyKey} p
+     * @returns {boolean}
+     */
+    has(target: TProxyTarget, p: ProxyPropertyKey): boolean {
+        return p in immutable || p in mutable || p in virtual || Reflect.has(target, p)
+    },
 
-  /**
-   * @template TProxyTarget
-   *
-   * The `get` fetches the property value for the give property
-   * key. The search is ordered as: immutable, mutable, virtual,
-   * and then instance.
-   *
-   * @param {TProxyTarget} target
-   * @param {ProxyPropertyKey} p
-   * @param {unknown} receiver
-   * @returns {unknown}
-   */
-  get(target: TProxyTarget, p: ProxyPropertyKey, receiver: unknown): unknown {
-    if (p in immutable) {
-      return Reflect.get(target, p, receiver)
-    }
-    if (p in mutable) {
-      return Reflect.get(target, p, receiver)
-    }
-    if (p in virtual) {
-      return Reflect.get(virtual, p, receiver)
-    }
-    return Reflect.get(target, p, receiver)
-  },
-
-  /**
-   * @template TProxyTarget
-   * @throws {ProxyImmutableError, ProxyMutableError, ProxyVirtualError, ProxyTypeError, ProxyNotDefinedError}
-   *
-   * The `set` updates the given property with the given value.
-   * The property key and value are checked against the
-   * `ProxySchema`. The search is ordered as: immutable, virtual,
-   * and then mutable.
-   *
-   * @param {TProxyTarget} target
-   * @param {ProxyPropertyKey} p
-   * @param {unknown} value
-   * @param {unknown} receiver
-   * @returns {boolean}
-   */
-  set(target: TProxyTarget, p: ProxyPropertyKey, value: unknown, receiver: unknown): boolean {
-    if (p in immutable) {
-      throw new ProxyImmutableError(`property (${String(p)}) is immutable`)
-    }
-    else if (p in virtual) {
-      throw new ProxyVirtualError(`property (${String(p)}) is virtual`)
-    }
-    else if (p in mutable) {
-      try {
-        mutable[String(p)].validateSync(value)
-      }
-      catch(e) {
-        if (e instanceof Error) {
-          throw new ProxyTypeError(e.message)
+    /**
+     * @template TProxyTarget
+     *
+     * The `get` fetches the property value for the give property
+     * key. The search is ordered as: immutable, mutable, virtual,
+     * and then instance.
+     *
+     * @param {TProxyTarget} target
+     * @param {ProxyPropertyKey} p
+     * @param {unknown} receiver
+     * @returns {unknown}
+     */
+    get(target: TProxyTarget, p: ProxyPropertyKey, receiver: unknown): unknown {
+        if (p in immutable) {
+            return Reflect.get(target, p, receiver)
         }
-      }
-    }
-    else {
-      throw new ProxyNotDefinedError(`property (${String(p)}) is not defined`)
-    }
-    return Reflect.set(target, p, value, receiver)
-  },
+        if (p in mutable) {
+            return Reflect.get(target, p, receiver)
+        }
+        if (p in virtual) {
+            return Reflect.get(virtual, p, receiver)
+        }
+        return Reflect.get(target, p, receiver)
+    },
 
-  /**
-   * @template TProxyTarget
-   * @throws {ProxyImmutableError, ProxyMutableError, ProxyVirtualError}
-   *
-   * The `deleteProperty` deletes the given property so long as
-   * the property is not defined in the `ProxySchema`. The
-   * search is ordered as: immutable, mutable, and then virtual.
-   *
-   * @param {TProxyTarget} target
-   * @param {ProxyPropertyKey} p
-   */
-  deleteProperty(target: TProxyTarget, p: ProxyPropertyKey): boolean {
-    if (p in immutable) {
-      throw new ProxyImmutableError(`property (${String(p)}) is immutable`)
-    }
-    if (p in mutable) {
-      throw new ProxyMutableError(`property (${String(p)}) is mutable`)
-    }
-    if (p in virtual) {
-      throw new ProxyVirtualError(`property (${String(p)}) is virtual`)
-    }
-    return Reflect.deleteProperty(target, p)
-  },
+    /**
+     * @template TProxyTarget
+     * @throws {ProxyImmutableError, ProxyMutableError, ProxyVirtualError, ProxyTypeError, ProxyNotDefinedError}
+     *
+     * The `set` updates the given property with the given value.
+     * The property key and value are checked against the
+     * `ProxySchema`. The search is ordered as: immutable, virtual,
+     * and then mutable.
+     *
+     * @param {TProxyTarget} target
+     * @param {ProxyPropertyKey} p
+     * @param {unknown} value
+     * @param {unknown} receiver
+     * @returns {boolean}
+     */
+    set(target: TProxyTarget, p: ProxyPropertyKey, value: unknown, receiver: unknown): boolean {
+        if (p in immutable) {
+            throw new ProxyImmutableError(`property (${String(p)}) is immutable`)
+        } else if (p in virtual) {
+            throw new ProxyVirtualError(`property (${String(p)}) is virtual`)
+        } else if (p in mutable) {
+            try {
+                mutable[String(p)].validateSync(value)
+            } catch (e) {
+                if (e instanceof Error) {
+                    throw new ProxyTypeError(e.message)
+                }
+            }
+        } else {
+            throw new ProxyNotDefinedError(`property (${String(p)}) is not defined`)
+        }
+        return Reflect.set(target, p, value, receiver)
+    },
+
+    /**
+     * @template TProxyTarget
+     * @throws {ProxyImmutableError, ProxyMutableError, ProxyVirtualError}
+     *
+     * The `deleteProperty` deletes the given property so long as
+     * the property is not defined in the `ProxySchema`. The
+     * search is ordered as: immutable, mutable, and then virtual.
+     *
+     * @param {TProxyTarget} target
+     * @param {ProxyPropertyKey} p
+     */
+    deleteProperty(target: TProxyTarget, p: ProxyPropertyKey): boolean {
+        if (p in immutable) {
+            throw new ProxyImmutableError(`property (${String(p)}) is immutable`)
+        }
+        if (p in mutable) {
+            throw new ProxyMutableError(`property (${String(p)}) is mutable`)
+        }
+        if (p in virtual) {
+            throw new ProxyVirtualError(`property (${String(p)}) is virtual`)
+        }
+        return Reflect.deleteProperty(target, p)
+    },
 })
 
 /**
@@ -407,7 +409,7 @@ export const createProxyHandlerForSchema = <TProxyTarget extends object>({ immut
  * @returns {TProxyTarget}
  */
 export const createProxyFor = <TProxyTarget extends object>(schema: Partial<ProxySchema>, target: TProxyTarget): TProxyTarget =>
-  new Proxy<TProxyTarget>(target, createProxyHandlerForSchema(generateProxySchemaFor(schema, target)) as ProxyHandler<TProxyTarget>)
+    new Proxy<TProxyTarget>(target, createProxyHandlerForSchema(generateProxySchemaFor(schema, target)) as ProxyHandler<TProxyTarget>)
 
 /**
  * @template TProxyTarget
@@ -422,51 +424,50 @@ export const createProxyFor = <TProxyTarget extends object>(schema: Partial<Prox
  * @param {TProxyTarget} target
  * @returns {ProxySchema}
  */
-const generateProxySchemaFor = <TProxyTarget extends object>({ immutable, mutable, virtual }: Partial<ProxySchema>, target: TProxyTarget): ProxySchema => {
-  if ('object' !== typeof immutable) {
-    immutable = {}
-  }
+const generateProxySchemaFor = <TProxyTarget extends object>({
+                                                                 immutable,
+                                                                 mutable,
+                                                                 virtual
+                                                             }: Partial<ProxySchema>, target: TProxyTarget): ProxySchema => {
+    if ('object' !== typeof immutable) {
+        immutable = {}
+    }
 
-  if ('object' !== typeof mutable) {
-    mutable = {}
-  }
+    if ('object' !== typeof mutable) {
+        mutable = {}
+    }
 
-  if ('object' !== typeof virtual) {
-    virtual = {}
-  }
+    if ('object' !== typeof virtual) {
+        virtual = {}
+    }
 
-  for (const [ p, v ] of Object.entries(target)) {
-    if (p in immutable) {
-      try {
-        immutable[p].validateSync(v)
-      }
-      catch(e) {
-        if (e instanceof Error) {
-          throw new ProxyTypeError(e.message)
+    for (const [p, v] of Object.entries(target)) {
+        if (p in immutable) {
+            try {
+                immutable[p].validateSync(v)
+            } catch (e) {
+                if (e instanceof Error) {
+                    throw new ProxyTypeError(e.message)
+                }
+            }
+        } else if (p in mutable) {
+            try {
+                mutable[p].validateSync(v)
+            } catch (e) {
+                if (e instanceof Error) {
+                    throw new ProxyTypeError(e.message)
+                }
+            }
+        } else if (p in virtual) {
+            throw new ProxyVirtualError(`property (${String(p)}) is virtual`)
+        } else {
+            throw new ProxyNotDefinedError(`property (${String(p)}) is not defined`)
         }
-      }
     }
-    else if (p in mutable) {
-      try {
-        mutable[p].validateSync(v)
-      }
-      catch(e) {
-        if (e instanceof Error) {
-          throw new ProxyTypeError(e.message)
-        }
-      }
-    }
-    else if (p in virtual) {
-      throw new ProxyVirtualError(`property (${String(p)}) is virtual`)
-    }
-    else {
-      throw new ProxyNotDefinedError(`property (${String(p)}) is not defined`)
-    }
-  }
 
-  return {
-    immutable,
-    mutable,
-    virtual,
-  }
+    return {
+        immutable,
+        mutable,
+        virtual,
+    }
 }

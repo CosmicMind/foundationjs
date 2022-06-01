@@ -32,29 +32,28 @@
 
 import test from 'ava'
 
-import { FoundationError } from '../src/internal'
+import {FoundationError} from '../src/internal'
 
 import {
-  assert,
-  AssertError,
+    assert,
+    AssertError,
 } from '../src/internal'
 
 test('Assert: success', async t => {
-  t.true(assert(true, 'not a number'))
+    t.true(assert(true, 'not a number'))
 })
 
 test('Assert: error', async t => {
-  try {
-    t.true(assert(false, 'not a number'))
-    t.true(false)
-  }
-  catch (e) {
-    t.true(e instanceof FoundationError)
-    t.true(e instanceof AssertError)
+    try {
+        t.true(assert(false, 'not a number'))
+        t.true(false)
+    } catch (e) {
+        t.true(e instanceof FoundationError)
+        t.true(e instanceof AssertError)
 
-    if (e instanceof AssertError) {
-      t.is(e.name, 'AssertError')
-      t.is(e.message, 'not a number')
+        if (e instanceof AssertError) {
+            t.is(e.name, 'AssertError')
+            t.is(e.message, 'not a number')
+        }
     }
-  }
 })

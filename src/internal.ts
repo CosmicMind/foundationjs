@@ -30,63 +30,63 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-export { logger } from './utils/logger'
+export {logger} from './utils/logger'
 
-export type { ObservableCallback } from './protocols/Observable'
-export { Observable } from './protocols/Observable'
+export type {ObservableCallback} from './protocols/Observable'
+export {Observable} from './protocols/Observable'
 
 export {
-  assert,
-  AssertError,
+    assert,
+    AssertError,
 } from './utils/assert'
 
 export {
-  guard,
-  guardFor,
+    guard,
+    guardFor,
 } from './utils/guard'
 
 export {
-  FoundationError,
-  FoundationTypeError,
+    FoundationError,
+    FoundationTypeError,
 } from './utils/error'
 
-export { uuidv4 } from './utils/uuid'
+export {uuidv4} from './utils/uuid'
 
 export type {
-  ProxyValidator,
-  ProxyImmutable,
-  ProxyMutable,
-  ProxyVirtual,
-  ProxySchema,
+    ProxyValidator,
+    ProxyImmutable,
+    ProxyMutable,
+    ProxyVirtual,
+    ProxySchema,
 } from './utils/proxy'
 
 export {
-  ProxyTypeError,
-  ProxyNotDefinedError,
-  ProxyImmutableError,
-  ProxyMutableError,
-  ProxyVirtualError,
-  createProxyFor,
+    ProxyTypeError,
+    ProxyNotDefinedError,
+    ProxyImmutableError,
+    ProxyMutableError,
+    ProxyVirtualError,
+    createProxyFor,
 } from './utils/proxy'
 
 export type {
-  Nullable,
-  Optional,
-  Voidable,
+    Nullable,
+    Optional,
+    Voidable,
 } from './utils/type-defs'
 
 export {
-  stringify,
-  parse,
-  async,
-  clone,
-  normalizeOuterSpace,
-  normalizeInnerSpace,
-  toCapitalize,
-  toCamelCase,
-  toKebabCase,
-  toSnakeCase,
-  equals,
-  unique,
-  assign,
+    stringify,
+    parse,
+    async,
+    clone,
+    normalizeOuterSpace,
+    normalizeInnerSpace,
+    toCapitalize,
+    toCamelCase,
+    toKebabCase,
+    toSnakeCase,
+    equals,
+    unique,
+    assign,
 } from './utils/tools'
