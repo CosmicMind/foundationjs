@@ -357,9 +357,11 @@ export const createProxyHandlerForSchema = <TProxyTarget extends object>({
     set(target: TProxyTarget, p: ProxyPropertyKey, value: unknown, receiver: unknown): boolean {
       if (p in immutable) {
         throw new ProxyImmutableError(`property (${String(p)}) is immutable`)
-      } else if (p in virtual) {
+      }
+      else if (p in virtual) {
         throw new ProxyVirtualError(`property (${String(p)}) is virtual`)
-      } else if (p in mutable) {
+      }
+      else if (p in mutable) {
         try {
           mutable[String(p)].validateSync(value)
         } catch (e) {
@@ -367,7 +369,8 @@ export const createProxyHandlerForSchema = <TProxyTarget extends object>({
             throw new ProxyTypeError(e.message)
           }
         }
-      } else {
+      }
+      else {
         throw new ProxyNotDefinedError(`property (${String(p)}) is not defined`)
       }
       return Reflect.set(target, p, value, receiver)
@@ -450,7 +453,8 @@ const generateProxySchemaFor = <TProxyTarget extends object>({
           throw new ProxyTypeError(e.message)
         }
       }
-    } else if (p in mutable) {
+    }
+    else if (p in mutable) {
       try {
         mutable[p].validateSync(v)
       } catch (e) {
@@ -458,9 +462,11 @@ const generateProxySchemaFor = <TProxyTarget extends object>({
           throw new ProxyTypeError(e.message)
         }
       }
-    } else if (p in virtual) {
+    }
+    else if (p in virtual) {
       throw new ProxyVirtualError(`property (${String(p)}) is virtual`)
-    } else {
+    }
+    else {
       throw new ProxyNotDefinedError(`property (${String(p)}) is not defined`)
     }
   }
