@@ -65,7 +65,8 @@ export const async = (fn: () => unknown, timeout = 0): Promise<unknown> =>
     setTimeout((): void => {
       try {
         resolve(fn() || true)
-      } catch (e) {
+      }
+      catch (e) {
         reject(e)
       }
     }, timeout)
@@ -106,7 +107,7 @@ export const normalizeInnerSpace = (c: string): string =>
  * @returns {string}
  */
 export const toCapitalize = (c: string): string =>
-  c.replace ? c.replace(/(?:^|\s)\S/g, function (value) {
+  c.replace ? c.replace(/(?:^|\s)\S/g, (value) => {
     return value.toUpperCase().replace(/([-_])/g, '')
   }) : c
 
@@ -117,9 +118,7 @@ export const toCapitalize = (c: string): string =>
  * @returns {string}
  */
 export const toCamelCase = (c: string): string =>
-  c.replace ? c.replace(/([-_])+([a-zA-Z])/g, function (value) {
-    return value.toUpperCase().replace(/([-_])/g, '')
-  }) : c
+  c.replace ? c.replace(/([-_])+([a-zA-Z])/g, value => value.toUpperCase().replace(/([-_])/g, '')) : c
 
 /**
  * Converts the character string to a kebab-case.
@@ -128,9 +127,7 @@ export const toCamelCase = (c: string): string =>
  * @returns {string}
  */
 export const toKebabCase = (c: string): string =>
-  c.replace ? c.replace(/( |-|_|[A-Z])+([a-zA-Z])/g, function (value) {
-    return (c.indexOf(value) > 0 ? '-' : '') + value.replace(/([ -_])/g, '')
-  }).toLowerCase() : c
+  c.replace ? c.replace(/( |-|_|[A-Z])+([a-zA-Z])/g, value => (c.indexOf(value) > 0 ? '-' : '') + value.replace(/([ -_])/g, '')).toLowerCase() : c
 
 /**
  * Converts the character string to snake case.
@@ -139,9 +136,8 @@ export const toKebabCase = (c: string): string =>
  * @returns {string}
  */
 export const toSnakeCase = (c: string): string =>
-  c.replace ? c.replace(/( |-|_|[A-Z])+([a-zA-Z])/g, function (value) {
-    return (c.indexOf(value) > 0 ? '_' : '') + value.replace(/([ -_])/g, '')
-  }).toLowerCase() : c
+  c.replace ? c.replace(/( |-|_|[A-Z])+([a-zA-Z])/g, value => (c.indexOf(value) > 0 ? '_' : '') + value.replace(/([ -_])/g, '')).toLowerCase() : c
+
 /**
  * Checks equality of two objects by comparing their JSON string.
  *

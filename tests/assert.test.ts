@@ -47,7 +47,8 @@ test('Assert: error', async t => {
   try {
     t.true(assert(false, 'not a number'))
     t.true(false)
-  } catch (e) {
+  }
+  catch (e) {
     t.true(e instanceof FoundationError)
     t.true(e instanceof AssertError)
 

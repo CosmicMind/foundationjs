@@ -59,7 +59,8 @@ test('UUID: error', async t => {
     t.false(string().uuid(errorMessage).defined().strict(true).validateSync(uuid))
 
     t.true(false)
-  } catch (e) {
+  }
+  catch (e) {
     t.true(e instanceof ValidationError)
 
     if (e instanceof ValidationError) {
