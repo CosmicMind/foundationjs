@@ -33,37 +33,37 @@
 import test from 'ava'
 
 import {
-    string,
-    ValidationError,
+  string,
+  ValidationError,
 } from 'yup'
 
-import {uuidv4} from '../src/internal'
+import { uuidv4 } from '../src/internal'
 
 test('UUID: success', async t => {
-    const uuid = uuidv4()
+  const uuid = uuidv4()
 
-    t.true('string' === typeof uuid)
-    t.is(uuid.length, 36)
-    t.is(uuid.replace(/-/g, '').length, 32)
-    t.is(uuid, string().uuid().defined().strict(true).validateSync(uuid))
+  t.true('string' === typeof uuid)
+  t.is(uuid.length, 36)
+  t.is(uuid.replace(/-/g, '').length, 32)
+  t.is(uuid, string().uuid().defined().strict(true).validateSync(uuid))
 })
 
 test('UUID: error', async t => {
-    const uuid = 'I-am-not-a-UUID'
-    const errorMessage = 'uuid is invalid'
+  const uuid = 'I-am-not-a-UUID'
+  const errorMessage = 'uuid is invalid'
 
-    t.is(uuid.length, 15)
-    t.is(uuid.replace(/-/g, '').length, 11)
+  t.is(uuid.length, 15)
+  t.is(uuid.replace(/-/g, '').length, 11)
 
-    try {
-        t.false(string().uuid(errorMessage).defined().strict(true).validateSync(uuid))
+  try {
+    t.false(string().uuid(errorMessage).defined().strict(true).validateSync(uuid))
 
-        t.true(false)
-    } catch (e) {
-        t.true(e instanceof ValidationError)
+    t.true(false)
+  } catch (e) {
+    t.true(e instanceof ValidationError)
 
-        if (e instanceof ValidationError) {
-            t.is(e.message, errorMessage)
-        }
+    if (e instanceof ValidationError) {
+      t.is(e.message, errorMessage)
     }
+  }
 })

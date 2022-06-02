@@ -33,45 +33,45 @@
 import test from 'ava'
 
 import {
-    guard,
-    guardFor,
+  guard,
+  guardFor,
 } from '../src/internal'
 
 type GuardTypeA = {
-    name: string
-    age: number
+  name: string
+  age: number
 }
 
 type GuardTypeB = {
-    name: string
-    version: number
+  name: string
+  version: number
 }
 
 test('Guard', async t => {
-    t.false(guard(true))
-    t.true(guard(false))
+  t.false(guard(true))
+  t.true(guard(false))
 })
 
 test('Guard Type', async t => {
-    const a: GuardTypeA = {
-        name: 'daniel',
-        age: 38,
-    }
+  const a: GuardTypeA = {
+    name: 'daniel',
+    age: 38,
+  }
 
-    const b: GuardTypeB = {
-        name: 'token',
-        version: 1,
-    }
+  const b: GuardTypeB = {
+    name: 'token',
+    version: 1,
+  }
 
-    t.true(guardFor<GuardTypeA>(a, 'name'))
-    t.true(guardFor<GuardTypeA>(a, 'age'))
+  t.true(guardFor<GuardTypeA>(a, 'name'))
+  t.true(guardFor<GuardTypeA>(a, 'age'))
 
-    t.true(guardFor<GuardTypeB>(b, 'name'))
-    t.true(guardFor<GuardTypeB>(b, 'version'))
+  t.true(guardFor<GuardTypeB>(b, 'name'))
+  t.true(guardFor<GuardTypeB>(b, 'version'))
 
-    t.true(guardFor<GuardTypeA>(b, 'name'))
-    t.false(guardFor<GuardTypeA>(b, 'age'))
+  t.true(guardFor<GuardTypeA>(b, 'name'))
+  t.false(guardFor<GuardTypeA>(b, 'age'))
 
-    t.true(guardFor<GuardTypeB>(a, 'name'))
-    t.false(guardFor<GuardTypeB>(a, 'version'))
+  t.true(guardFor<GuardTypeB>(a, 'name'))
+  t.false(guardFor<GuardTypeB>(a, 'version'))
 })

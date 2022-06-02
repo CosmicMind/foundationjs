@@ -50,4 +50,4 @@ export const guard = (statement: boolean): boolean => !statement
  * @returns {boolean}
  */
 export const guardFor = <T>(value: unknown, key: keyof T): value is T =>
-    key in (value as T)
+  key in (value as T)

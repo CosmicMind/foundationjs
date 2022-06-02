@@ -35,19 +35,19 @@
  */
 
 export interface IFoundationError {
-    /**
-     * Fetches the `name` value for the class.
-     *
-     * @type {string}
-     */
-    get name(): string
+  /**
+   * Fetches the `name` value for the class.
+   *
+   * @type {string}
+   */
+  get name(): string
 
-    /**
-     * Fetches the `message` value for the class.
-     *
-     * @type {string}
-     */
-    get message(): string
+  /**
+   * Fetches the `message` value for the class.
+   *
+   * @type {string}
+   */
+  get message(): string
 }
 
 /**
@@ -60,23 +60,23 @@ export interface IFoundationError {
  * class to inherit from when making custom error types.
  */
 export class FoundationError extends Error implements IFoundationError {
-    /**
-     * Fetches the `name` value for the class.
-     *
-     * @type {string}
-     */
-    get name(): string {
-        return this.constructor.name
-    }
+  /**
+   * Fetches the `name` value for the class.
+   *
+   * @type {string}
+   */
+  get name(): string {
+    return this.constructor.name
+  }
 
-    /**
-     * @constructor
-     *
-     * @param {string} message
-     */
-    constructor(message: string) {
-        super(message)
-    }
+  /**
+   * @constructor
+   *
+   * @param {string} message
+   */
+  constructor(message: string) {
+    super(message)
+  }
 }
 
 /**
@@ -91,30 +91,30 @@ export class FoundationError extends Error implements IFoundationError {
  * @property {string} message
  */
 export abstract class FoundationTypeError extends TypeError implements IFoundationError {
-    /**
-     * Fetches the `name` value for the class.
-     *
-     * @type {string}
-     */
-    get name(): string {
-        return this.constructor.name
-    }
+  /**
+   * Fetches the `name` value for the class.
+   *
+   * @type {string}
+   */
+  get name(): string {
+    return this.constructor.name
+  }
 
-    /**
-     * Fetches the `message` value for the class.
-     *
-     * @type {string}
-     */
-    get message(): string {
-        return super.message
-    }
+  /**
+   * Fetches the `message` value for the class.
+   *
+   * @type {string}
+   */
+  get message(): string {
+    return super.message
+  }
 
-    /**
-     * @constructor
-     *
-     * @param {string} message
-     */
-    protected constructor(message: string) {
-        super(message)
-    }
+  /**
+   * @constructor
+   *
+   * @param {string} message
+   */
+  protected constructor(message: string) {
+    super(message)
+  }
 }

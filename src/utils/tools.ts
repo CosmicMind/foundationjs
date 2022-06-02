@@ -30,7 +30,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import {Optional} from './type-defs'
+import { Optional } from './type-defs'
 
 /**
  * Converts a JavaScript value to a JavaScript Object Notation (JSON) string.
@@ -41,7 +41,7 @@ import {Optional} from './type-defs'
  * @returns {Optional<string>}
  */
 export const stringify = (value: Optional<unknown>, replacer?: (this: unknown, key: string, value: unknown) => unknown, space?: string | number): Optional<string> =>
-    'undefined' === typeof value ? undefined : JSON.stringify(value, replacer, space)
+  'undefined' === typeof value ? undefined : JSON.stringify(value, replacer, space)
 
 /**
  * Converts a JavaScript Object Notation (JSON) string into an object.
@@ -51,7 +51,7 @@ export const stringify = (value: Optional<unknown>, replacer?: (this: unknown, k
  * @returns {Optional<object>}
  */
 export const parse = (text: Optional<string>, reviver?: (this: unknown, key: string, value: unknown) => unknown): Optional<object> =>
-    'undefined' === typeof text ? undefined : JSON.parse(text, reviver)
+  'undefined' === typeof text ? undefined : JSON.parse(text, reviver)
 
 /**
  * A helper function that returns a promise and creates an `async` block.
@@ -61,15 +61,15 @@ export const parse = (text: Optional<string>, reviver?: (this: unknown, key: str
  * @returns {Promise<unknown>}
  */
 export const async = (fn: () => unknown, timeout = 0): Promise<unknown> =>
-    new Promise((resolve, reject): void => {
-        setTimeout((): void => {
-            try {
-                resolve(fn() || true)
-            } catch (e) {
-                reject(e)
-            }
-        }, timeout)
-    })
+  new Promise((resolve, reject): void => {
+    setTimeout((): void => {
+      try {
+        resolve(fn() || true)
+      } catch (e) {
+        reject(e)
+      }
+    }, timeout)
+  })
 
 /**
  * Deep clones the passed value using JSON stringify and parse methods.
@@ -87,7 +87,7 @@ export const clone = (value: Optional<object>): Optional<object> => parse(string
  * @returns {string}
  */
 export const normalizeOuterSpace = (c: string): string =>
-    c && c.replace ? c.replace(/^\s+|\s+$/g, '').replace(/\s+/g, ' ') : c
+  c && c.replace ? c.replace(/^\s+|\s+$/g, '').replace(/\s+/g, ' ') : c
 
 /**
  * Condenses sequential space characters to a single space
@@ -97,7 +97,7 @@ export const normalizeOuterSpace = (c: string): string =>
  * @returns {string}
  */
 export const normalizeInnerSpace = (c: string): string =>
-    c && c.replace ? c.replace(/^\s+|\s+$/g, ' ') : c
+  c && c.replace ? c.replace(/^\s+|\s+$/g, ' ') : c
 
 /**
  * Capitalizes the character string.
@@ -106,9 +106,9 @@ export const normalizeInnerSpace = (c: string): string =>
  * @returns {string}
  */
 export const toCapitalize = (c: string): string =>
-    c.replace ? c.replace(/(?:^|\s)\S/g, function (value) {
-        return value.toUpperCase().replace(/([-_])/g, '')
-    }) : c
+  c.replace ? c.replace(/(?:^|\s)\S/g, function (value) {
+    return value.toUpperCase().replace(/([-_])/g, '')
+  }) : c
 
 /**
  * Converts the character string to camel case.
@@ -117,9 +117,9 @@ export const toCapitalize = (c: string): string =>
  * @returns {string}
  */
 export const toCamelCase = (c: string): string =>
-    c.replace ? c.replace(/([-_])+([a-zA-Z])/g, function (value) {
-        return value.toUpperCase().replace(/([-_])/g, '')
-    }) : c
+  c.replace ? c.replace(/([-_])+([a-zA-Z])/g, function (value) {
+    return value.toUpperCase().replace(/([-_])/g, '')
+  }) : c
 
 /**
  * Converts the character string to a kebab-case.
@@ -128,9 +128,9 @@ export const toCamelCase = (c: string): string =>
  * @returns {string}
  */
 export const toKebabCase = (c: string): string =>
-    c.replace ? c.replace(/( |-|_|[A-Z])+([a-zA-Z])/g, function (value) {
-        return (c.indexOf(value) > 0 ? '-' : '') + value.replace(/([ -_])/g, '')
-    }).toLowerCase() : c
+  c.replace ? c.replace(/( |-|_|[A-Z])+([a-zA-Z])/g, function (value) {
+    return (c.indexOf(value) > 0 ? '-' : '') + value.replace(/([ -_])/g, '')
+  }).toLowerCase() : c
 
 /**
  * Converts the character string to snake case.
@@ -139,9 +139,9 @@ export const toKebabCase = (c: string): string =>
  * @returns {string}
  */
 export const toSnakeCase = (c: string): string =>
-    c.replace ? c.replace(/( |-|_|[A-Z])+([a-zA-Z])/g, function (value) {
-        return (c.indexOf(value) > 0 ? '_' : '') + value.replace(/([ -_])/g, '')
-    }).toLowerCase() : c
+  c.replace ? c.replace(/( |-|_|[A-Z])+([a-zA-Z])/g, function (value) {
+    return (c.indexOf(value) > 0 ? '_' : '') + value.replace(/([ -_])/g, '')
+  }).toLowerCase() : c
 /**
  * Checks equality of two objects by comparing their JSON string.
  *
@@ -157,7 +157,7 @@ export const equals = (a: object, b: object): boolean => stringify(a) === string
  * @param {Optional<unknown>[]}data
  * @returns {Optional<unknown>[]}
  */
-export const unique = (data: Optional<unknown>[]): Optional<unknown>[] => [...new Set(data)]
+export const unique = (data: Optional<unknown>[]): Optional<unknown>[] => [ ...new Set(data) ]
 
 /**
  * Define a new `assign` function that works like
@@ -183,21 +183,21 @@ export const unique = (data: Optional<unknown>[]): Optional<unknown>[] => [...ne
  * @returns {object}
  */
 export const assign = (target: object, ...sources: object[]): object => {
-    for (const source of sources) {
-        for (const name of Object.getOwnPropertyNames(source)) {
-            const desc = Object.getOwnPropertyDescriptor(source, name)
-            if ('undefined' !== typeof desc) {
-                Object.defineProperty(target, name, desc)
-            }
-        }
-
-        for (const symbol of Object.getOwnPropertySymbols(source)) {
-            const desc = Object.getOwnPropertyDescriptor(source, symbol)
-            if ('undefined' !== typeof desc) {
-                Object.defineProperty(target, symbol, desc)
-            }
-        }
+  for (const source of sources) {
+    for (const name of Object.getOwnPropertyNames(source)) {
+      const desc = Object.getOwnPropertyDescriptor(source, name)
+      if ('undefined' !== typeof desc) {
+        Object.defineProperty(target, name, desc)
+      }
     }
 
-    return target
+    for (const symbol of Object.getOwnPropertySymbols(source)) {
+      const desc = Object.getOwnPropertyDescriptor(source, symbol)
+      if ('undefined' !== typeof desc) {
+        Object.defineProperty(target, symbol, desc)
+      }
+    }
+  }
+
+  return target
 }

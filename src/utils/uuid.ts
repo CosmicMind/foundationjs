@@ -34,4 +34,4 @@
  * @module UUID
  */
 
-export {uuidv4} from 'lib0/random.js'
+export { uuidv4 } from 'lib0/random.js'

@@ -34,7 +34,7 @@
  * @module Assert
  */
 
-import {FoundationError} from './error'
+import { FoundationError } from './error'
 
 /**
  * @extends {FoundationError}
@@ -55,8 +55,8 @@ export class AssertError extends FoundationError {
  * @returns {boolean}
  */
 export const assert = (statement: boolean, message: string): boolean => {
-    if (statement) {
-        return true
-    }
-    throw new AssertError(message)
+  if (statement) {
+    return true
+  }
+  throw new AssertError(message)
 }

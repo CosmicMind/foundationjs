@@ -34,8 +34,8 @@
  * @module Observable
  */
 
-import {async} from '../utils/tools'
-import {Optional} from '../utils/type-defs'
+import { async } from '../utils/tools'
+import { Optional } from '../utils/type-defs'
 
 /**
  * A `type` definition for listener callbacks used
@@ -50,99 +50,99 @@ export type ObservableCallback = (...args: Optional<unknown>[]) => void
  * `event emitter` for observing messages.
  */
 export class Observable {
-    /**
-     * A reference to the scoped based events.
-     *
-     * @type {Map<string, Set<ObservableCallback>>()}
-     */
-    #events: Map<string, Set<ObservableCallback>>
+  /**
+   * A reference to the scoped based events.
+   *
+   * @type {Map<string, Set<ObservableCallback>>()}
+   */
+  #events: Map<string, Set<ObservableCallback>>
 
-    /**
-     * @constructor
-     */
-    constructor() {
-        this.#events = new Map()
+  /**
+   * @constructor
+   */
+  constructor() {
+    this.#events = new Map()
+  }
+
+  /**
+   * The `on` method adds new listeners to the `event set`,
+   * for the given `event`.
+   *
+   * @param {string} event
+   * @param {...ObservableCallback} fn
+   */
+  on(event: string, ...fn: ObservableCallback[]) {
+    const s = this.#events.get(event) || new Set<ObservableCallback>()
+    for (const x of fn) {
+      s.add(x)
     }
+    this.#events.set(event, s)
+  }
 
-    /**
-     * The `on` method adds new listeners to the `event set`,
-     * for the given `event`.
-     *
-     * @param {string} event
-     * @param {...ObservableCallback} fn
-     */
-    on(event: string, ...fn: ObservableCallback[]) {
-        const s = this.#events.get(event) || new Set<ObservableCallback>()
-        for (const x of fn) {
-            s.add(x)
+  /**
+   * The `off` method remove listeners from the `event set`,
+   * for the given `event`.
+   *
+   * @param {string} event
+   * @param {...ObservableCallback} fn
+   */
+  off(event: string, ...fn: ObservableCallback[]) {
+    const s: Optional<Set<ObservableCallback>> = this.#events.get(event)
+    if ('undefined' !== typeof s) {
+      for (const x of fn) {
+        s.delete(x)
+      }
+
+      this.#events.set(event, s)
+    }
+  }
+
+  /**
+   * The `emitAsync` method emits the given `event` to the `event listeners` asynchronously.
+   *
+   * @param {string} event
+   * @param {...unknown} args
+   */
+  emitAsync(event: string, ...args: Optional<unknown>[]): Promise<unknown> {
+    return async((): void => {
+      const s = this.#events.get(event)
+      if ('undefined' !== typeof s) {
+        for (const x of s) {
+          x(...args)
         }
-        this.#events.set(event, s)
+      }
+    })
+  }
+
+  /**
+   * The `emitSync` method emits the given `event` to the `event listeners` synchronously.
+   *
+   * @param {string} event
+   * @param {...unknown} args
+   */
+  emitSync(event: string, ...args: Optional<unknown>[]) {
+    const s = this.#events.get(event)
+    if ('undefined' !== typeof s) {
+      for (const x of s) {
+        x(...args)
+      }
+    }
+  }
+
+  /**
+   * The `once` method calls an event only once with the given `event listeners`.
+   *
+   * @param {string} event
+   * @param {...ObservableCallback} fn
+   */
+  once(event: string, ...fn: ObservableCallback[]) {
+    const _fn = (...args: Optional<unknown>[]): void => {
+      this.off(event, _fn)
+      for (const x of fn) {
+        x(...args)
+      }
     }
 
-    /**
-     * The `off` method remove listeners from the `event set`,
-     * for the given `event`.
-     *
-     * @param {string} event
-     * @param {...ObservableCallback} fn
-     */
-    off(event: string, ...fn: ObservableCallback[]) {
-        const s: Optional<Set<ObservableCallback>> = this.#events.get(event)
-        if ('undefined' !== typeof s) {
-            for (const x of fn) {
-                s.delete(x)
-            }
-
-            this.#events.set(event, s)
-        }
-    }
-
-    /**
-     * The `emitAsync` method emits the given `event` to the `event listeners` asynchronously.
-     *
-     * @param {string} event
-     * @param {...unknown} args
-     */
-    emitAsync(event: string, ...args: Optional<unknown>[]): Promise<unknown> {
-        return async((): void => {
-            const s = this.#events.get(event)
-            if ('undefined' !== typeof s) {
-                for (const x of s) {
-                    x(...args)
-                }
-            }
-        })
-    }
-
-    /**
-     * The `emitSync` method emits the given `event` to the `event listeners` synchronously.
-     *
-     * @param {string} event
-     * @param {...unknown} args
-     */
-    emitSync(event: string, ...args: Optional<unknown>[]) {
-        const s = this.#events.get(event)
-        if ('undefined' !== typeof s) {
-            for (const x of s) {
-                x(...args)
-            }
-        }
-    }
-
-    /**
-     * The `once` method calls an event only once with the given `event listeners`.
-     *
-     * @param {string} event
-     * @param {...ObservableCallback} fn
-     */
-    once(event: string, ...fn: ObservableCallback[]) {
-        const _fn = (...args: Optional<unknown>[]): void => {
-            this.off(event, _fn)
-            for (const x of fn) {
-                x(...args)
-            }
-        }
-
-        this.on(event, _fn)
-    }
+    this.on(event, _fn)
+  }
 }

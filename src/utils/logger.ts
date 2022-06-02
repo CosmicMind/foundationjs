@@ -32,7 +32,7 @@
 
 /* eslint no-console: 0 */  // --> OFF
 
-import {Optional} from './type-defs'
+import { Optional } from './type-defs'
 
 const log = (...messages: Optional<unknown>[]): void => console.log(new Date(), ...messages)
 const trace = (...messages: Optional<unknown>[]): void => console.trace(new Date(), ...messages)
@@ -41,9 +41,9 @@ const warn = (...messages: Optional<unknown>[]): void => console.warn(new Date()
 const error = (...messages: Optional<unknown>[]): void => console.error(new Date(), ':', ...messages)
 
 export const logger = {
-    log,
-    trace,
-    info,
-    warn,
-    error,
+  log,
+  trace,
+  info,
+  warn,
+  error,
 }
