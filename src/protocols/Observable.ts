@@ -133,16 +133,16 @@ export class Observable {
    * The `once` method calls an event only once with the given `event listeners`.
    *
    * @param {string} event
-   * @param {...ObservableCallback} fn
+   * @param {...ObservableCallback} fns
    */
-  once(event: string, ...fn: ObservableCallback[]) {
-    const _fn = (...args: Optional<unknown>[]): void => {
-      this.off(event, _fn)
-      for (const x of fn) {
+  once(event: string, ...fns: ObservableCallback[]) {
+    const fn = (...args: Optional<unknown>[]): void => {
+      this.off(event, fn)
+      for (const x of fns) {
         x(...args)
       }
     }
 
-    this.on(event, _fn)
+    this.on(event, fn)
   }
 }

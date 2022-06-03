@@ -68,15 +68,6 @@ export class FoundationError extends Error implements IFoundationError {
   get name(): string {
     return this.constructor.name
   }
-
-  /**
-   * @constructor
-   *
-   * @param {string} message
-   */
-  constructor(message: string) {
-    super(message)
-  }
 }
 
 /**
@@ -107,14 +98,5 @@ export abstract class FoundationTypeError extends TypeError implements IFoundati
    */
   get message(): string {
     return super.message
-  }
-
-  /**
-   * @constructor
-   *
-   * @param {string} message
-   */
-  protected constructor(message: string) {
-    super(message)
   }
 }

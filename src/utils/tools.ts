@@ -41,7 +41,7 @@ import { Optional } from './type-defs'
  * @returns {Optional<string>}
  */
 export const stringify = (value: Optional<unknown>, replacer?: (this: unknown, key: string, value: unknown) => unknown, space?: string | number): Optional<string> =>
-  'undefined' === typeof value ? undefined : JSON.stringify(value, replacer, space)
+  'undefined' === typeof value ? void 0 : JSON.stringify(value, replacer, space)
 
 /**
  * Converts a JavaScript Object Notation (JSON) string into an object.
@@ -51,16 +51,16 @@ export const stringify = (value: Optional<unknown>, replacer?: (this: unknown, k
  * @returns {Optional<object>}
  */
 export const parse = (text: Optional<string>, reviver?: (this: unknown, key: string, value: unknown) => unknown): Optional<object> =>
-  'undefined' === typeof text ? undefined : JSON.parse(text, reviver)
+  'undefined' === typeof text ? void 0 : JSON.parse(text, reviver)
 
 /**
  * A helper function that returns a promise and creates an `async` block.
  *
- * @param {function(): unknown} fn
- * @param {number} timeout
+ * @param {() => unknown} fn
+ * @param {number} [timeout=1]
  * @returns {Promise<unknown>}
  */
-export const async = (fn: () => unknown, timeout = 0): Promise<unknown> =>
+export const async = (fn: () => unknown, timeout = 1): Promise<unknown> =>
   new Promise((resolve, reject): void => {
     setTimeout((): void => {
       try {
@@ -107,9 +107,7 @@ export const normalizeInnerSpace = (c: string): string =>
  * @returns {string}
  */
 export const toCapitalize = (c: string): string =>
-  c.replace ? c.replace(/(?:^|\s)\S/g, (value) => {
-    return value.toUpperCase().replace(/([-_])/g, '')
-  }) : c
+  c.replace ? c.replace(/(?:^|\s)\S/g, value => value.toUpperCase().replace(/([-_])/g, '')) : c
 
 /**
  * Converts the character string to camel case.

@@ -39,7 +39,7 @@ import {
 
 import { uuidv4 } from '../src/internal'
 
-test('UUID: success', async t => {
+test('UUID: success', t => {
   const uuid = uuidv4()
 
   t.true('string' === typeof uuid)
@@ -48,7 +48,7 @@ test('UUID: success', async t => {
   t.is(uuid, string().uuid().defined().strict(true).validateSync(uuid))
 })
 
-test('UUID: error', async t => {
+test('UUID: error', t => {
   const uuid = 'I-am-not-a-UUID'
   const errorMessage = 'uuid is invalid'
 

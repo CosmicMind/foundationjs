@@ -55,16 +55,7 @@ import {
  * a given property value doesn't pass validation checks
  * for a given property key.
  */
-export class ProxyTypeError extends FoundationTypeError {
-  /**
-   * @constructor
-   *
-   * @param {string} message
-   */
-  constructor(message: string) {
-    super(message)
-  }
-}
+export class ProxyTypeError extends FoundationTypeError {}
 
 /**
  * @extends {FoundationError}
@@ -72,16 +63,7 @@ export class ProxyTypeError extends FoundationTypeError {
  * The `ProxyNotDefinedError` defines an error that arises
  * when a given property value is not part of the schema.
  */
-export class ProxyNotDefinedError extends FoundationError {
-  /**
-   * @constructor
-   *
-   * @param {string} message
-   */
-  constructor(message: string) {
-    super(message)
-  }
-}
+export class ProxyNotDefinedError extends FoundationError {}
 
 /**
  * @extends {FoundationError}
@@ -90,16 +72,7 @@ export class ProxyNotDefinedError extends FoundationError {
  * immutable property values are either invalid or trying to
  * be set after construction.
  */
-export class ProxyImmutableError extends FoundationError {
-  /**
-   * @constructor
-   *
-   * @param {string} message
-   */
-  constructor(message: string) {
-    super(message)
-  }
-}
+export class ProxyImmutableError extends FoundationError {}
 
 /**
  * @extends {FoundationError}
@@ -107,16 +80,7 @@ export class ProxyImmutableError extends FoundationError {
  * The `ProxyMutableError` defines an error that arises when
  * mutable property values either invalid.
  */
-export class ProxyMutableError extends FoundationError {
-  /**
-   * @constructor
-   *
-   * @param {string} message
-   */
-  constructor(message: string) {
-    super(message)
-  }
-}
+export class ProxyMutableError extends FoundationError {}
 
 /**
  * @extends {FoundationError}
@@ -125,16 +89,7 @@ export class ProxyMutableError extends FoundationError {
  * a given property value doesn't pass validation checks
  * for a given property key.
  */
-export class ProxyVirtualError extends FoundationError {
-  /**
-   * @constructor
-   *
-   * @param {string} message
-   */
-  constructor(message: string) {
-    super(message)
-  }
-}
+export class ProxyVirtualError extends FoundationError {}
 
 /**
  * The `ProxyPropertyKey` type defines the passable values as
@@ -314,19 +269,6 @@ export const createProxyHandlerForSchema = <TProxyTarget extends object>({
 
 /**
  * @template TProxyTarget
- *
- * The `createProxyFor` function takes a given `schema` and create
- * a new Proxy instance for the given `target`.
- *
- * @param {Partial<ProxySchema>} schema
- * @param {TProxyTarget} target
- * @returns {TProxyTarget}
- */
-export const createProxyFor = <TProxyTarget extends object>(schema: Partial<ProxySchema>, target: TProxyTarget): TProxyTarget =>
-  new Proxy<TProxyTarget>(target, createProxyHandlerForSchema(generateProxySchemaFor(schema, target)) as ProxyHandler<TProxyTarget>)
-
-/**
- * @template TProxyTarget
  * @throws {ProxyTypeError, ProxyVirtualError, ProxyNotDefinedError}
  *
  * The `generateProxySchemaFor` function takes a given `schema`
@@ -343,14 +285,14 @@ const generateProxySchemaFor = <TProxyTarget extends object>({
   mutable,
   virtual,
 }: Partial<ProxySchema>, target: TProxyTarget): ProxySchema => {
-  const _immutable = 'object' === typeof immutable ? immutable : {}
-  const _mutable = 'object' === typeof mutable ? mutable : {}
-  const _virtual = 'object' === typeof virtual ? virtual : {}
+  const immut = 'object' === typeof immutable ? immutable : {}
+  const mut = 'object' === typeof mutable ? mutable : {}
+  const virt = 'object' === typeof virtual ? virtual : {}
 
   for (const [ p, v ] of Object.entries(target)) {
-    if (p in _immutable) {
+    if (p in immut) {
       try {
-        _immutable[p].validateSync(v)
+        immut[p].validateSync(v)
       }
       catch (e) {
         if (e instanceof Error) {
@@ -358,9 +300,9 @@ const generateProxySchemaFor = <TProxyTarget extends object>({
         }
       }
     }
-    else if (p in _mutable) {
+    else if (p in mut) {
       try {
-        _mutable[p].validateSync(v)
+        mut[p].validateSync(v)
       }
       catch (e) {
         if (e instanceof Error) {
@@ -368,7 +310,7 @@ const generateProxySchemaFor = <TProxyTarget extends object>({
         }
       }
     }
-    else if (p in _virtual) {
+    else if (p in virt) {
       throw new ProxyVirtualError(`property (${String(p)}) is virtual`)
     }
     else {
@@ -377,8 +319,21 @@ const generateProxySchemaFor = <TProxyTarget extends object>({
   }
 
   return {
-    immutable: _immutable,
-    mutable: _mutable,
-    virtual: _virtual,
+    immutable: immut,
+    mutable: mut,
+    virtual: virt,
   }
 }
+
+/**
+ * @template TProxyTarget
+ *
+ * The `createProxyFor` function takes a given `schema` and create
+ * a new Proxy instance for the given `target`.
+ *
+ * @param {Partial<ProxySchema>} schema
+ * @param {TProxyTarget} target
+ * @returns {TProxyTarget}
+ */
+export const createProxyFor = <TProxyTarget extends object>(schema: Partial<ProxySchema>, target: TProxyTarget): TProxyTarget =>
+  new Proxy<TProxyTarget>(target, createProxyHandlerForSchema(generateProxySchemaFor(schema, target)) as ProxyHandler<TProxyTarget>)

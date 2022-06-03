@@ -39,11 +39,11 @@ import {
   AssertError,
 } from '../src/internal'
 
-test('Assert: success', async t => {
+test('Assert: success', t => {
   t.true(assert(true, 'not a number'))
 })
 
-test('Assert: error', async t => {
+test('Assert: error', t => {
   try {
     t.true(assert(false, 'not a number'))
     t.true(false)
