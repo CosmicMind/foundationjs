@@ -47,12 +47,12 @@ type GuardTypeB = {
   version: number
 }
 
-test('Guard', t => {
+test('Guard', async t => {
   t.false(guard(true))
   t.true(guard(false))
 })
 
-test('Guard Type', t => {
+test('Guard Type', async t => {
   const a: GuardTypeA = {
     name: 'daniel',
     age: 38,

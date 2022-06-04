@@ -31,6 +31,10 @@
  */
 
 /**
+ * @module Guard
+ */
+
+/**
  * A guard statement. It is important to understand that
  * guards are somewhat a reverse logic, if it fails, it
  * returns `true`, in order to pass into a failure block.
@@ -45,9 +49,9 @@ export const guard = (statement: boolean): boolean => !statement
  *
  * Checks if a value is a subtype or equal to `T`.
  *
- * @param {T} value
+ * @param {unknown} value
  * @param {keyof T} key
  * @returns {boolean}
  */
-export const guardFor = <T>(value: T, key: keyof T): value is T =>
-  key in value
+export const guardFor = <T>(value: unknown, key: string): value is T =>
+  value as T && 'object' === typeof value && null !== value && key in value
