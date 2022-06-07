@@ -49,9 +49,9 @@ export const guard = (statement: boolean): boolean => !statement
  *
  * Checks if a value is a subtype or equal to `T`.
  *
- * @param {unknown} value
+ * @param {object} value
  * @param {keyof T} key
  * @returns {boolean}
  */
-export const guardFor = <T>(value: unknown, key: string): value is T =>
-  value as T && 'object' === typeof value && null !== value && key in value
+export const guardFor = <T extends object>(value: object, key: string): value is T =>
+  null !== value as T && key in value
