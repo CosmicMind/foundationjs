@@ -71,7 +71,7 @@ export class Observable {
    * @param {string} event
    * @param {...ObservableCallback} fn
    */
-  on(event: string, ...fn: ObservableCallback[]) {
+  on(event: string, ...fn: ObservableCallback[]): void {
     const s = this.#events.get(event) || new Set<ObservableCallback>()
     for (const x of fn) {
       s.add(x)
@@ -86,7 +86,7 @@ export class Observable {
    * @param {string} event
    * @param {...ObservableCallback} fn
    */
-  off(event: string, ...fn: ObservableCallback[]) {
+  off(event: string, ...fn: ObservableCallback[]): void {
     const s: Optional<Set<ObservableCallback>> = this.#events.get(event)
     if ('undefined' !== typeof s) {
       for (const x of fn) {
@@ -120,7 +120,7 @@ export class Observable {
    * @param {string} event
    * @param {...unknown} args
    */
-  emitSync(event: string, ...args: Optional<unknown>[]) {
+  emitSync(event: string, ...args: Optional<unknown>[]): void {
     const s = this.#events.get(event)
     if ('undefined' !== typeof s) {
       for (const x of s) {
@@ -135,7 +135,7 @@ export class Observable {
    * @param {string} event
    * @param {...ObservableCallback} fns
    */
-  once(event: string, ...fns: ObservableCallback[]) {
+  once(event: string, ...fns: ObservableCallback[]): void {
     const fn = (...args: Optional<unknown>[]): void => {
       this.off(event, fn)
       for (const x of fns) {
