@@ -34,6 +34,11 @@
  * @module Guard
  */
 
+import {
+  Nullable,
+  Optional,
+} from './type-defs'
+
 /**
  * A guard statement. It is important to understand that
  * guards are somewhat a reverse logic, if it fails, it
@@ -53,5 +58,5 @@ export const guard = (statement: boolean): boolean => !statement
  * @param {keyof T} key
  * @returns {boolean}
  */
-export const guardFor = <T extends object>(value: object, key: string): value is T =>
-  null !== value as T && key in value
+export const guardFor = <T extends object>(value: Nullable<Optional<object>>, key: string): value is T =>
+  'undefined' !== typeof value && null !== value && null !== value as T && key in value
