@@ -33,7 +33,6 @@
 /**
  * @module Guard
  */
-
 import {
   Nullable,
   Optional,
@@ -55,8 +54,8 @@ export const guard = (statement: boolean): boolean => !statement
  * Checks if a value is a subtype or equal to `T`.
  *
  * @param {object} value
- * @param {keyof T} key
+ * @param {string | number | symbol} key
  * @returns {boolean}
  */
-export const guardFor = <T extends object>(value: Nullable<Optional<object>>, key: string): value is T =>
+export const guardFor = <T extends object>(value: Nullable<Optional<object>>, key: string | number | symbol): value is T =>
   'undefined' !== typeof value && null !== value && null !== value as T && key in value
