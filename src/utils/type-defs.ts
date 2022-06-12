@@ -30,6 +30,14 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-export type Nullable<T> = T | null
-export type Optional<T> = T | undefined
-export type Voidable<T> = T | void
+export type Nullable<Type> = Type | null
+export type Optional<Type> = Type | undefined
+export type Voidable<Type> = Type | void
+
+export type Mutable<Type> = {
+  -readonly [Property in keyof Type]: Type[Property]
+}
+
+export type WithRequiredProperty<Type, Key extends keyof Type> = Type & {
+  [Property in Key]-?: Type[Property]
+}

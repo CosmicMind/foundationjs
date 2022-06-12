@@ -50,12 +50,22 @@ export const guard = (statement: boolean): boolean => !statement
 
 /**
  * @template T
+ * @template K
  *
- * Checks if a value is a subtype or equal to `T`.
+ * Checks if a model is a subtype or equal to `T`.
  *
- * @param {object} value
- * @param {string | number | symbol} key
+ * @param {T} model
+ * @param {K} key
  * @returns {boolean}
  */
-export const guardFor = <T extends object>(value: Nullable<Optional<object>>, key: string | number | symbol): value is T =>
-  'undefined' !== typeof value && null !== value && null !== value as T && key in value
+export const guardFor = <T>(model: Nullable<Optional<T>>, ...keys: (keyof T)[]): model is T => {
+  if ('object' === typeof model && null !== model && null !== model as T) {
+    for (const key of keys) {
+      if (!(key in model)) {
+        return false
+      }
+    }
+    return true
+  }
+  return false
+}

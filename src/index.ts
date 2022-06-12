@@ -34,6 +34,8 @@ export type {
   Nullable,
   Optional,
   Voidable,
+  Mutable,
+  WithRequiredProperty,
   ObservableCallback,
   ProxyValidator,
   ProxyImmutable,
