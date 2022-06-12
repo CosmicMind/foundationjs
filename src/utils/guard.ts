@@ -33,6 +33,7 @@
 /**
  * @module Guard
  */
+
 import {
   Nullable,
   Optional,
@@ -58,7 +59,7 @@ export const guard = (statement: boolean): boolean => !statement
  * @param {K} key
  * @returns {boolean}
  */
-export const guardFor = <T>(model: Nullable<Optional<T>>, ...keys: (keyof T)[]): model is T => {
+export const guardFor = <T>(model: T | undefined | null, ...keys: (keyof T)[]): model is T => {
   if ('object' === typeof model && null !== model && null !== model as T) {
     for (const key of keys) {
       if (!(key in model)) {
