@@ -34,11 +34,6 @@
  * @module Guard
  */
 
-import {
-  Nullable,
-  Optional,
-} from './type-defs'
-
 /**
  * A guard statement. It is important to understand that
  * guards are somewhat a reverse logic, if it fails, it
@@ -51,16 +46,17 @@ export const guard = (statement: boolean): boolean => !statement
 
 /**
  * @template T
+ * @template R
  * @template K
  *
  * Checks if a model is a subtype or equal to `T`.
  *
  * @param {T} model
- * @param {K} key
+ * @param {K} keys
  * @returns {boolean}
  */
-export const guardFor = <T>(model: T | undefined | null, ...keys: (keyof T)[]): model is T => {
-  if ('object' === typeof model && null !== model && null !== model as T) {
+export function guardFor<T, R extends T extends object ? Exclude<T, undefined | null> : never, K extends keyof R>(model: T, ...keys: K[]): model is R {
+  if ('undefined' !== typeof model && null !== model as T) {
     for (const key of keys) {
       if (!(key in model)) {
         return false

@@ -71,30 +71,50 @@ test('Guard: guardFor', t => {
     version: 1,
   }
 
-  t.true(guardFor<A>(a, 'name'))
-  t.true(guardFor<A>(a, 'age'))
-  t.true(guardFor<A>(a, 'name', 'age'))
-  t.true(guardFor<A>(a, 'age', 'name'))
+  t.true(guardFor(a, 'name'))
+  t.true(guardFor(a, 'age'))
+  t.true(guardFor(a, 'name', 'age'))
+  t.true(guardFor(a, 'age', 'name'))
 
-  t.true(guardFor<B>(b, 'name'))
-  t.true(guardFor<B>(b, 'version'))
-  t.true(guardFor<B>(b, 'name', 'version'))
-  t.true(guardFor<B>(b, 'version', 'name'))
+  t.true(guardFor(b, 'name'))
+  t.true(guardFor(b, 'version'))
+  t.true(guardFor(b, 'name', 'version'))
+  t.true(guardFor(b, 'version', 'name'))
 
-  t.true(guardFor<A>(c, 'name'))
-  t.true(guardFor<A>(c, 'age'))
-  t.true(guardFor<A>(c, 'name', 'age'))
-  t.true(guardFor<A>(c, 'age', 'name'))
-  t.true(guardFor<B>(c, 'name'))
-  t.true(guardFor<B>(c, 'version'))
-  t.true(guardFor<B>(c, 'name', 'version'))
-  t.true(guardFor<B>(c, 'version', 'name'))
-  t.true(guardFor<C>(c, 'name'))
-  t.true(guardFor<C>(c, 'age'))
-  t.true(guardFor<C>(c, 'name', 'age'))
-  t.true(guardFor<C>(c, 'age', 'name'))
-  t.true(guardFor<C>(c, 'name'))
-  t.true(guardFor<C>(c, 'version'))
-  t.true(guardFor<C>(c, 'name', 'version'))
-  t.true(guardFor<C>(c, 'version', 'name'))
+  t.true(guardFor(c, 'name'))
+  t.true(guardFor(c, 'age'))
+  t.true(guardFor(c, 'name', 'age'))
+  t.true(guardFor(c, 'age', 'name'))
+  t.true(guardFor(c, 'name'))
+  t.true(guardFor(c, 'version'))
+  t.true(guardFor(c, 'name', 'version'))
+  t.true(guardFor(c, 'version', 'name'))
+  t.true(guardFor(c, 'name'))
+  t.true(guardFor(c, 'age'))
+  t.true(guardFor(c, 'name', 'age'))
+  t.true(guardFor(c, 'age', 'name'))
+  t.true(guardFor(c, 'name'))
+  t.true(guardFor(c, 'version'))
+  t.true(guardFor(c, 'name', 'version'))
+  t.true(guardFor(c, 'version', 'name'))
+
+  const name = 'daniel'
+  const age = 38
+  const version = 0
+  const neg = -1
+  const isTrue = true
+  const isFalse = false
+  const tricky1: boolean | undefined | null = true
+  const tricky2: boolean | undefined | null = void 0
+  const tricky3: boolean | undefined | null = null
+
+  t.true(guardFor(name))
+  t.true(guardFor(age))
+  t.true(guardFor(version))
+  t.true(guardFor(neg))
+  t.true(guardFor(isTrue))
+  t.true(guardFor(isFalse))
+  t.true(guardFor(tricky1))
+  t.false(guardFor(tricky2))
+  t.false(guardFor(tricky3))
 })
