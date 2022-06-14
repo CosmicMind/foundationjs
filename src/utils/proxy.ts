@@ -94,16 +94,12 @@ export class ProxyVirtualError extends FoundationError {}
 /**
  * The `ProxyPropertyKey` type defines the passable values as
  * property keys to the `ProxyHandler`.
- *
- * @type {string | Symbol}
  */
 export type ProxyPropertyKey = string | symbol
 
 /**
  * The `ProxyValidator` defines the validation schema used
  * when engaging immutable and mutable properties.
- *
- * @type {BaseSchema}
  */
 export type ProxyValidator = BaseSchema
 
@@ -134,10 +130,6 @@ export interface ProxyVirtual {
 /**
  * The `ProxySchema` type defines the structure of
  * the immutable, mutable, and virtual property definitions.
- *
- * @property {ProxyImmutable} immutable
- * @property {ProxyMutable} mutable
- * @property {ProxyVirtual} virtual
  */
 export interface ProxySchema {
   immutable: ProxyImmutable
@@ -146,52 +138,31 @@ export interface ProxySchema {
 }
 
 /**
- * @template TProxyTarget
- *
  * The `createProxyHandlerForSchema` function takes in the given
  * `ProxySchema` and returns the `ProxyHandler` used to interface
  * with the given `Class`.
- *
- *
- * @param {ProxyImmutable} immutable
- * @param {ProxyMutable} mutable
- * @param {ProxyVirtual} virtual
- * @returns {ProxyHandler<TProxyTarget>}
  */
-export const createProxyHandlerForSchema = <TProxyTarget extends object>({
+export const createProxyHandlerForSchema = <T extends object>({
   immutable,
   mutable,
   virtual,
-}: ProxySchema): ProxyHandler<TProxyTarget> => ({
+}: ProxySchema): ProxyHandler<T> => ({
   /**
-   * @template TProxyTarget
-   *
    * The `has` checks whether a value exists in the
    * `ProxySchema` definition, or in the instance itself.
    * The search is ordered as: immutable, mutable, virtual,
    * and then instance.
-   *
-   * @param {TProxyTarget} target
-   * @param {ProxyPropertyKey} p
-   * @returns {boolean}
    */
-    has(target: TProxyTarget, p: ProxyPropertyKey): boolean {
+    has(target: T, p: ProxyPropertyKey): boolean {
       return p in immutable || p in mutable || p in virtual || Reflect.has(target, p)
     },
 
-    /**
-   * @template TProxyTarget
-   *
+  /**
    * The `get` fetches the property value for the give property
    * key. The search is ordered as: immutable, mutable, virtual,
    * and then instance.
-   *
-   * @param {TProxyTarget} target
-   * @param {ProxyPropertyKey} p
-   * @param {unknown} receiver
-   * @returns {unknown}
    */
-    get(target: TProxyTarget, p: ProxyPropertyKey, receiver: unknown): unknown {
+    get(target: T, p: ProxyPropertyKey, receiver: unknown): unknown {
       if (p in immutable) {
         return Reflect.get(target, p, receiver)
       }
@@ -204,22 +175,13 @@ export const createProxyHandlerForSchema = <TProxyTarget extends object>({
       return Reflect.get(target, p, receiver)
     },
 
-    /**
-   * @template TProxyTarget
-   * @throws {ProxyImmutableError, ProxyMutableError, ProxyVirtualError, ProxyTypeError, ProxyNotDefinedError}
-   *
-   * The `set` updates the given property with the given value.
-   * The property key and value are checked against the
-   * `ProxySchema`. The search is ordered as: immutable, virtual,
-   * and then mutable.
-   *
-   * @param {TProxyTarget} target
-   * @param {ProxyPropertyKey} p
-   * @param {unknown} value
-   * @param {unknown} receiver
-   * @returns {boolean}
-   */
-    set(target: TProxyTarget, p: ProxyPropertyKey, value: unknown, receiver: unknown): boolean {
+   /**
+    * The `set` updates the given property with the given value.
+    * The property key and value are checked against the
+    * `ProxySchema`. The search is ordered as: immutable, virtual,
+    * and then mutable.
+    */
+    set(target: T, p: ProxyPropertyKey, value: unknown, receiver: unknown): boolean {
       if (p in immutable) {
         throw new ProxyImmutableError(`property (${String(p)}) is immutable`)
       }
@@ -243,17 +205,11 @@ export const createProxyHandlerForSchema = <TProxyTarget extends object>({
     },
 
     /**
-   * @template TProxyTarget
-   * @throws {ProxyImmutableError, ProxyMutableError, ProxyVirtualError}
-   *
    * The `deleteProperty` deletes the given property so long as
    * the property is not defined in the `ProxySchema`. The
    * search is ordered as: immutable, mutable, and then virtual.
-   *
-   * @param {TProxyTarget} target
-   * @param {ProxyPropertyKey} p
    */
-    deleteProperty(target: TProxyTarget, p: ProxyPropertyKey): boolean {
+    deleteProperty(target: T, p: ProxyPropertyKey): boolean {
       if (p in immutable) {
         throw new ProxyImmutableError(`property (${String(p)}) is immutable`)
       }
@@ -268,23 +224,16 @@ export const createProxyHandlerForSchema = <TProxyTarget extends object>({
   })
 
 /**
- * @template TProxyTarget
- * @throws {ProxyTypeError, ProxyVirtualError, ProxyNotDefinedError}
- *
  * The `generateProxySchemaFor` function takes a given `schema`
  * and validates the given `target` against it. If all is
  * successful, then the complete `ProxySchema` definition is
  * returned.
- *
- * @param {Partial<ProxySchema>} schema
- * @param {TProxyTarget} target
- * @returns {ProxySchema}
  */
-const generateProxySchemaFor = <TProxyTarget extends object>({
+const generateProxySchemaFor = <T extends object>({
   immutable,
   mutable,
   virtual,
-}: Partial<ProxySchema>, target: TProxyTarget): ProxySchema => {
+}: Partial<ProxySchema>, target: T): ProxySchema => {
   const immut = 'object' === typeof immutable ? immutable : {}
   const mut = 'object' === typeof mutable ? mutable : {}
   const virt = 'object' === typeof virtual ? virtual : {}
@@ -326,14 +275,8 @@ const generateProxySchemaFor = <TProxyTarget extends object>({
 }
 
 /**
- * @template TProxyTarget
- *
  * The `createProxyFor` function takes a given `schema` and create
  * a new Proxy instance for the given `target`.
- *
- * @param {Partial<ProxySchema>} schema
- * @param {TProxyTarget} target
- * @returns {TProxyTarget}
  */
-export const createProxyFor = <TProxyTarget extends object>(schema: Partial<ProxySchema>, target: TProxyTarget): TProxyTarget =>
-  new Proxy<TProxyTarget>(target, createProxyHandlerForSchema(generateProxySchemaFor(schema, target)) as ProxyHandler<TProxyTarget>)
+export const createProxyFor = <T extends object>(schema: Partial<ProxySchema>, target: T): T =>
+  new Proxy<T>(target, createProxyHandlerForSchema(generateProxySchemaFor(schema, target)) as ProxyHandler<T>)

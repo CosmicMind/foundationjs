@@ -34,31 +34,18 @@ import { Optional } from './type-defs'
 
 /**
  * Converts a JavaScript value to a JavaScript Object Notation (JSON) string.
- *
- * @param {Optional<unknown>} value
- * @param {Optional<(this: unknown, key: string, value: unknown) => Optional<string>>} replacer
- * @param {Optional<string | number>} space
- * @returns {Optional<string>}
  */
 export const stringify = (value: Optional<unknown>, replacer?: (this: unknown, key: string, value: unknown) => unknown, space?: string | number): Optional<string> =>
   'undefined' === typeof value ? void 0 : JSON.stringify(value, replacer, space)
 
 /**
  * Converts a JavaScript Object Notation (JSON) string into an object.
- *
- * @param {Optional<string>} text
- * @param {Optional<(this: unknown, key: string, value: unknown) => unknown>} reviver
- * @returns {Optional<object>}
  */
 export const parse = (text: Optional<string>, reviver?: (this: unknown, key: string, value: unknown) => unknown): Optional<object> =>
   'undefined' === typeof text ? void 0 : JSON.parse(text, reviver)
 
 /**
  * A helper function that returns a promise and creates an `async` block.
- *
- * @param {() => unknown} fn
- * @param {number} [timeout=1]
- * @returns {Promise<unknown>}
  */
 export const async = (fn: () => unknown, timeout = 1): Promise<unknown> =>
   new Promise((resolve, reject): void => {
@@ -74,18 +61,12 @@ export const async = (fn: () => unknown, timeout = 1): Promise<unknown> =>
 
 /**
  * Deep clones the passed value using JSON stringify and parse methods.
- *
- * @param {Optional<object>} value
- * @returns {Optional<object>}
  */
 export const clone = (value: Optional<object>): Optional<object> => parse(stringify(value))
 
 /**
  * Condenses sequential space characters to a single space
  * that wraps the character string.
- *
- * @param {string} c
- * @returns {string}
  */
 export const normalizeOuterSpace = (c: string): string =>
   c && c.replace ? c.replace(/^\s+|\s+$/g, '').replace(/\s+/g, ' ') : c
@@ -93,63 +74,41 @@ export const normalizeOuterSpace = (c: string): string =>
 /**
  * Condenses sequential space characters to a single space
  * that is within the character string.
- *
- * @param {string} c
- * @returns {string}
  */
 export const normalizeInnerSpace = (c: string): string =>
   c && c.replace ? c.replace(/^\s+|\s+$/g, ' ') : c
 
 /**
  * Capitalizes the character string.
- *
- * @param {string} c
- * @returns {string}
  */
 export const toCapitalize = (c: string): string =>
   c.replace ? c.replace(/(?:^|\s)\S/g, value => value.toUpperCase().replace(/([-_])/g, '')) : c
 
 /**
  * Converts the character string to camel case.
- *
- * @param {string} c
- * @returns {string}
  */
 export const toCamelCase = (c: string): string =>
   c.replace ? c.replace(/([-_])+([a-zA-Z])/g, value => value.toUpperCase().replace(/([-_])/g, '')) : c
 
 /**
  * Converts the character string to a kebab-case.
- *
- * @param {string} c
- * @returns {string}
  */
 export const toKebabCase = (c: string): string =>
   c.replace ? c.replace(/( |-|_|[A-Z])+([a-zA-Z])/g, value => (c.indexOf(value) > 0 ? '-' : '') + value.replace(/([ -_])/g, '')).toLowerCase() : c
 
 /**
  * Converts the character string to snake case.
- *
- * @param {string} c
- * @returns {string}
  */
 export const toSnakeCase = (c: string): string =>
   c.replace ? c.replace(/( |-|_|[A-Z])+([a-zA-Z])/g, value => (c.indexOf(value) > 0 ? '_' : '') + value.replace(/([ -_])/g, '')).toLowerCase() : c
 
 /**
  * Checks equality of two objects by comparing their JSON string.
- *
- * @param {Object} a
- * @param {Object} b
- * @returns {boolean}
  */
 export const equals = (a: object, b: object): boolean => stringify(a) === stringify(b)
 
 /**
  * Filters the `Array` and returns only the unique values.
- *
- * @param {Optional<unknown>[]}data
- * @returns {Optional<unknown>[]}
  */
 export const unique = (data: Optional<unknown>[]): Optional<unknown>[] => [ ...new Set(data) ]
 
@@ -171,10 +130,6 @@ export const unique = (data: Optional<unknown>[]): Optional<unknown>[] => [ ...n
  * Note that the assign property is added to Object with
  * Object.defineProperty() so that the new function can be created as
  * a non-enumerable property like Object.assign().
- *
- * @param {object} target
- * @param {...object} sources
- * @returns {object}
  */
 export const assign = (target: object, ...sources: object[]): object => {
   for (const source of sources) {

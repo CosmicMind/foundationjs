@@ -46,13 +46,7 @@ export class AssertError extends FoundationError {
 }
 
 /**
- * @throws {AssertError}
- *
  * Asserts a given statement.
- *
- * @param {boolean} statement
- * @param {string} message
- * @returns {boolean}
  */
 export const assert = (statement: boolean, message: string): boolean => {
   if (statement) {

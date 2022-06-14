@@ -37,24 +37,16 @@
 export interface IFoundationError {
   /**
    * Fetches the `name` value for the class.
-   *
-   * @type {string}
    */
   get name(): string
 
   /**
    * Fetches the `message` value for the class.
-   *
-   * @type {string}
    */
   get message(): string
 }
 
 /**
- * @abstract
- * @extends {Error}
- * @implements {IFoundationError}
- *
  * The `FoundationError` is the base `Error` class. It is used
  * in non-specific situations. This is ideally used as a base
  * class to inherit from when making custom error types.
@@ -62,8 +54,6 @@ export interface IFoundationError {
 export class FoundationError extends Error implements IFoundationError {
   /**
    * Fetches the `name` value for the class.
-   *
-   * @type {string}
    */
   get name(): string {
     return this.constructor.name
@@ -71,21 +61,12 @@ export class FoundationError extends Error implements IFoundationError {
 }
 
 /**
- * @abstract
- * @extends {TypeError}
- * @implements {IFoundationError}
- *
  * The `FoundationTypeError` is the base `TypeError` class. It
  * is used in specific type error situations.
- *
- * @property {string} name
- * @property {string} message
  */
 export abstract class FoundationTypeError extends TypeError implements IFoundationError {
   /**
    * Fetches the `name` value for the class.
-   *
-   * @type {string}
    */
   get name(): string {
     return this.constructor.name
@@ -93,8 +74,6 @@ export abstract class FoundationTypeError extends TypeError implements IFoundati
 
   /**
    * Fetches the `message` value for the class.
-   *
-   * @type {string}
    */
   get message(): string {
     return super.message

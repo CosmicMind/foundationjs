@@ -40,8 +40,6 @@ import { Optional } from '../utils/type-defs'
 /**
  * A `type` definition for listener callbacks used
  * within the `Observable` class.
- *
- * @type {(...args: Optional<unknown>[]) => void}
  */
 export type ObservableCallback = (...args: Optional<unknown>[]) => void
 
@@ -52,8 +50,6 @@ export type ObservableCallback = (...args: Optional<unknown>[]) => void
 export class Observable {
   /**
    * A reference to the scoped based events.
-   *
-   * @type {Map<string, Set<ObservableCallback>>()}
    */
   #events: Map<string, Set<ObservableCallback>>
 
@@ -67,9 +63,6 @@ export class Observable {
   /**
    * The `on` method adds new listeners to the `event set`,
    * for the given `event`.
-   *
-   * @param {string} event
-   * @param {...ObservableCallback} fn
    */
   on(event: string, ...fn: ObservableCallback[]): void {
     const s = this.#events.get(event) || new Set<ObservableCallback>()
@@ -82,9 +75,6 @@ export class Observable {
   /**
    * The `off` method remove listeners from the `event set`,
    * for the given `event`.
-   *
-   * @param {string} event
-   * @param {...ObservableCallback} fn
    */
   off(event: string, ...fn: ObservableCallback[]): void {
     const s: Optional<Set<ObservableCallback>> = this.#events.get(event)
@@ -99,9 +89,6 @@ export class Observable {
 
   /**
    * The `emitAsync` method emits the given `event` to the `event listeners` asynchronously.
-   *
-   * @param {string} event
-   * @param {...unknown} args
    */
   emitAsync(event: string, ...args: Optional<unknown>[]): Promise<unknown> {
     return async((): void => {
@@ -116,9 +103,6 @@ export class Observable {
 
   /**
    * The `emitSync` method emits the given `event` to the `event listeners` synchronously.
-   *
-   * @param {string} event
-   * @param {...unknown} args
    */
   emitSync(event: string, ...args: Optional<unknown>[]): void {
     const s = this.#events.get(event)
@@ -131,9 +115,6 @@ export class Observable {
 
   /**
    * The `once` method calls an event only once with the given `event listeners`.
-   *
-   * @param {string} event
-   * @param {...ObservableCallback} fns
    */
   once(event: string, ...fns: ObservableCallback[]): void {
     const fn = (...args: Optional<unknown>[]): void => {

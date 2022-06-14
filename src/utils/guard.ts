@@ -38,22 +38,11 @@
  * A guard statement. It is important to understand that
  * guards are somewhat a reverse logic, if it fails, it
  * returns `true`, in order to pass into a failure block.
- *
- * @param {boolean} statement
- * @returns {boolean}
  */
 export const guard = (statement: boolean): boolean => !statement
 
 /**
- * @template T
- * @template R
- * @template K
- *
  * Checks if a model is a subtype or equal to `T`.
- *
- * @param {T} model
- * @param {K} keys
- * @returns {boolean}
  */
 export function guardFor<T, R extends T extends object ? Exclude<T, undefined | null> : never, K extends keyof R>(model: T, ...keys: K[]): model is R {
   if ('undefined' !== typeof model && null !== model as T) {
