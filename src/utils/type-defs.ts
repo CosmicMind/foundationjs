@@ -34,10 +34,18 @@ export type Nullable<T> = T | null
 export type Optional<T> = T | undefined
 export type Voidable<T> = T | void
 
-export type Mutable<T> = {
-  -readonly [P in keyof T]: T[P]
+export type WithMutable<T, K extends keyof T = keyof T> = Readonly<T> & {
+  -readonly [P in K]: T[P]
 }
 
-export type WithRequiredProperty<T, K extends keyof T> = T & {
+export type WithImmutable<T, K extends keyof T = keyof T> = Partial<T> & {
+  readonly [P in K]: T[P]
+}
+
+export type WithPartial<T, K extends keyof T = keyof T> = Readonly<T> & {
+  [P in K]?: T[P]
+}
+
+export type WithRequired<T, K extends keyof T = keyof T> = Partial<T> & {
   [P in K]-?: T[P]
 }

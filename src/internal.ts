@@ -73,8 +73,10 @@ export type {
   Nullable,
   Optional,
   Voidable,
-  Mutable,
-  WithRequiredProperty,
+  WithMutable,
+  WithImmutable,
+  WithPartial,
+  WithRequired,
 } from './utils/type-defs'
 
 export {
