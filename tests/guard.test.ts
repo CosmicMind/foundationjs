@@ -35,7 +35,7 @@ import test from 'ava'
 import {
   guard,
   guardFor,
-} from '../src/internal'
+} from '../src'
 
 type A = {
   name: string

@@ -32,4 +32,5 @@
 
 export * from './assert.test'
 export * from './guard.test'
+export * from './type-defs.test'
 export * from './uuid.test'

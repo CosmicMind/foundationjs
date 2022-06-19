@@ -24,28 +24,53 @@
  * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
  * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
  * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
- * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ * SERVICES LOSS OF USE, DATA, OR PROFITS OR BUSINESS INTERRUPTION) HOWEVER
  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+export type Compare<A, B, Q = A, R = never> =
+  (<T>() => T extends A ? 0 : 1) extends
+  (<T>() => T extends B ? 0 : 1) ? Q : R
+
 export type Nullable<T> = T | null
 export type Optional<T> = T | undefined
 export type Voidable<T> = T | void
 
-export type WithMutable<T, K extends keyof T = keyof T> = Readonly<T> & {
+export type Writable<T, K extends keyof T = keyof T> = Omit<T, K> & {
   -readonly [P in K]: T[P]
 }
 
-export type WithImmutable<T, K extends keyof T = keyof T> = Partial<T> & {
+export type Immutable<T, K extends keyof T = keyof T> = Omit<T, K> & {
   readonly [P in K]: T[P]
 }
 
-export type WithPartial<T, K extends keyof T = keyof T> = Readonly<T> & {
+export type WithOptional<T, K extends keyof T = keyof T> = Omit<T, K> & {
   [P in K]?: T[P]
 }
 
-export type WithRequired<T, K extends keyof T = keyof T> = Partial<T> & {
-  [P in K]-?: T[P]
+export type WithRequired<T, K extends keyof T = keyof T> = Omit<T, K> & {
+  [P in K]-?: Exclude<T[P], undefined>
 }
+
+export type ValueKeysFor<T, U = T[keyof T]> = Exclude<{ [P in keyof T]: T[P] extends U ? P : never }[keyof T], undefined>
+
+export type RequiredKeysFor<T> = Extract<keyof T, ValueKeysFor<T, Exclude<T[keyof T], undefined>>>
+export type NullableKeysFor<T> = Exclude<keyof T, ValueKeysFor<T, Exclude<T[keyof T], null>>>
+export type OptionalKeysFor<T> = Exclude<keyof T, RequiredKeysFor<T>>
+
+export type WritableKeysFor<T> = {
+  [P in keyof T]-?: Compare<{ [Q in P]: T[P] }, { -readonly [Q in P]: T[P] }, P>
+}[keyof T]
+
+export type ReadonlyKeysFor<T> = {
+  [P in keyof T]-?: Compare<{ [Q in P]: T[P] }, { -readonly [Q in P]: T[P] }, never, P>
+}[keyof T]
+
+export type PublicOnly<T> = Pick<T, keyof T>
+export type WritableOnly<T> = Pick<T, WritableKeysFor<T>>
+export type ReadonlyOnly<T> = Pick<T, ReadonlyKeysFor<T>>
+export type RequiredOnly<T> = Pick<T, RequiredKeysFor<T>>
+export type NullableOnly<T> = Pick<T, NullableKeysFor<T>>
+export type OptionalOnly<T> = Pick<T, OptionalKeysFor<T>>

@@ -37,7 +37,7 @@ import {
   ValidationError,
 } from 'yup'
 
-import { uuidv4 } from '../src/internal'
+import { uuidv4 } from '../src'
 
 test('UUID: success', t => {
   const uuid = uuidv4()

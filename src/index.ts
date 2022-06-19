@@ -30,38 +30,68 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+export { logger } from './utils/logger'
+
+export type { ObservableCallback } from './protocols/Observable'
+export { Observable } from './protocols/Observable'
+
+export {
+  assert,
+  AssertError,
+} from './utils/assert'
+
+export {
+  guard,
+  guardFor,
+} from './utils/guard'
+
+export {
+  FoundationError,
+  FoundationTypeError,
+} from './utils/error'
+
+export { uuidv4 } from './utils/uuid'
+
 export type {
-  Nullable,
-  Optional,
-  Voidable,
-  WithMutable,
-  WithImmutable,
-  WithPartial,
-  WithRequired,
-  ObservableCallback,
   ProxyValidator,
   ProxyImmutable,
   ProxyMutable,
   ProxyVirtual,
   ProxySchema,
-} from './internal'
+} from './utils/proxy'
 
 export {
-  logger,
-  assert,
-  AssertError,
-  Observable,
-  guard,
-  guardFor,
-  FoundationError,
-  FoundationTypeError,
-  uuidv4,
   ProxyTypeError,
   ProxyNotDefinedError,
   ProxyImmutableError,
   ProxyMutableError,
   ProxyVirtualError,
   createProxyFor,
+} from './utils/proxy'
+
+export type {
+  Nullable,
+  Optional,
+  Voidable,
+  Writable,
+  Immutable,
+  WithOptional,
+  WithRequired,
+  ValueKeysFor,
+  RequiredKeysFor,
+  NullableKeysFor,
+  OptionalKeysFor,
+  WritableKeysFor,
+  ReadonlyKeysFor,
+  PublicOnly,
+  WritableOnly,
+  ReadonlyOnly,
+  RequiredOnly,
+  NullableOnly,
+  OptionalOnly,
+} from './utils/type-defs'
+
+export {
   stringify,
   parse,
   async,
@@ -75,4 +105,4 @@ export {
   equals,
   unique,
   assign,
-} from './internal'
+} from './utils/tools'
