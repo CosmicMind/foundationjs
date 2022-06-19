@@ -54,7 +54,7 @@ export type WithRequired<T, K extends keyof T = keyof T> = Omit<T, K> & {
   [P in K]-?: Exclude<T[P], undefined>
 }
 
-export type ValueKeysFor<T, U = T[keyof T]> = Exclude<{ [P in keyof T]: T[P] extends U ? P : never }[keyof T], undefined>
+export type ValueKeysFor<T, U = T[keyof T]> = { [P in keyof T]-?: T[P] extends U ? P : never }[keyof T]
 
 export type RequiredKeysFor<T> = Extract<keyof T, ValueKeysFor<T, Exclude<T[keyof T], undefined>>>
 export type NullableKeysFor<T> = Exclude<keyof T, ValueKeysFor<T, Exclude<T[keyof T], null>>>
