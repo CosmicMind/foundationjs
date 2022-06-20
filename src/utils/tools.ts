@@ -35,13 +35,13 @@ import { Optional } from './type-defs'
 /**
  * Converts a JavaScript value to a JavaScript Object Notation (JSON) string.
  */
-export const stringify = (value: Optional<unknown>, replacer?: (this: unknown, key: string, value: unknown) => unknown, space?: string | number): Optional<string> =>
+export const stringify = <T extends object>(value: Optional<T>, replacer?: (this: unknown, key: string, value: unknown) => unknown, space?: string | number): Optional<string> =>
   'undefined' === typeof value ? void 0 : JSON.stringify(value, replacer, space)
 
 /**
  * Converts a JavaScript Object Notation (JSON) string into an object.
  */
-export const parse = (text: Optional<string>, reviver?: (this: unknown, key: string, value: unknown) => unknown): Optional<object> =>
+export const parse = <T extends string>(text: Optional<T>, reviver?: (this: unknown, key: string, value: unknown) => unknown): Optional<object> =>
   'undefined' === typeof text ? void 0 : JSON.parse(text, reviver)
 
 /**
@@ -62,7 +62,7 @@ export const async = (fn: () => unknown, timeout = 1): Promise<unknown> =>
 /**
  * Deep clones the passed value using JSON stringify and parse methods.
  */
-export const clone = (value: Optional<object>): Optional<object> => parse(stringify(value))
+export const clone = <T extends object>(value: Optional<T>): Optional<T> => parse(stringify(value)) as Optional<T>
 
 /**
  * Condenses sequential space characters to a single space

@@ -37,22 +37,25 @@ import {
   Nullable,
   Optional,
   Voidable,
-  Writable,
-  Immutable,
-  WithOptional,
-  WithRequired,
+  WritableKeys,
+  ReadonlyKeys,
+  PartialKeys,
+  RequiredKeys,
+  NullableKeys,
+  RestrictedKeys,
+  PartialRecord,
   ValueKeysFor,
   RequiredKeysFor,
   NullableKeysFor,
-  OptionalKeysFor,
+  PartialKeysFor,
   WritableKeysFor,
   ReadonlyKeysFor,
-  PublicOnly,
-  WritableOnly,
-  ReadonlyOnly,
-  RequiredOnly,
-  NullableOnly,
-  OptionalOnly,
+  PickPublic,
+  PickWritable,
+  PickReadonly,
+  PickRequired,
+  PickNullable,
+  PickPartial,
 } from '../src'
 
 type A = {
@@ -61,14 +64,7 @@ type A = {
   version: number
 }
 
-interface B {
-  name: string
-  age?: number
-  readonly version: number
-  location: string | null
-}
-
-class C {
+class B {
   private _name: string
   private _age: number
 
@@ -92,6 +88,7 @@ test('Type Defs: Nullable', t => {
   t.is(a, 1)
 
   a = null
+
   t.is(null, a)
 })
 
@@ -101,6 +98,7 @@ test('Type Defs: Optional', t => {
   t.is(a, 1)
 
   a = void 0
+
   t.is(void 0, a)
 })
 
@@ -113,92 +111,97 @@ test('Type Defs: Voidable', t => {
     return 1
   }
 
-  t.is(typeof a, typeof b)
-})
-
-test('Type Defs: Writable', t => {
-  const a: Readonly<A> = {
-    name: 'daniel',
-    age: 1,
-    version: 1,
+  const c = (): ReturnType<typeof a> => {
+    // statement here
   }
 
-  const b: Writable<typeof a, 'name' | 'age'> = {
+  t.is(typeof a, typeof b)
+  t.is(typeof a, typeof c)
+  t.is(typeof b, typeof c)
+})
+
+test('Type Defs: WritableKeys', t => {
+  const a: WritableKeys<Readonly<A>, 'name' | 'age'> = {
     name: 'jonathan',
     age: 2,
     version: 1,
   }
 
-  t.notDeepEqual(a, b)
+  a.name = 'daniel'
+  a.age = 1
+  // a.version = 1
 
-  b.name = 'daniel'
-  b.age = 1
-
-  t.deepEqual(a, b)
+  t.true(guardFor(a, ...Object.keys(a) as (keyof typeof a)[]))
 })
 
-test('Type Defs: Immutable', t => {
-  const a: A = {
-    name: 'daniel',
-    age: 1,
-    version: 1,
-  }
-
-  const b: Immutable<typeof a, 'age'> = {
+test('Type Defs: ReadonlyKeys', t => {
+  const a: ReadonlyKeys<A, 'age'> = {
     name: 'jonathan',
     age: 1,
     version: 2,
   }
 
-  t.notDeepEqual(a, b)
+  a.name = 'daniel'
+  // a.age = 1
+  a.version = 1
 
-  b.name = 'daniel'
-  b.version = 1
-
-  t.deepEqual(a, b)
+  t.true(guardFor(a, ...Object.keys(a) as (keyof typeof a)[]))
 })
 
-test('Type Defs: WithOptional', t => {
-  const a: Required<A> = {
-    name: 'daniel',
-    age: 1,
-    version: 1,
-  }
-
-  const b: WithOptional<typeof a, 'age'> = {
+test('Type Defs: PartialKeys', t => {
+  const a: PartialKeys<Required<A>, 'age'> = {
     name: 'daniel',
     version: 2,
   }
 
-  t.notDeepEqual(a, b)
-
+  a.name = 'daniel'
+  a.age = 1
   a.version = 1
 
-  b.name = 'daniel'
-  b.age = 1
-  b.version = 1
-
-  t.deepEqual(a, b)
+  t.true(guardFor(a, ...Object.keys(a) as (keyof typeof a)[]))
 })
 
-test('Type Defs: WithRequired', t => {
-  const a: Partial<A> = {
-    name: 'daniel',
+test('Type Defs: RequiredKeys', t => {
+  const a: RequiredKeys<Partial<A>, 'age'> = {
     age: 1,
   }
 
-  const b: WithRequired<typeof a, 'age'> = {
-    age: 1,
-  }
-
-  t.notDeepEqual(a, b)
-
+  a.name = 'daniel'
+  a.age = 1
   a.version = 1
 
-  b.name = 'daniel'
-  b.version = 1
+  t.true(guardFor(a, ...Object.keys(a) as (keyof typeof a)[]))
+})
 
-  t.deepEqual(a, b)
+test('Type Defs: NullableKeys', t => {
+  const a: NullableKeys<A, 'age'> = {
+    name: 'daniel',
+    age: null,
+    version: 1,
+  }
+
+  t.true(guardFor(a, ...Object.keys(a) as (keyof typeof a)[]))
+})
+
+test('Type Defs: RestrictedKeys', t => {
+  const a: RestrictedKeys<A> = {
+    test: 1,
+  }
+
+  // a.name = 'daniel'
+  // a.age = 1
+  // a.version = 1
+
+  t.true(guardFor(a, ...Object.keys(a) as (keyof typeof a)[]))
+})
+
+test('Type Defs: PartialRecord', t => {
+  const a: PartialRecord<'a' | 'b' | 'c', number> = {
+    a: 1,
+    b: 2,
+  }
+
+  t.true(guardFor(a, ...Object.keys(a) as (keyof typeof a)[]))
 })
 
 test('Type Defs: ValueKeysFor', t => {
@@ -256,7 +259,7 @@ test('Type Defs: NullableKeysFor', t => {
   t.true(fn('test'))
 })
 
-test('Type Defs: OptionalKeysFor', t => {
+test('Type Defs: PartialKeysFor', t => {
   const a: A & {
     test?: string
   } = {
@@ -265,7 +268,7 @@ test('Type Defs: OptionalKeysFor', t => {
     version: 1,
   }
 
-  const fn = (key: OptionalKeysFor<typeof a>): boolean =>
+  const fn = (key: PartialKeysFor<typeof a>): boolean =>
     'undefined' !== typeof key
 
   // t.true(fn('name'))
@@ -312,57 +315,51 @@ test('Type Defs: ReadonlyKeysFor', t => {
   t.true(fn('test'))
 })
 
-test('Type Defs: PublicOnly', t => {
-  const c = new C('daniel', 1)
-  const b: PublicOnly<C> = {
+test('Type Defs: PickPublic', t => {
+  const a: PickPublic<B> = {
     name: 'daniel',
     age: 1,
   }
 
-  t.is(c.name, b.name)
-  t.is(c.age, b.age)
+  t.true(guardFor(a, ...Object.keys(a) as (keyof typeof a)[]))
 })
 
-test('Type Defs: WritableOnly', t => {
-  const b: WritableOnly<B> = {
-    name: 'daniel',
-    age: 1,
-    location: null,
-  }
-
-  t.true(guardFor(b, ...Object.keys(b) as (keyof typeof b)[]))
-})
-
-test('Type Defs: ReadonlyOnly', t => {
-  const b: ReadonlyOnly<B> = {
+test('Type Defs: PickWritable', t => {
+  const a: PickWritable<WritableKeys<A, 'version'>> = {
     version: 1,
   }
 
-  t.true(guardFor(b, ...Object.keys(b) as (keyof typeof b)[]))
+  t.true(guardFor(a, ...Object.keys(a) as (keyof typeof a)[]))
 })
 
-test('Type Defs: RequiredOnly', t => {
-  const b: RequiredOnly<B> = {
-    name: 'daniel',
+test('Type Defs: PickReadonly', t => {
+  const a: PickReadonly<ReadonlyKeys<A, 'version'>> = {
     version: 1,
-    location: null,
   }
 
-  t.true(guardFor(b, ...Object.keys(b) as (keyof typeof b)[]))
+  t.true(guardFor(a, ...Object.keys(a) as (keyof typeof a)[]))
 })
 
-test('Type Defs: NullableOnly', t => {
-  const b: NullableOnly<B> = {
-    location: null,
+test('Type Defs: PickRequired', t => {
+  const a: PickRequired<RequiredKeys<A, 'version'>> = {
+    version: 1,
   }
 
-  t.true(guardFor(b, ...Object.keys(b) as (keyof typeof b)[]))
+  t.true(guardFor(a, ...Object.keys(a) as (keyof typeof a)[]))
 })
 
-test('Type Defs: OptionalOnly', t => {
-  const b: OptionalOnly<B> = {
-    age: 1,
+test('Type Defs: PickNullable', t => {
+  const a: PickNullable<NullableKeys<A, 'version'>> = {
+    version: null,
   }
 
-  t.true(guardFor(b, ...Object.keys(b) as (keyof typeof b)[]))
+  t.true(guardFor(a, ...Object.keys(a) as (keyof typeof a)[]))
+})
+
+test('Type Defs: PickPartial', t => {
+  const a: PickPartial<PartialKeys<A, 'version'>> = {
+    version: void 0,
+  }
+
+  t.true(guardFor(a, ...Object.keys(a) as (keyof typeof a)[]))
 })

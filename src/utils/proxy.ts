@@ -147,21 +147,21 @@ export const createProxyHandlerForSchema = <T extends object>({
   mutable,
   virtual,
 }: ProxySchema): ProxyHandler<T> => ({
-  /**
-   * The `has` checks whether a value exists in the
-   * `ProxySchema` definition, or in the instance itself.
-   * The search is ordered as: immutable, mutable, virtual,
-   * and then instance.
-   */
+    /**
+     * The `has` checks whether a value exists in the
+     * `ProxySchema` definition, or in the instance itself.
+     * The search is ordered as: immutable, mutable, virtual,
+     * and then instance.
+     */
     has(target: T, p: ProxyPropertyKey): boolean {
       return p in immutable || p in mutable || p in virtual || Reflect.has(target, p)
     },
 
-  /**
-   * The `get` fetches the property value for the give property
-   * key. The search is ordered as: immutable, mutable, virtual,
-   * and then instance.
-   */
+    /**
+     * The `get` fetches the property value for the give property
+     * key. The search is ordered as: immutable, mutable, virtual,
+     * and then instance.
+     */
     get(target: T, p: ProxyPropertyKey, receiver: unknown): unknown {
       if (p in immutable) {
         return Reflect.get(target, p, receiver)
@@ -175,12 +175,12 @@ export const createProxyHandlerForSchema = <T extends object>({
       return Reflect.get(target, p, receiver)
     },
 
-   /**
-    * The `set` updates the given property with the given value.
-    * The property key and value are checked against the
-    * `ProxySchema`. The search is ordered as: immutable, virtual,
-    * and then mutable.
-    */
+    /**
+     * The `set` updates the given property with the given value.
+     * The property key and value are checked against the
+     * `ProxySchema`. The search is ordered as: immutable, virtual,
+     * and then mutable.
+     */
     set(target: T, p: ProxyPropertyKey, value: unknown, receiver: unknown): boolean {
       if (p in immutable) {
         throw new ProxyImmutableError(`property (${String(p)}) is immutable`)
@@ -205,10 +205,10 @@ export const createProxyHandlerForSchema = <T extends object>({
     },
 
     /**
-   * The `deleteProperty` deletes the given property so long as
-   * the property is not defined in the `ProxySchema`. The
-   * search is ordered as: immutable, mutable, and then virtual.
-   */
+     * The `deleteProperty` deletes the given property so long as
+     * the property is not defined in the `ProxySchema`. The
+     * search is ordered as: immutable, mutable, and then virtual.
+     */
     deleteProperty(target: T, p: ProxyPropertyKey): boolean {
       if (p in immutable) {
         throw new ProxyImmutableError(`property (${String(p)}) is immutable`)
