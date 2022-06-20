@@ -74,8 +74,8 @@ export type RestrictedKeys<T> = {
   [K in keyof T]?: never
 }
 
-export type PartialRecord<K extends string | number | symbol, T> = {
-  [P in K]?: T
+export type PartialRecord<K extends string | number | symbol, V> = {
+  [P in K]?: V
 }
 
 export type ValueKeysFor<T, U = T[keyof T]> = { [P in keyof T]-?: T[P] extends U ? P : never }[keyof T]

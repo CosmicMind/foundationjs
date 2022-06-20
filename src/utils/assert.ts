@@ -37,20 +37,19 @@
 import { FoundationError } from './error'
 
 /**
- * @extends {FoundationError}
- *
  * The `AssertError` defines an error that arises when
  * a given assertion fails.
  */
-export class AssertError extends FoundationError {
-}
+export class AssertError extends FoundationError {}
 
 /**
  * Asserts a given statement.
  */
-export const assert = (statement: boolean, message: string): boolean => {
+export const assert = (statement: boolean, message: string): boolean | never => {
   if (statement) {
     return true
   }
-  throw new AssertError(message)
+  else {
+    throw new AssertError(message)
+  }
 }
