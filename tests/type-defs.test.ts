@@ -44,7 +44,8 @@ import {
   NullableKeys,
   RestrictedKeys,
   PartialRecord,
-  ValueKeysFor,
+  KeysForTypes,
+  TypesForKeys,
   RequiredKeysFor,
   NullableKeysFor,
   PartialKeysFor,
@@ -204,7 +205,7 @@ test('Type Defs: PartialRecord', t => {
   t.true(guardFor(a, ...Object.keys(a) as (keyof typeof a)[]))
 })
 
-test('Type Defs: ValueKeysFor', t => {
+test('Type Defs: KeysForTypes', t => {
   const a: A & {
     test?: string
   } = {
@@ -213,13 +214,29 @@ test('Type Defs: ValueKeysFor', t => {
     version: 1,
   }
 
-  const fn = (key: ValueKeysFor<typeof a>): boolean =>
+  const fn = (key: KeysForTypes<typeof a>): boolean =>
     'undefined' !== typeof key
 
   t.true(fn('name'))
   t.true(fn('age'))
   t.true(fn('version'))
   t.true(fn('test'))
+})
+
+test('Type Defs: TypeForKeys', t => {
+  const a: A = {
+    name: 'daniel',
+    age: 1,
+    version: 1,
+  }
+
+  const fn = (key: TypesForKeys<typeof a, 'age'>): boolean =>
+    'undefined' !== typeof key
+
+  t.true(fn(1))
+  t.true(fn(1))
+  t.true(fn(1))
+  t.true(fn(1))
 })
 
 test('Type Defs: RequiredKeysFor', t => {
