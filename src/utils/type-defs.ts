@@ -79,7 +79,7 @@ export type PartialRecord<K extends string | number | symbol, V> = {
 }
 
 export type KeysForTypes<T, V = T[keyof T]> = { [P in keyof T]-?: T[P] extends V ? P : never }[keyof T]
-export type TypesForKeys<T, K extends keyof T> = T[K]
+export type TypesForKeys<T, K extends keyof T = keyof T> = T[K]
 
 export type RequiredKeysFor<T> = Extract<keyof T, KeysForTypes<T, Exclude<T[keyof T], undefined>>>
 export type NullableKeysFor<T> = Exclude<keyof T, KeysForTypes<T, Exclude<T[keyof T], null>>>
