@@ -53,23 +53,6 @@ export {
 export { uuidv4 } from './utils/uuid'
 
 export type {
-  ProxyValidator,
-  ProxyImmutable,
-  ProxyMutable,
-  ProxyVirtual,
-  ProxySchema,
-} from './utils/proxy'
-
-export {
-  ProxyTypeError,
-  ProxyNotDefinedError,
-  ProxyImmutableError,
-  ProxyMutableError,
-  ProxyVirtualError,
-  createProxyFor,
-} from './utils/proxy'
-
-export type {
   Nullable,
   Optional,
   Voidable,
