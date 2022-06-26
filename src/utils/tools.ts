@@ -30,28 +30,26 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { Optional } from './type-defs'
-
 /**
  * Converts a JavaScript value to a JavaScript Object Notation (JSON) string.
  */
-export const stringify = <T extends object>(value: Optional<T>, replacer?: (this: unknown, key: string, value: unknown) => unknown, space?: string | number): Optional<string> =>
-  'undefined' === typeof value ? void 0 : JSON.stringify(value, replacer, space)
+export const stringify = <T extends object>(value: T, replacer?: (this: unknown, key: string, value: unknown) => unknown, space?: string | number): string =>
+  JSON.stringify(value, replacer, space)
 
 /**
  * Converts a JavaScript Object Notation (JSON) string into an object.
  */
-export const parse = <T extends string>(text: Optional<T>, reviver?: (this: unknown, key: string, value: unknown) => unknown): Optional<object> =>
-  'undefined' === typeof text ? void 0 : JSON.parse(text, reviver)
+export const parse = <T extends string>(text: T, reviver?: (this: unknown, key: string, value: unknown) => unknown): object =>
+  JSON.parse(text, reviver)
 
 /**
  * A helper function that returns a promise and creates an `async` block.
  */
-export const async = (fn: () => unknown, timeout = 1): Promise<unknown> =>
+export const async = <T>(fn: () => T | never, timeout = 1): Promise<T> =>
   new Promise((resolve, reject): void => {
     setTimeout((): void => {
       try {
-        resolve(fn() || true)
+        resolve(fn())
       }
       catch (e) {
         reject(e)
@@ -62,7 +60,8 @@ export const async = (fn: () => unknown, timeout = 1): Promise<unknown> =>
 /**
  * Deep clones the passed value using JSON stringify and parse methods.
  */
-export const clone = <T extends object>(value: Optional<T>): Optional<T> => parse(stringify(value)) as Optional<T>
+export const clone = <T extends object>(value: T): T =>
+  parse(stringify(value)) as T
 
 /**
  * Condenses sequential space characters to a single space
@@ -105,12 +104,14 @@ export const toSnakeCase = (c: string): string =>
 /**
  * Checks equality of two objects by comparing their JSON string.
  */
-export const equals = (a: object, b: object): boolean => stringify(a) === stringify(b)
+export const equals = <T extends object>(a: T, b: T): boolean =>
+  stringify(a) === stringify(b)
 
 /**
  * Filters the `Array` and returns only the unique values.
  */
-export const unique = (data: Optional<unknown>[]): Optional<unknown>[] => [ ...new Set(data) ]
+export const unique = <T>(data: T[]): T[] =>
+  [ ...new Set(data) ]
 
 /**
  * Define a new `assign` function that works like
@@ -131,7 +132,7 @@ export const unique = (data: Optional<unknown>[]): Optional<unknown>[] => [ ...n
  * Object.defineProperty() so that the new function can be created as
  * a non-enumerable property like Object.assign().
  */
-export const assign = (target: object, ...sources: object[]): object => {
+export const assign = <T, U>(target: T, ...sources: U[]): T => {
   for (const source of sources) {
     for (const name of Object.getOwnPropertyNames(source)) {
       const desc = Object.getOwnPropertyDescriptor(source, name)
@@ -139,7 +140,6 @@ export const assign = (target: object, ...sources: object[]): object => {
         Object.defineProperty(target, name, desc)
       }
     }
-
     for (const symbol of Object.getOwnPropertySymbols(source)) {
       const desc = Object.getOwnPropertyDescriptor(source, symbol)
       if ('undefined' !== typeof desc) {
@@ -147,6 +147,5 @@ export const assign = (target: object, ...sources: object[]): object => {
       }
     }
   }
-
   return target
 }

@@ -58,11 +58,11 @@
     "tslib": "^2.4.0",
     "vite": "^2.9.12",
     "vite-plugin-dts": "^1.2.0",
-    "vite-tsconfig-paths": "^3.5.0"
+    "vite-tsconfig-paths": "^3.5.0",
+    "yup": "^0.32.11"
   },
   "dependencies": {
     "dotenv": "^16.0.1",
-    "lib0": "^0.2.51",
-    "yup": "^0.32.11"
+    "lib0": "^0.2.51"
   }
 }
