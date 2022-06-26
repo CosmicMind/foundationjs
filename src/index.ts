@@ -32,9 +32,6 @@
 
 export { logger } from './utils/logger'
 
-export type { ObservableCallback } from './protocols/Observable'
-export { Observable } from './protocols/Observable'
-
 export {
   assert,
   AssertError,
