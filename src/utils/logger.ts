@@ -50,7 +50,7 @@ const time = (label?: string): void => console.time(label)
 const timeEnd = (label?: string): void => console.timeEnd(label)
 const timeLog = (label?: string, ...data: unknown[]): void => console.timeLog(label, data)
 const timeStamp = (label?: string): void => console.timeStamp(label)
-const trace = (...data: unknown[]): void => console.trace(...data)
+const trace = (...data: unknown[]): void => console.log(...data)
 const warn = (...data: unknown[]): void => console.warn(...data)
 
 export const logger = {
