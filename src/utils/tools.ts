@@ -90,7 +90,7 @@ export const toCamelCase = (c: string): string =>
   c.replace ? c.replace(/([-_])+([a-zA-Z])/g, value => value.toUpperCase().replace(/([-_])/g, '')) : c
 
 /**
- * Converts the character string to a kebab-case.
+ * Converts the character string to kebab-case.
  */
 export const toKebabCase = (c: string): string =>
   c.replace ? c.replace(/( |-|_|[A-Z])+([a-zA-Z])/g, value => (c.indexOf(value) > 0 ? '-' : '') + value.replace(/([ -_])/g, '')).toLowerCase() : c
