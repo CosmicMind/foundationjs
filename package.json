@@ -1,5 +1,5 @@
 {
-  "name": "@libs/foundation",
+  "name": "@cosmicmind/lib-foundation",
   "version": "0.0.1-rc-zn",
   "description": "A library of helpful tools for developing projects in TypeScript.",
   "keywords": [],
