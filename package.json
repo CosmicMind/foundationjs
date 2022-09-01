@@ -45,7 +45,7 @@
     "@microsoft/eslint-formatter-sarif": "^3.0.0",
     "@types/node": "^18.7.13",
     "@types/yup": "^0.29.14",
-    "@typescript-eslint/eslint-plugin": "^5.35.1",
+    "@typescript-eslint/eslint-plugin": "^5.36.1",
     "@typescript-eslint/parser": "^5.35.1",
     "@vitejs/plugin-vue": "^3.0.3",
     "@vue/compiler-sfc": "^3.2.37",
