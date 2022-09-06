@@ -64,44 +64,6 @@ export const clone = <T extends object>(value: T): T =>
   parse(stringify(value)) as T
 
 /**
- * Condenses sequential space characters to a single space
- * that wraps the character string.
- */
-export const normalizeOuterSpace = (c: string): string =>
-  c && c.replace ? c.replace(/^\s+|\s+$/g, '').replace(/\s+/g, ' ') : c
-
-/**
- * Condenses sequential space characters to a single space
- * that is within the character string.
- */
-export const normalizeInnerSpace = (c: string): string =>
-  c && c.replace ? c.replace(/^\s+|\s+$/g, ' ') : c
-
-/**
- * Capitalizes the character string.
- */
-export const toCapitalize = (c: string): string =>
-  c.replace ? c.replace(/(?:^|\s)\S/g, value => value.toUpperCase().replace(/([-_])/g, '')) : c
-
-/**
- * Converts the character string to camel case.
- */
-export const toCamelCase = (c: string): string =>
-  c.replace ? c.replace(/([-_])+([a-zA-Z])/g, value => value.toUpperCase().replace(/([-_])/g, '')) : c
-
-/**
- * Converts the character string to kebab-case.
- */
-export const toKebabCase = (c: string): string =>
-  c.replace ? c.replace(/( |-|_|[A-Z])+([a-zA-Z])/g, value => (c.indexOf(value) > 0 ? '-' : '') + value.replace(/([ -_])/g, '')).toLowerCase() : c
-
-/**
- * Converts the character string to snake case.
- */
-export const toSnakeCase = (c: string): string =>
-  c.replace ? c.replace(/( |-|_|[A-Z])+([a-zA-Z])/g, value => (c.indexOf(value) > 0 ? '_' : '') + value.replace(/([ -_])/g, '')).toLowerCase() : c
-
-/**
  * Checks equality of two objects by comparing their JSON string.
  */
 export const equals = <T extends object>(a: T, b: T): boolean =>
