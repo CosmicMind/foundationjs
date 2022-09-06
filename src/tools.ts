@@ -64,6 +64,8 @@ export const clone = <T extends object>(value: T): T =>
   parse(stringify(value)) as T
 
 /**
+<<<<<<< HEAD
+=======
  * Condenses sequential space characters to a single space
  * that wraps the character string.
  */
@@ -102,6 +104,7 @@ export const toSnakeCase = (c: string): string =>
   c.replace ? c.replace(/( |-|_|[A-Z])+([a-zA-Z])/g, value => (c.indexOf(value) > 0 ? '_' : '') + value.replace(/([ -_])/g, '')).toLowerCase() : c
 
 /**
+>>>>>>> main
  * Checks equality of two objects by comparing their JSON string.
  */
 export const equals = <T extends object>(a: T, b: T): boolean =>
