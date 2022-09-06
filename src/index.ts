@@ -30,24 +30,24 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-export { logger } from './utils/logger'
+export { logger } from './logger'
 
 export {
   assert,
   AssertError,
-} from './utils/assert'
+} from './assert'
 
 export {
   guard,
   guardFor,
-} from './utils/guard'
+} from './guard'
 
 export {
   FoundationError,
   FoundationTypeError,
-} from './utils/error'
+} from './error'
 
-export { uuidv4 } from './utils/uuid'
+export { uuidv4 } from './uuid'
 
 export type {
   Nullable,
@@ -73,7 +73,7 @@ export type {
   PickRequired,
   PickNullable,
   PickPartial,
-} from './utils/type-defs'
+} from './type-defs'
 
 export {
   stringify,
@@ -89,4 +89,4 @@ export {
   equals,
   unique,
   assign,
-} from './utils/tools'
+} from './tools'
