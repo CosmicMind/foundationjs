@@ -39,6 +39,7 @@
     "dev:watch": "vite build --config vite.config.lib.js --mode watch",
     "prod:build:lib": "vite build --config vite.config.lib.js --mode production",
     "prod:build": "npm run prod:build:lib",
+    "package:build": "npm run prod:build",
     "package:publish": "npm publish --access public"
   },
   "devDependencies": {
