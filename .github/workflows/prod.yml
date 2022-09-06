@@ -1,4 +1,4 @@
-name: Production Lint, Build, Test
+name: Production Lint, CodeQL, Build, Test
 
 on:
   push:
