@@ -2,18 +2,21 @@ name: Production Lint, Build, Test
 
 on:
   push:
-    branches-ignore:
+    branches:
       - main
   pull_request:
-    branches-ignore:
+    branches:
       - main
 
 jobs:
   lint:
     uses: cosmicmind/github-actions/.github/workflows/lint.yml@main
-  dev-build:
+  codeql:
     needs: lint
-    uses: cosmicmind/github-actions/.github/workflows/dev-main.yml@main
+    uses: cosmicmind/github-actions/.github/workflows/codeql.yml@main
+  prod-build:
+    needs: codeql
+    uses: cosmicmind/github-actions/.github/workflows/prod-build.yml@main
   test:
-    needs: dev-build
+    needs: prod-build
     uses: cosmicmind/github-actions/.github/workflows/test.yml@main
