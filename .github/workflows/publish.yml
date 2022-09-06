@@ -1,0 +1,9 @@
+name: CodeQL
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  codeql-analysis:
+    uses: cosmicmind/github-actions/.github/workflows/publish.yml@main
