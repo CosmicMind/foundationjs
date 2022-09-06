@@ -1,12 +1,21 @@
-name: Lint, Build, and Test
+name: Development Lint, Build, Test
 
-on: [ push ]
+on:
+  push:
+    branches-ignore:
+      - main
+  pull_request:
+    branches-ignore:
+      - main
 
 jobs:
   lint:
     uses: cosmicmind/github-actions/.github/workflows/lint.yml@main
-  dev-build:
+  codeql:
     needs: lint
+    uses: cosmicmind/github-actions/.github/workflows/codeql.yml@main
+  dev-build:
+    needs: codeql
     uses: cosmicmind/github-actions/.github/workflows/dev-build.yml@main
   test:
     needs: dev-build

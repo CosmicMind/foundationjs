@@ -5,5 +5,5 @@ on:
     branches: [ main ]
 
 jobs:
-  codeql-analysis:
+  codeql:
     uses: cosmicmind/github-actions/.github/workflows/publish.yml@main

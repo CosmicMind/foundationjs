@@ -1,7 +1,0 @@
-name: CodeQL
-
-on: [ push ]
-
-jobs:
-  codeql-analysis:
-    uses: cosmicmind/github-actions/.github/workflows/codeql-analysis.yml@main

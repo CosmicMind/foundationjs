@@ -1,0 +1,19 @@
+name: Production Lint, Build, Test
+
+on:
+  push:
+    branches-ignore:
+      - main
+  pull_request:
+    branches-ignore:
+      - main
+
+jobs:
+  lint:
+    uses: cosmicmind/github-actions/.github/workflows/lint.yml@main
+  dev-build:
+    needs: lint
+    uses: cosmicmind/github-actions/.github/workflows/dev-main.yml@main
+  test:
+    needs: dev-build
+    uses: cosmicmind/github-actions/.github/workflows/test.yml@main
