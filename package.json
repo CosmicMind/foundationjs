@@ -1,0 +1,67 @@
+{
+  "name": "@cosmicmind/lib-foundation",
+  "version": "0.0.1-rc-zm",
+  "description": "A library of helpful tools for developing projects in TypeScript.",
+  "keywords": [],
+  "author": {
+    "name": "Daniel Jonathan",
+    "email": "daniel@cosmicmind.com"
+  },
+  "license": "BSD-3-Clause",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cosmicmind/lib-foundation.git"
+  },
+  "type": "module",
+  "main": "dist/lib.es.js",
+  "module": "dist/lib.es.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "LICENSE",
+    "package.json",
+    "package-lock.json",
+    "README.md",
+    "tsconfig.json"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "lint:exec": "eslint . --ext .ts",
+    "lint:fix": "eslint . --fix --ext .ts",
+    "test": "npm run tests:build; npm run tests:exec",
+    "tests:build": "vite build --config vite.config.tests.js --mode development",
+    "tests:watch": "vite build --config vite.config.tests.js --mode watch",
+    "tests:exec": "c8 ava dist/lib.es.tests.js",
+    "dev:build:lib": "vite build --config vite.config.lib.js --mode development",
+    "dev:build": "npm run dev:build:lib",
+    "dev:watch": "vite build --config vite.config.lib.js --mode watch",
+    "prod:build:lib": "vite build --config vite.config.lib.js --mode production",
+    "prod:build": "npm run prod:build:lib",
+    "package:publish": "npm publish --access public"
+  },
+  "devDependencies": {
+    "@microsoft/eslint-formatter-sarif": "^3.0.0",
+    "@types/node": "^18.7.15",
+    "@types/yup": "^0.29.14",
+    "@typescript-eslint/eslint-plugin": "^5.36.1",
+    "@typescript-eslint/parser": "^5.36.1",
+    "@vitejs/plugin-vue": "^3.1.0",
+    "@vue/compiler-sfc": "^3.2.38",
+    "@vue/eslint-config-typescript": "^11.0.0",
+    "ava": "^4.3.3",
+    "c8": "^7.12.0",
+    "eslint": "^8.22.0",
+    "eslint-plugin-yml": "^1.1.0",
+    "ts-node": "^10.9.1",
+    "tslib": "^2.4.0",
+    "vite": "^3.1.0",
+    "vite-plugin-dts": "^1.4.1",
+    "vite-tsconfig-paths": "^3.5.0",
+    "yup": "^0.32.11"
+  },
+  "dependencies": {
+    "lib0": "^0.2.52"
+  }
+}

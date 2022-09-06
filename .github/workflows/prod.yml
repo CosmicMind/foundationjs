@@ -1,0 +1,22 @@
+name: Production Lint, CodeQL, Build, Test
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  lint:
+    uses: cosmicmind/github-actions/.github/workflows/lint.yml@main
+  codeql:
+    needs: lint
+    uses: cosmicmind/github-actions/.github/workflows/codeql.yml@main
+  prod-build:
+    needs: codeql
+    uses: cosmicmind/github-actions/.github/workflows/prod-build.yml@main
+  test:
+    needs: prod-build
+    uses: cosmicmind/github-actions/.github/workflows/test.yml@main
