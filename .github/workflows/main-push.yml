@@ -11,9 +11,6 @@ jobs:
   test:
     needs: main-build
     uses: cosmicmind/github-actions/.github/workflows/test.yml@main
-  npm-publish:
-    needs: test
-    uses: cosmicmind/github-actions/.github/workflows/npm-publish.yml@main
   gpr-publish:
-    needs: npm-publish
+    needs: test
     uses: cosmicmind/github-actions/.github/workflows/gpr-publish.yml@main
