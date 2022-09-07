@@ -1,11 +1,9 @@
-name: Release Package
+name: Release Push
 
 on:
-  workflow_dispatch:
-    inputs:
-      release-type:
-        description: 'Release type (one of): patch, minor, major, prepatch, preminor, premajor, prerelease'
-        required: true
+  push:
+    branches:
+      - release
 
 jobs:
   package-publish:
