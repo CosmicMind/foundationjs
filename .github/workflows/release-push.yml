@@ -8,3 +8,5 @@ on:
 jobs:
   package-publish:
     uses: cosmicmind/github-actions/.github/workflows/package-publish.yml@main
+    secrets:
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
