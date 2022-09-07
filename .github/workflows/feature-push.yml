@@ -1,4 +1,4 @@
-name: Feature Lint, CodeQL, Build, Test
+name: Feature Push
 
 on:
   push:

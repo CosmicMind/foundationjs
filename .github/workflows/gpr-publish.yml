@@ -1,4 +1,4 @@
-name: Publish Package
+name: GPR Publish
 
 on:
   push:
@@ -7,5 +7,4 @@ on:
 
 jobs:
   gpr-publish:
-    needs: npm-publish
     uses: cosmicmind/github-actions/.github/workflows/gpr-publish.yml@main

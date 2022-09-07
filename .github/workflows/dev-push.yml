@@ -1,4 +1,4 @@
-name: Dev Lint, CodeQL, Build, Test
+name: Dev Push
 
 on:
   push:

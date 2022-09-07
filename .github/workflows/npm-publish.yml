@@ -1,4 +1,4 @@
-name: Publish Package
+name: NPM Publish
 
 on:
   push:
@@ -7,5 +7,4 @@ on:
 
 jobs:
   npm-publish:
-    needs: test
     uses: cosmicmind/github-actions/.github/workflows/npm-publish.yml@main
