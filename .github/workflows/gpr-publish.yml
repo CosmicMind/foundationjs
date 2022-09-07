@@ -1,0 +1,10 @@
+name: GPR Publish
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  gpr-publish:
+    uses: cosmicmind/github-actions/.github/workflows/gpr-publish.yml@main
