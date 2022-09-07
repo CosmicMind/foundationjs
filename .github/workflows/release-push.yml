@@ -10,3 +10,4 @@ on:
 jobs:
   package-publish:
     uses: cosmicmind/github-actions/.github/workflows/package-publish.yml@main
+    release-type: prerelease
