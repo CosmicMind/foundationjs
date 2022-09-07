@@ -1,9 +1,9 @@
-name: Prod Pull Request
+name: Release Pull Request
 
 on:
   pull_request:
     branches:
-      - main
+      - release
 
 jobs:
   lint:
@@ -11,9 +11,9 @@ jobs:
   codeql:
     needs: lint
     uses: cosmicmind/github-actions/.github/workflows/codeql.yml@main
-  main-build:
+  release-build:
     needs: codeql
-    uses: cosmicmind/github-actions/.github/workflows/main-build.yml@main
+    uses: cosmicmind/github-actions/.github/workflows/release-build.yml@main
   test:
-    needs: main-build
+    needs: release-build
     uses: cosmicmind/github-actions/.github/workflows/test.yml@main

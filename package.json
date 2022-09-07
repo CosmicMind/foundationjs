@@ -1,6 +1,6 @@
 {
   "name": "@cosmicmind/lib-foundation",
-  "version": "0.0.1-rc-zm",
+  "version": "0.0.1-rc-zo",
   "description": "A library of helpful tools for developing projects in TypeScript.",
   "keywords": [],
   "author": {
@@ -37,9 +37,9 @@
     "dev:build:lib": "vite build --config vite.config.lib.js --mode development",
     "dev:build": "npm run dev:build:lib",
     "dev:watch": "vite build --config vite.config.lib.js --mode watch",
-    "prod:build:lib": "vite build --config vite.config.lib.js --mode production",
-    "prod:build": "npm run prod:build:lib",
-    "package:build": "npm run prod:build",
+    "release:build:lib": "vite build --config vite.config.lib.js --mode production",
+    "release:build": "npm run release:build:lib",
+    "package:build": "npm run release:build",
     "package:publish": "npm publish --access public"
   },
   "devDependencies": {
