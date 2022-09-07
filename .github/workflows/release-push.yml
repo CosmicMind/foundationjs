@@ -1,0 +1,11 @@
+name: Release Push
+
+on:
+  push:
+    branches:
+      - release
+
+jobs:
+  package-publish:
+    needs: test
+    uses: cosmicmind/github-actions/.github/workflows/package-publish.yml@main
