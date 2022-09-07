@@ -1,0 +1,11 @@
+name: Publish Package
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  gpr-publish:
+    needs: npm-publish
+    uses: cosmicmind/github-actions/.github/workflows/gpr-publish.yml@main

@@ -11,9 +11,9 @@ jobs:
   codeql:
     needs: lint
     uses: cosmicmind/github-actions/.github/workflows/codeql.yml@main
-  prod-build:
+  main-build:
     needs: codeql
-    uses: cosmicmind/github-actions/.github/workflows/prod-build.yml@main
+    uses: cosmicmind/github-actions/.github/workflows/main-build.yml@main
   test:
-    needs: prod-build
+    needs: main-build
     uses: cosmicmind/github-actions/.github/workflows/test.yml@main

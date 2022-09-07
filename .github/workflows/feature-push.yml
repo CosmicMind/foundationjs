@@ -1,0 +1,14 @@
+name: Feature Lint, CodeQL, Build, Test
+
+on:
+  push:
+    branches-ignore:
+      - main
+      - dev
+
+jobs:
+  lint:
+    uses: cosmicmind/github-actions/.github/workflows/lint.yml@main
+  codeql:
+    needs: lint
+    uses: cosmicmind/github-actions/.github/workflows/codeql.yml@main

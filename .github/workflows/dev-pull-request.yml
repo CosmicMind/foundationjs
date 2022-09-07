@@ -1,12 +1,9 @@
-name: Development Lint, CodeQL, Build, Test
+name: Dev Lint, CodeQL, Build, Test
 
 on:
-  push:
-    branches-ignore:
-      - main
   pull_request:
-    branches-ignore:
-      - main
+    branches:
+      - dev
 
 jobs:
   lint:

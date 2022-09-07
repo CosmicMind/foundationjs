@@ -1,0 +1,11 @@
+name: Publish Package
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  npm-publish:
+    needs: test
+    uses: cosmicmind/github-actions/.github/workflows/npm-publish.yml@main

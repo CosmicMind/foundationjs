@@ -1,0 +1,13 @@
+name: Main Lint, CodeQL, Build, Test
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  main-build:
+    uses: cosmicmind/github-actions/.github/workflows/main-build.yml@main
+  test:
+    needs: main-build
+    uses: cosmicmind/github-actions/.github/workflows/test.yml@main
