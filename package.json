@@ -1,5 +1,5 @@
 {
-  "name": "@cosmicmind/lib-foundation",
+  "name": "@cosmicmind/foundation",
   "version": "v0.0.1-rc-11722-1",
   "description": "A library of helpful tools for developing projects in TypeScript.",
   "keywords": [],
@@ -10,7 +10,7 @@
   "license": "BSD-3-Clause",
   "repository": {
     "type": "git",
-    "url": "https://github.com/cosmicmind/lib-foundation.git"
+    "url": "https://github.com/cosmicmind/foundation.git"
   },
   "type": "module",
   "main": "dist/lib.es.js",
@@ -25,7 +25,7 @@
     "tsconfig.json"
   ],
   "publishConfig": {
-    "access": "public"
+    "access": "private"
   },
   "scripts": {
     "lint:exec": "eslint . --ext .ts",
