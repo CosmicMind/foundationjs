@@ -1,6 +1,10 @@
 {
   "name": "@cosmicverse/foundation",
-  "version": "v0.0.1-rc-11722-2",
+  "version": "0.0.1-rc-11722-3",
+  "private": true,
+  "publishConfig": {
+    "access": "restricted"
+  },
   "description": "A library of helpful tools for developing projects in TypeScript.",
   "keywords": [],
   "author": {
@@ -24,9 +28,6 @@
     "README.md",
     "tsconfig.json"
   ],
-  "publishConfig": {
-    "access": "private"
-  },
   "scripts": {
     "lint:exec": "eslint . --ext .ts",
     "lint:fix": "eslint . --fix --ext .ts",
