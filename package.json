@@ -1,5 +1,5 @@
 {
-  "name": "@cosmicmind/foundation",
+  "name": "@cosmicverse/foundation",
   "version": "v0.0.1-rc-11722-1",
   "description": "A library of helpful tools for developing projects in TypeScript.",
   "keywords": [],
@@ -34,8 +34,7 @@
     "tests:build": "vite build --config vite.config.tests.js --mode development",
     "tests:watch": "vite build --config vite.config.tests.js --mode watch",
     "tests:exec": "c8 ava dist/lib.es.tests.js",
-    "dev:build:lib": "vite build --config vite.config.lib.js --mode development",
-    "dev:build": "npm run dev:build:lib",
+    "dev:build": "vite build --config vite.config.lib.js --mode development",
     "dev:watch": "vite build --config vite.config.lib.js --mode watch",
     "release:build:lib": "vite build --config vite.config.lib.js --mode production",
     "release:build": "npm run release:build:lib",
