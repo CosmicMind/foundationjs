@@ -1,7 +1,6 @@
 {
   "name": "@cosmicverse/foundation",
   "version": "0.0.1-rc-11722-3",
-  "private": true,
   "publishConfig": {
     "access": "restricted"
   },
