@@ -16,7 +16,6 @@
   "main": "dist/lib.es.js",
   "module": "dist/lib.es.js",
   "types": "dist/index.d.ts",
-  "typings": "dist/index.d.ts",
   "files": [
     "dist",
     "LICENSE",
