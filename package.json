@@ -42,7 +42,6 @@
   "devDependencies": {
     "@microsoft/eslint-formatter-sarif": "^3.0.0",
     "@types/node": "^18.7.15",
-    "@types/yup": "^0.29.14",
     "@typescript-eslint/eslint-plugin": "^5.36.1",
     "@typescript-eslint/parser": "^5.36.1",
     "@vitejs/plugin-vue": "^3.1.0",
@@ -60,6 +59,8 @@
     "yup": "^0.32.11"
   },
   "dependencies": {
-    "lib0": "^0.2.52"
+    "i": "^0.3.7",
+    "lib0": "^0.2.52",
+    "npm": "^8.19.2"
   }
 }
