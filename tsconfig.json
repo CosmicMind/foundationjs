@@ -14,7 +14,7 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "allowJs": true,
-    "checkJs": false,
+    "checkJs": true,
     "noImplicitAny": true,
     "noImplicitReturns": true,
     "strictNullChecks": true,
@@ -26,8 +26,7 @@
     "forceConsistentCasingInFileNames": true,
     "removeComments": true,
     "lib": [
-      "es2022",
-      "dom"
+      "es2022"
     ],
     "rootDir": ".",
     "baseUrl": ".",
