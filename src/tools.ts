@@ -84,9 +84,9 @@ export const assign = <T, U>(target: T, ...sources: U[]): T => {
 
 /**
  * Swap the values from a `source` object to a `target` object. The `target`
- * value is updated, and the `source` is left as is.
+ * values are updated. The values swapped out from the `target` are returned.
  */
-export const swapProps = <T>(source: T, target: typeof source): typeof source => {
+export const swapProps = <T>(source: T, target: typeof source): T => {
   const swapped = {} as T
 
   for (const key in source) {
