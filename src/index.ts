@@ -53,4 +53,5 @@ export {
   equals,
   unique,
   assign,
+  swapProps,
 } from './tools'
