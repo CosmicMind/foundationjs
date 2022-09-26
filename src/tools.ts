@@ -13,19 +13,13 @@ export const parse = <T extends string>(text: T, reviver?: (this: unknown, key: 
   JSON.parse(text, reviver)
 
 /**
- * A helper function that returns a promise and creates an `async` block.
+ * A helper function that queues a `microtask` queue. A clear method is
+ * returned that can can cancel the async call.
  */
-export const async = <T>(fn: () => T | never, timeout = 1): Promise<T> =>
-  new Promise((resolve, reject): void => {
-    setTimeout((): void => {
-      try {
-        resolve(fn())
-      }
-      catch (e) {
-        reject(e)
-      }
-    }, timeout)
-  })
+export const async = (fn: () => void, timeout = 0): () => void => {
+  const id = setTimeout(fn, timeout)
+  return (): void => clearTimeout(id)
+}
 
 /**
  * Deep clones the passed value using JSON stringify and parse methods.
