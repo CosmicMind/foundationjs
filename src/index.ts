@@ -43,7 +43,7 @@ export type {
   PickRequired,
   PickNullable,
   PickPartial,
-} from './type-defs'
+} from '@/type-defs'
 
 export {
   stringify,
@@ -54,4 +54,4 @@ export {
   unique,
   assign,
   swapProps,
-} from './tools'
+} from '@/tools'
