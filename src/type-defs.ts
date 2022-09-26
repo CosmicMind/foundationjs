@@ -30,13 +30,13 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-export type Compare<A, B, Q = A, R = never> =
-  (<T>() => T extends A ? 1 : 2) extends
-  (<T>() => T extends B ? 1 : 2) ? Q : R
-
 export type Nullable<T> = T | null
 export type Optional<T> = T | undefined
 export type Voidable<T> = T | void
+
+export type Compare<A, B, Q = A, R = never> =
+  (<T>() => T extends A ? 1 : 2) extends
+  (<T>() => T extends B ? 1 : 2) ? Q : R
 
 export type WritableKeys<T, K extends keyof T = keyof T> = {
   readonly [P in keyof Omit<T, K>]: T[P]

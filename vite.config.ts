@@ -8,6 +8,8 @@ import {
   LibraryFormats,
 } from 'vite'
 
+import dts from 'vite-plugin-dts'
+
 const packageName = process.env.npm_package_name
 const packageVersion = JSON.stringify(process.env.npm_package_version)
 
@@ -35,6 +37,9 @@ export default defineConfig(({ mode }) => {
         '@': fileURLToPath(new URL('./src', import.meta.url)),
       },
     },
+    plugins: [
+      dts()
+    ],
     build: {
       emptyOutDir,
       lib: {

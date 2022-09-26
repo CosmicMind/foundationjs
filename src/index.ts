@@ -1,23 +1,23 @@
 // Copyright (C) 2022, CosmicMind, Inc. <http://cosmicmind.com>. All rights reserved.
 
-export { logger } from './logger'
+export { logger } from '@/logger'
 
 export {
   assert,
   AssertError,
-} from './assert'
+} from '@/assert'
 
 export {
   guard,
   guardFor,
-} from './guard'
+} from '@/guard'
 
 export {
   FoundationError,
   FoundationTypeError,
-} from './error'
+} from '@/error'
 
-export { uuidv4 } from './uuid'
+export { uuidv4 } from '@/uuid'
 
 export type {
   Nullable,
