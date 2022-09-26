@@ -4,7 +4,7 @@
  * @module Assert
  */
 
-import { FoundationError } from './error'
+import { FoundationError } from '@/error'
 
 /**
  * The `AssertError` defines an error that arises when
