@@ -16,7 +16,7 @@ export const parse = <T extends string>(text: T, reviver?: (this: unknown, key: 
  * A helper function that queues a `microtask` queue. A clear method is
  * returned that can can cancel the async call.
  */
-export const async = (fn: () => void, timeout = 0): () => void => {
+export const async = (fn: () => void, timeout = 1): () => void => {
   const id = setTimeout(fn, timeout)
   return (): void => clearTimeout(id)
 }
