@@ -1,4 +1,4 @@
-// Copyright (C) 2022, CosmicMind, Inc. <http://cosmicmind.com>. All rights reserved.
+/* Copyright (C) 2022, CosmicMind, Inc. <http://cosmicmind.com>. All rights reserved. */
 
 /**
  * Converts a JavaScript value to a JavaScript Object Notation (JSON) string.
