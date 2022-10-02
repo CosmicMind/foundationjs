@@ -43,7 +43,6 @@ export type {
   PickRequired,
   PickNullable,
   PickPartial,
-  UnboxPromise,
 } from '@/type-defs'
 
 export {
