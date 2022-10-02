@@ -100,4 +100,4 @@ export type PickRequired<T> = Pick<T, RequiredKeysFor<T>>
 export type PickNullable<T> = Pick<T, NullableKeysFor<T>>
 export type PickPartial<T> = Pick<T, PartialKeysFor<T>>
 
-export type UnboxPromise<T extends Promise<unknown>> = T extends Promise<infer U> ? U: never
+export type UnboxPromise<T> = T extends Promise<infer U> ? U: never
