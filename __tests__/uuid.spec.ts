@@ -31,7 +31,7 @@ describe('UUID', () => {
     expect(uuid.replace(/-/g, '').length).toBe(11)
 
     try {
-      t.false(string().uuid(errorMessage).defined().strict(true).validateSync(uuid)).toBeFalsy()
+      expect(string().uuid(errorMessage).defined().strict(true).validateSync(uuid)).toBeFalsy()
       expect(false).toBeTruthy()
     }
     catch (e) {
