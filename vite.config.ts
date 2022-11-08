@@ -14,7 +14,7 @@ const packageName = process.env.npm_package_name
 const packageVersion = JSON.stringify(process.env.npm_package_version)
 
 const external = [
-  'lib0'
+  'lib0/random.js'
 ]
 const globals = {}
 const emptyOutDir = true
