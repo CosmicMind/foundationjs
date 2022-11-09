@@ -28,7 +28,6 @@
       "es2022"
     ],
     "rootDir": ".",
-    "outDir": "dist",
     "baseUrl": ".",
     "paths": {
       "@/*": [
