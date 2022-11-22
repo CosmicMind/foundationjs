@@ -31,16 +31,16 @@
  */
 
 import {
-  it,
-  expect,
-  describe,
+it,
+expect,
+describe
 } from 'vitest'
 
 import { FoundationError } from '../src'
 
 import {
-  assert,
-  AssertError,
+assert,
+AssertError
 } from '../src'
 
 describe('Assert', () => {

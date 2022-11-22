@@ -31,14 +31,14 @@
  */
 
 import {
-  it,
-  expect,
-  describe,
+it,
+expect,
+describe
 } from 'vitest'
 
 import {
-  guard,
-  guardFor,
+guard,
+guardFor
 } from '../src'
 
 type A = {

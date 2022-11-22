@@ -31,14 +31,14 @@
  */
 
 import {
-  it,
-  expect,
-  describe,
+it,
+expect,
+describe
 } from 'vitest'
 
 import {
-  string,
-  ValidationError,
+string,
+ValidationError
 } from 'yup'
 
 import { uuidv4 } from '../src'
