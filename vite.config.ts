@@ -26,7 +26,7 @@ export default defineConfig(({ mode }) => {
 
   return {
     define: {
-      IAM_ENDPOINT: process.env.IAM_ENDPOINT,
+      ACCOUNT_ENDPOINT: process.env.ACCOUNT_ENDPOINT,
     },
     resolve: {
       alias: {
