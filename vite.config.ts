@@ -6,6 +6,7 @@ import {
 import {
   defineConfig,
   LibraryFormats,
+  UserConfigExport,
 } from 'vite'
 
 import dts from 'vite-plugin-dts'
@@ -14,23 +15,18 @@ const external = [
   'lib0/random.js'
 ]
 const globals = {}
-const emptyOutDir = true
+const srcDir = './src'
+const emptyOutDir = false
 const formats: LibraryFormats[] = [ 'es' ]
 
-export default defineConfig(({ mode }) => {
-  const watch = 'watch' === mode ? {
-    include: [
-      './src/**/*'
-    ],
-  }: undefined
-
-  return {
-    define: {
-      ACCOUNT_ENDPOINT: process.env.ACCOUNT_ENDPOINT,
-    },
+export default defineConfig(({
+  mode,
+}) => {
+  const minify = 'production' === mode
+  const config: UserConfigExport = {
     resolve: {
       alias: {
-        '@': fileURLToPath(new URL('./src', import.meta.url)),
+        '@': fileURLToPath(new URL(srcDir, import.meta.url)),
       },
     },
     plugins: [
@@ -40,7 +36,7 @@ export default defineConfig(({ mode }) => {
       emptyOutDir,
       lib: {
         name: process.env.npm_package_name,
-        entry: './src/index.ts',
+        entry: `${srcDir}/index.ts`,
         formats,
         fileName: 'lib.es',
       },
@@ -50,7 +46,9 @@ export default defineConfig(({ mode }) => {
           globals,
         },
       },
-      watch,
+      minify,
     },
   }
+
+  return config
 })
