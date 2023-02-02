@@ -1,5 +1,5 @@
 {
-  "name": "@cosmicmind/foundation",
+  "name": "@cosmicmind/foundationjs",
   "version": "0.0.1-rc-020123-1",
   "description": "A library of helpful tools for developing projects in TypeScript.",
   "keywords": [],
@@ -10,7 +10,7 @@
   "license": "BSD-3-Clause",
   "repository": {
     "type": "git",
-    "url": "https://github.com/cosmicmind/foundation.git"
+    "url": "https://github.com/cosmicmind/foundationjs.git"
   },
   "publishConfig": {
     "access": "public"
