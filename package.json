@@ -36,9 +36,9 @@
     "dev:build": "run-s dev:build:lib",
     "dev:build:lib": "vite build --config vite.config.lib.ts --mode development",
     "test": "run-s test:unit",
-    "test:unit": "vitest run",
-    "test:watch": "vitest",
-    "test:coverage": "vitest run --coverage"
+    "test:unit": "vitest run --config vite.config.lib.ts --mode development",
+    "test:watch": "vitest --config vite.config.lib.ts --mode development",
+    "test:coverage": "vitest run --coverage --config vite.config.lib.ts --mode development"
   },
   "dependencies": {
     "lib0": "^0.2.52"
