@@ -4,8 +4,8 @@
     "types": [
       "node"
     ],
-    "target": "es2022",
-    "module": "es2022",
+    "target": "esnext",
+    "module": "esnext",
     "strict": true,
     "importHelpers": true,
     "moduleResolution": "node",
@@ -24,8 +24,11 @@
     "sourceMap": true,
     "forceConsistentCasingInFileNames": true,
     "removeComments": true,
+    "jsx": "preserve",
+    "jsxFactory": "h",
+    "isolatedModules": true,
     "lib": [
-      "es2022"
+      "esnext"
     ],
     "rootDir": ".",
     "baseUrl": ".",
@@ -38,7 +41,6 @@
   "include": [
     "src/**/*.ts",
     "src/**/*.js",
-    "typings/**/*.d.ts",
     "vite.config*.ts"
   ],
   "exclude": [

@@ -1,7 +1,7 @@
 /**
  * BSD 3-Clause License
  *
- * Copyright (c) 2022, Daniel Jonathan <daniel at cosmicverse dot org>
+ * Copyright (c) 2022, Daniel Jonathan <daniel at cosmicmind dot com>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -46,9 +46,11 @@ export const guard = (statement: boolean): boolean => !statement
  */
 export function guardFor<T, R extends T = T extends object ? Exclude<T, undefined | null> : never, K extends keyof R = keyof R>(model: T, ...keys: K[]): model is R {
   if ('undefined' !== typeof model && null !== model as T) {
-    for (const key of keys) {
-      if (!(key in model)) {
-        return false
+    if ('object' === typeof model && null !== model) {
+      for (const key of keys) {
+        if (!(key in model)) {
+          return false
+        }
       }
     }
     return true
