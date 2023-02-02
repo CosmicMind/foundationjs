@@ -30,24 +30,24 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-export { logger } from '@/logger'
+export { logger } from './logger'
 
 export {
   assert,
   AssertError,
-} from '@/assert'
+} from './assert'
 
 export {
   guard,
   guardFor,
-} from '@/guard'
+} from './guard'
 
 export {
   FoundationError,
   FoundationTypeError,
-} from '@/error'
+} from './error'
 
-export { uuidv4 } from '@/uuid'
+export { uuidv4 } from './uuid'
 
 export type {
   Nullable,
@@ -73,7 +73,7 @@ export type {
   PickRequired,
   PickNullable,
   PickPartial,
-} from '@/type-defs'
+} from './type-defs'
 
 export {
   stringify,
@@ -84,4 +84,4 @@ export {
   unique,
   assign,
   swapProps,
-} from '@/tools'
+} from './tools'
