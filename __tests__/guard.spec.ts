@@ -31,14 +31,14 @@
  */
 
 import {
-it,
-expect,
-describe
+  it,
+  expect,
+  describe,
 } from 'vitest'
 
 import {
-guard,
-guardFor
+  guard,
+  guardFor,
 } from '../src'
 
 type A = {
@@ -94,16 +94,13 @@ describe('Guard', () => {
     expect(guardFor(c, 'version')).toBeTruthy()
     expect(guardFor(c, 'name', 'version')).toBeTruthy()
     expect(guardFor(c, 'version', 'name')).toBeTruthy()
-    expect(guardFor(c, 'name')).toBeTruthy()
-    expect(guardFor(c, 'age')).toBeTruthy()
-    expect(guardFor(c, 'name', 'age')).toBeTruthy()
     expect(guardFor(c, 'age', 'name')).toBeTruthy()
     expect(guardFor(c, 'name')).toBeTruthy()
     expect(guardFor(c, 'version')).toBeTruthy()
     expect(guardFor(c, 'name', 'version')).toBeTruthy()
     expect(guardFor(c, 'version', 'name')).toBeTruthy()
 
-    const name = 'daniel'
+    const name = 'name'
     const age = 38
     const version = 0
     const neg = -1

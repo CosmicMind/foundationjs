@@ -44,7 +44,7 @@ export const guard = (statement: boolean): boolean => !statement
 /**
  * Checks if a model is a subtype or equal to `T`.
  */
-export function guardFor<T, R extends T extends object ? Exclude<T, undefined | null> : never, K extends keyof R>(model: T, ...keys: K[]): boolean {
+export function guardFor<T, R extends T extends object ? Exclude<T, undefined | null> : never, K extends keyof R>(model: T, ...keys: K[]): model is R {
   if ('undefined' !== typeof model && null !== model as T) {
     if ('object' === typeof model && null !== model) {
       for (const key of keys) {
@@ -52,8 +52,8 @@ export function guardFor<T, R extends T extends object ? Exclude<T, undefined | 
           return false
         }
       }
+      return true
     }
-    return true
   }
   return false
 }
