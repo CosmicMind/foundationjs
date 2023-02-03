@@ -31,16 +31,22 @@
  */
 
 /**
+ * @module Tools
+ */
+
+import JSON5 from 'json5'
+
+/**
  * Converts a JavaScript value to a JavaScript Object Notation (JSON) string.
  */
-export const stringify = <T extends object>(value: T, replacer?: (this: unknown, key: string, value: unknown) => unknown, space?: string | number): string =>
-  JSON.stringify(value, replacer, space)
+export const stringify = (value: unknown, replacer?: (this: unknown, key: string, value: unknown) => unknown, space?: string | number | null): string =>
+  JSON5.stringify(value, replacer, space)
 
 /**
  * Converts a JavaScript Object Notation (JSON) string into an object.
  */
-export const parse = <T extends string>(text: T, reviver?: (this: unknown, key: string, value: unknown) => unknown): object =>
-  JSON.parse(text, reviver)
+export const parse = (text: string, reviver?: ((this: unknown, key: string, value: unknown) => unknown) | null): object =>
+  JSON5.parse(text, reviver)
 
 /**
  * A helper function that queues a `microtask` queue. A clear method is

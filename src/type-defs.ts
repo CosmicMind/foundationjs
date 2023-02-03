@@ -30,6 +30,10 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+/**
+ * @module TypeDefs
+ */
+
 export type Nullable<T> = T | null
 export type Optional<T> = T | undefined
 export type Voidable<T> = T | void
