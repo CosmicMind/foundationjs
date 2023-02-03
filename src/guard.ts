@@ -52,8 +52,8 @@ export function guardFor<T, R extends T extends object ? Exclude<T, undefined | 
           return false
         }
       }
-      return true
     }
+    return true
   }
   return false
 }
