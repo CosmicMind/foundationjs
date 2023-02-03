@@ -1,5 +1,3 @@
-/// <reference types="vitest" />
-
 import {
   URL,
   fileURLToPath,

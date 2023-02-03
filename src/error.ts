@@ -52,18 +52,12 @@ export interface IFoundationError {
  * class to inherit from when making custom error types.
  */
 export class FoundationError extends Error implements IFoundationError {
-  readonly message: string
   get name(): string {
     return this.constructor.name
   }
 
   toString(): string {
     return `[${this.name} ${this.message}]`
-  }
-
-  constructor(message: string) {
-    super()
-    this.message = message
   }
 }
 
