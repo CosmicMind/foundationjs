@@ -31,9 +31,9 @@
  */
 
 import {
-it,
-expect,
-describe
+  it,
+  expect,
+  describe,
 } from 'vitest'
 
 import {
@@ -61,7 +61,7 @@ import {
   PickRequired,
   PickNullable,
   PickPartial,
-} from '../src'
+} from '@/internal'
 
 type A = {
   name: string
@@ -70,8 +70,8 @@ type A = {
 }
 
 class B {
-  private _name: string
-  private _age: number
+  private readonly _name: string
+  private readonly _age: number
 
   get name(): string {
     return this._name
