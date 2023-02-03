@@ -39,7 +39,7 @@ import {
 import {
   guard,
   guardFor,
-} from '../src'
+} from '@/internal'
 
 type A = {
   name: string

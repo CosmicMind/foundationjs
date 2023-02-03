@@ -38,7 +38,8 @@
   "include": [
     "src/**/*.ts",
     "src/**/*.js",
-    "vite.config*.ts"
+    "vite.config*.ts",
+    "__tests__/**/*"
   ],
   "exclude": [
     "dist",

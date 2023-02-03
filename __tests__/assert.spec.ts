@@ -31,24 +31,23 @@
  */
 
 import {
-it,
-expect,
-describe
+  it,
+  expect,
+  describe,
 } from 'vitest'
 
-import { FoundationError } from '../src'
-
 import {
-assert,
-AssertError
-} from '../src'
+  assert,
+  AssertError,
+  FoundationError,
+} from '@/internal'
 
 describe('Assert', () => {
   it('Assert: success', () => {
     expect(assert(true, 'not a number')).toBeTruthy()
   })
 
-  it('Assert: error', t => {
+  it('Assert: error', () => {
     try {
       expect(assert(false, 'not a number')).toBeTruthy()
       expect(false).toBeTruthy()
