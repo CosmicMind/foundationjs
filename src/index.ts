@@ -39,7 +39,6 @@ export {
 
 export {
   guard,
-  guardFor,
 } from '@/guard'
 
 export {

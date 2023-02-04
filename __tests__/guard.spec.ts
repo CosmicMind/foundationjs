@@ -38,7 +38,6 @@ import {
 
 import {
   guard,
-  guardFor,
 } from '@/internal'
 
 type A = {
@@ -55,11 +54,6 @@ type C = A & B
 
 describe('Guard', () => {
   it('guard', () => {
-    expect(guard(true))
-    expect(guard(false))
-  })
-
-  it('guardFor', () => {
     const a: A = {
       name: 'person',
       age: 38,
@@ -76,29 +70,29 @@ describe('Guard', () => {
       version: 1,
     }
 
-    expect(guardFor(a, 'name')).toBeTruthy()
-    expect(guardFor(a, 'age')).toBeTruthy()
-    expect(guardFor(a, 'name', 'age')).toBeTruthy()
-    expect(guardFor(a, 'age', 'name')).toBeTruthy()
+    expect(guard(a, 'name')).toBeTruthy()
+    expect(guard(a, 'age')).toBeTruthy()
+    expect(guard(a, 'name', 'age')).toBeTruthy()
+    expect(guard(a, 'age', 'name')).toBeTruthy()
 
-    expect(guardFor(b, 'name')).toBeTruthy()
-    expect(guardFor(b, 'version')).toBeTruthy()
-    expect(guardFor(b, 'name', 'version')).toBeTruthy()
-    expect(guardFor(b, 'version', 'name')).toBeTruthy()
+    expect(guard(b, 'name')).toBeTruthy()
+    expect(guard(b, 'version')).toBeTruthy()
+    expect(guard(b, 'name', 'version')).toBeTruthy()
+    expect(guard(b, 'version', 'name')).toBeTruthy()
 
-    expect(guardFor(c, 'name')).toBeTruthy()
-    expect(guardFor(c, 'age')).toBeTruthy()
-    expect(guardFor(c, 'name', 'age')).toBeTruthy()
-    expect(guardFor(c, 'age', 'name')).toBeTruthy()
-    expect(guardFor(c, 'name')).toBeTruthy()
-    expect(guardFor(c, 'version')).toBeTruthy()
-    expect(guardFor(c, 'name', 'version')).toBeTruthy()
-    expect(guardFor(c, 'version', 'name')).toBeTruthy()
-    expect(guardFor(c, 'age', 'name')).toBeTruthy()
-    expect(guardFor(c, 'name')).toBeTruthy()
-    expect(guardFor(c, 'version')).toBeTruthy()
-    expect(guardFor(c, 'name', 'version')).toBeTruthy()
-    expect(guardFor(c, 'version', 'name')).toBeTruthy()
+    expect(guard(c, 'name')).toBeTruthy()
+    expect(guard(c, 'age')).toBeTruthy()
+    expect(guard(c, 'name', 'age')).toBeTruthy()
+    expect(guard(c, 'age', 'name')).toBeTruthy()
+    expect(guard(c, 'name')).toBeTruthy()
+    expect(guard(c, 'version')).toBeTruthy()
+    expect(guard(c, 'name', 'version')).toBeTruthy()
+    expect(guard(c, 'version', 'name')).toBeTruthy()
+    expect(guard(c, 'age', 'name')).toBeTruthy()
+    expect(guard(c, 'name')).toBeTruthy()
+    expect(guard(c, 'version')).toBeTruthy()
+    expect(guard(c, 'name', 'version')).toBeTruthy()
+    expect(guard(c, 'version', 'name')).toBeTruthy()
 
     const name = 'name'
     const age = 38
@@ -110,14 +104,14 @@ describe('Guard', () => {
     const tricky2: boolean | undefined | null = void 0
     const tricky3: boolean | undefined | null = null
 
-    expect(guardFor(name)).toBeTruthy()
-    expect(guardFor(age)).toBeTruthy()
-    expect(guardFor(version)).toBeTruthy()
-    expect(guardFor(neg)).toBeTruthy()
-    expect(guardFor(isTrue)).toBeTruthy()
-    expect(guardFor(isFalse)).toBeTruthy()
-    expect(guardFor(tricky1)).toBeTruthy()
-    expect(guardFor(tricky2)).toBeFalsy()
-    expect(guardFor(tricky3)).toBeFalsy()
+    expect(guard(name)).toBeTruthy()
+    expect(guard(age)).toBeTruthy()
+    expect(guard(version)).toBeTruthy()
+    expect(guard(neg)).toBeTruthy()
+    expect(guard(isTrue)).toBeTruthy()
+    expect(guard(isFalse)).toBeTruthy()
+    expect(guard(tricky1)).toBeTruthy()
+    expect(guard(tricky2)).toBeFalsy()
+    expect(guard(tricky3)).toBeFalsy()
   })
 })

@@ -35,28 +35,15 @@
  */
 
 /**
- * A guard statement. It is important to understand that
- * guards are somewhat a reverse logic, if it fails, it
- * returns `true`, in order to pass into a failure block.
- */
-export const guard = (statement: boolean): boolean => !statement
-
-/**
  * Checks if a model is a subtype or equal to `T`.
  */
-export function guardFor<T, R extends T = T extends object ? Exclude<T, undefined | null> : never, K extends keyof R = keyof R>(model: T, ...keys: K[]): model is R {
-  if ('undefined' !== typeof model) {
-    if ('object' === typeof model) {
-      if (null === model) {
+export function guard<T>(model: unknown, ...keys: (keyof T)[]): model is T {
+  if ('object' === typeof model && null !== model) {
+    for (const k of keys) {
+      if (!(k in model)) {
         return false
       }
-      for (const key of keys) {
-        if (!(key in model)) {
-          return false
-        }
-      }
     }
-    return true
   }
-  return false
+  return null !== model as T && 'undefined' !== typeof model
 }

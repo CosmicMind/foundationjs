@@ -37,7 +37,7 @@ import {
 } from 'vitest'
 
 import {
-  guardFor,
+  guard,
   Nullable,
   Optional,
   Voidable,
@@ -137,7 +137,7 @@ describe('Type Defs', () => {
     a.age = 1
     // a.version = 1
 
-    expect(guardFor(a, ...Object.keys(a) as (keyof typeof a)[]))
+    expect(guard(a, ...Object.keys(a)))
   })
 
   it('ReadonlyKeys', () => {
@@ -151,7 +151,7 @@ describe('Type Defs', () => {
     // a.age = 1
     a.version = 1
 
-    expect(guardFor(a, ...Object.keys(a) as (keyof typeof a)[])).toBeTruthy()
+    expect(guard(a, ...Object.keys(a))).toBeTruthy()
   })
 
   it('PartialKeys', () => {
@@ -164,7 +164,7 @@ describe('Type Defs', () => {
     a.age = 1
     a.version = 1
 
-    expect(guardFor(a, ...Object.keys(a) as (keyof typeof a)[])).toBeTruthy()
+    expect(guard(a, ...Object.keys(a))).toBeTruthy()
   })
 
   it('RequiredKeys', () => {
@@ -176,7 +176,7 @@ describe('Type Defs', () => {
     a.age = 1
     a.version = 1
 
-    expect(guardFor(a, ...Object.keys(a) as (keyof typeof a)[])).toBeTruthy()
+    expect(guard(a, ...Object.keys(a))).toBeTruthy()
   })
 
   it('NullableKeys', () => {
@@ -186,7 +186,7 @@ describe('Type Defs', () => {
       version: 1,
     }
 
-    expect(guardFor(a, ...Object.keys(a) as (keyof typeof a)[])).toBeTruthy()
+    expect(guard(a, ...Object.keys(a))).toBeTruthy()
   })
 
   it('RestrictedKeys', () => {
@@ -198,7 +198,7 @@ describe('Type Defs', () => {
     // a.age = 1
     // a.version = 1
 
-    expect(guardFor(a, ...Object.keys(a) as (keyof typeof a)[])).toBeTruthy()
+    expect(guard(a, ...Object.keys(a))).toBeTruthy()
   })
 
   it('PartialRecord', () => {
@@ -207,7 +207,7 @@ describe('Type Defs', () => {
       b: 2,
     }
 
-    expect(guardFor(a, ...Object.keys(a) as (keyof typeof a)[])).toBeTruthy()
+    expect(guard(a, ...Object.keys(a))).toBeTruthy()
   })
 
   it('KeysForTypes', () => {
@@ -343,7 +343,7 @@ describe('Type Defs', () => {
       age: 1,
     }
 
-    expect(guardFor(a, ...Object.keys(a) as (keyof typeof a)[])).toBeTruthy()
+    expect(guard(a, ...Object.keys(a))).toBeTruthy()
   })
 
   it('PickWritable', () => {
@@ -351,7 +351,7 @@ describe('Type Defs', () => {
       version: 1,
     }
 
-    expect(guardFor(a, ...Object.keys(a) as (keyof typeof a)[])).toBeTruthy()
+    expect(guard(a, ...Object.keys(a))).toBeTruthy()
   })
 
   it('PickReadonly', () => {
@@ -359,7 +359,7 @@ describe('Type Defs', () => {
       version: 1,
     }
 
-    expect(guardFor(a, ...Object.keys(a) as (keyof typeof a)[])).toBeTruthy()
+    expect(guard(a, ...Object.keys(a))).toBeTruthy()
   })
 
   it('PickRequired', () => {
@@ -367,7 +367,7 @@ describe('Type Defs', () => {
       version: 1,
     }
 
-    expect(guardFor(a, ...Object.keys(a) as (keyof typeof a)[])).toBeTruthy()
+    expect(guard(a, ...Object.keys(a))).toBeTruthy()
   })
 
   it('PickNullable', () => {
@@ -375,7 +375,7 @@ describe('Type Defs', () => {
       version: null,
     }
 
-    expect(guardFor(a, ...Object.keys(a) as (keyof typeof a)[])).toBeTruthy()
+    expect(guard(a, ...Object.keys(a))).toBeTruthy()
   })
 
   it('PickPartial', () => {
@@ -383,6 +383,6 @@ describe('Type Defs', () => {
       version: void 0,
     }
 
-    expect(guardFor(a, ...Object.keys(a) as (keyof typeof a)[])).toBeTruthy()
+    expect(guard(a, ...Object.keys(a))).toBeTruthy()
   })
 })
