@@ -44,6 +44,7 @@ import {
 import dts from 'vite-plugin-dts'
 
 const external = [
+  'json5',
   'lib0/random.js'
 ]
 
