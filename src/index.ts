@@ -37,9 +37,7 @@ export {
   AssertError,
 } from '@/assert'
 
-export {
-  guard,
-} from '@/guard'
+export { guard } from '@/guard'
 
 export {
   FoundationError,
@@ -75,8 +73,6 @@ export type {
 } from '@/type-defs'
 
 export {
-  stringify,
-  parse,
   async,
   clone,
   equals,

@@ -37,18 +37,6 @@
 import JSON5 from 'json5'
 
 /**
- * Converts a JavaScript value to a JavaScript Object Notation (JSON) string.
- */
-export const stringify = (value: unknown, replacer?: (this: unknown, key: string, value: unknown) => unknown, space?: string | number | null): string =>
-  JSON5.stringify(value, replacer, space)
-
-/**
- * Converts a JavaScript Object Notation (JSON) string into an object.
- */
-export const parse = (text: string, reviver?: ((this: unknown, key: string, value: unknown) => unknown) | null): object =>
-  JSON5.parse(text, reviver)
-
-/**
  * A helper function that queues a `microtask` queue. A clear method is
  * returned that can can cancel the async call.
  */
@@ -61,13 +49,13 @@ export const async = (fn: () => void, timeout = 1): () => void => {
  * Deep clones the passed value using JSON stringify and parse methods.
  */
 export const clone = <T extends object>(value: T): T =>
-  parse(stringify(value)) as T
+  JSON5.parse(JSON5.stringify(value)) as T
 
 /**
  * Checks equality of two objects by comparing their JSON string.
  */
 export const equals = <T extends object>(a: T, b: T): boolean =>
-  stringify(a) === stringify(b)
+  JSON5.stringify(a) === JSON5.stringify(b)
 
 /**
  * Filters the `Array` and returns only the unique values.
