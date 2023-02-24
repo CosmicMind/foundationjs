@@ -34,16 +34,30 @@
  * @module Guard
  */
 
-/**
- * Checks if a model is a subtype or equal to `T`.
- */
-export function guard<T>(model: unknown, ...keys: (keyof T)[]): model is T {
-  if ('object' === typeof model && null !== model) {
+function validate<T>(data: unknown, ...keys: (keyof T)[]): data is T {
+  if (null === data || 'undefined' === typeof data) {
+    return false
+  }
+  if ('object' === typeof data) {
     for (const k of keys) {
-      if (!(k in model)) {
+      if (!(k in data)) {
         return false
       }
     }
   }
-  return null !== model as T && 'undefined' !== typeof model
+  return true
+}
+
+/**
+ * Checks if a data is a subtype or equal to `T`.
+ */
+export function guard<T>(data: unknown, ...keys: (keyof T)[]): data is T {
+  if (Array.isArray(data)) {
+    for (const x of data) {
+      if (!validate<T>(x, ...keys)) {
+        return false
+      }
+    }
+  }
+  return validate<T>(data as T, ...keys)
 }
