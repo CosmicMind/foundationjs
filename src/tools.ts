@@ -34,8 +34,6 @@
  * @module Tools
  */
 
-import JSON5 from 'json5'
-
 /**
  * A helper function that queues a `microtask` queue. A clear method is
  * returned that can can cancel the async call.
@@ -49,13 +47,13 @@ export const async = (fn: () => void, timeout = 1): () => void => {
  * Deep clones the passed value using JSON stringify and parse methods.
  */
 export const clone = <T extends object>(value: T): T =>
-  JSON5.parse(JSON5.stringify(value)) as T
+  JSON.parse(JSON.stringify(value)) as T
 
 /**
  * Checks equality of two objects by comparing their JSON string.
  */
 export const equals = <T extends object>(a: T, b: T): boolean =>
-  JSON5.stringify(a) === JSON5.stringify(b)
+  JSON.stringify(a) === JSON.stringify(b)
 
 /**
  * Filters the `Array` and returns only the unique values.
