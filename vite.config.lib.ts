@@ -35,6 +35,8 @@ import {
   fileURLToPath,
 } from 'node:url'
 
+import { resolve } from 'path'
+
 import {
   defineConfig,
   LibraryFormats,
@@ -55,6 +57,7 @@ const alias = {
 }
 
 const external = (id: string): boolean =>
+  !id.startsWith(resolve(entry)) &&
   !id.startsWith('.') &&
 	!id.startsWith('@/')
 
