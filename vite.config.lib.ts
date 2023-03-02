@@ -55,8 +55,7 @@ const alias = {
 }
 
 const external = (id: string): boolean =>
-  !id.startsWith('/node/service') &&
-	!id.startsWith('.') &&
+  !id.startsWith('.') &&
 	!id.startsWith('@/')
 
 export default defineConfig(() => ({
