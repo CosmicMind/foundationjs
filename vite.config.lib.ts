@@ -44,7 +44,7 @@ import dts from 'vite-plugin-dts'
 
 const name = process.env.npm_package_name
 const srcDir = 'src'
-const entry = `${srcDir}/server.ts`
+const entry = `${srcDir}/index.ts`
 const output = 'lib.es'
 const formats: LibraryFormats[] = [ 'es' ]
 const emptyOutDir = false
