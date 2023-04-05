@@ -73,7 +73,8 @@ export type {
 } from '@/type-defs'
 
 export {
-  async,
+  timeout,
+  multistep,
   clone,
   equals,
   unique,

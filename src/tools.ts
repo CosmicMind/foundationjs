@@ -36,11 +36,36 @@
 
 /**
  * A helper function that queues a `microtask` queue. A clear method is
- * returned that can can cancel the async call.
+ * returned that can can cancel the timeout call.
  */
-export const async = (fn: () => void, timeout = 1): () => void => {
+export const timeout = (fn: () => void, timeout = 25): () => void => {
   const id = setTimeout(fn, timeout)
   return (): void => clearTimeout(id)
+}
+
+/**
+ * Multistep, is a function that iterates through an array of tasks and
+ * then executes a final callback once done.
+ * Discovered this in High Performance JavaScript,
+ * https://learning.oreilly.com/library/view/high-performance-javascript/9781449382308/ch06.html#timed_code
+ */
+export const multistep = <T extends unknown[]>(steps: ((...args: T) => void)[], cb: () => void, ...args: T): void => {
+  const tasks = steps.concat()
+
+  timeout(function () {
+    const task = tasks.shift()
+
+    if ('function' === typeof task) {
+      task(...args)
+    }
+
+    if (0 < tasks.length) {
+      timeout(arguments.callee as () => void, 25)
+    }
+    else {
+      cb()
+    }
+  }, 25)
 }
 
 /**
