@@ -56,7 +56,7 @@ const alias = {
 }
 
 const external = [
-  'lib0'
+  'lib0/random.js'
 ]
 
 const plugins = [
