@@ -38,6 +38,7 @@ function validate<T>(data: unknown, ...keys: (keyof T)[]): data is T {
   if (null === data || 'undefined' === typeof data) {
     return false
   }
+
   if ('object' === typeof data) {
     for (const k of keys) {
       if (!(k in data)) {
@@ -45,6 +46,10 @@ function validate<T>(data: unknown, ...keys: (keyof T)[]): data is T {
       }
     }
   }
+  else if ('object' !== typeof data && 0 < keys.length) {
+    return false
+  }
+
   return true
 }
 
