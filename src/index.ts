@@ -70,6 +70,7 @@ export type {
   PickRequired,
   PickNullable,
   PickPartial,
+  DeepReadonly,
 } from '@/type-defs'
 
 export {
