@@ -105,7 +105,7 @@ export type PickNullable<T> = Pick<T, NullableKeysFor<T>>
 export type PickPartial<T> = Pick<T, PartialKeysFor<T>>
 
 export type DeepReadonly<T, K extends keyof T = keyof T> = {
-  readonly [P in K]: T[P] extends Record<string | number | symbol, unknown>
+  readonly [P in K]: T[P] extends Record<string | number | symbol, unknown> | unknown[]
     ? DeepReadonly<T[P]>
     : T[P]
 }
