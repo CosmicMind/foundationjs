@@ -38,7 +38,8 @@ import {
 
 import {
   guard,
-} from '@/internal'
+  guardDeep,
+} from '@/index'
 
 type A = {
   name: string
@@ -52,7 +53,7 @@ type B = {
 
 type C = A & B
 
-describe('Guard', () => {
+describe('Guards', () => {
   it('guard', () => {
     const a: A = {
       name: 'person',
@@ -103,6 +104,8 @@ describe('Guard', () => {
     const tricky1: boolean | undefined | null = true
     const tricky2: boolean | undefined | null = void 0
     const tricky3: boolean | undefined | null = null
+    const tuple = [ null, 'hello world' ] as const
+    const tupleEmpty = [] as const
 
     expect(guard(name)).toBeTruthy()
     expect(guard(age)).toBeTruthy()
@@ -113,5 +116,73 @@ describe('Guard', () => {
     expect(guard(tricky1)).toBeTruthy()
     expect(guard(tricky2)).toBeFalsy()
     expect(guard(tricky3)).toBeFalsy()
+    expect(guard(tuple)).toBeTruthy()
+    expect(guard(tupleEmpty)).toBeTruthy()
+  })
+
+  it('guardDeep', () => {
+    const a: A = {
+      name: 'person',
+      age: 38,
+    }
+
+    const b: B = {
+      name: 'token',
+      version: 1,
+    }
+
+    const c: C = {
+      name: 'event',
+      age: 38,
+      version: 1,
+    }
+
+    expect(guardDeep(a, 'name')).toBeTruthy()
+    expect(guardDeep(a, 'age')).toBeTruthy()
+    expect(guardDeep(a, 'name', 'age')).toBeTruthy()
+    expect(guardDeep(a, 'age', 'name')).toBeTruthy()
+
+    expect(guardDeep(b, 'name')).toBeTruthy()
+    expect(guardDeep(b, 'version')).toBeTruthy()
+    expect(guardDeep(b, 'name', 'version')).toBeTruthy()
+    expect(guardDeep(b, 'version', 'name')).toBeTruthy()
+
+    expect(guardDeep(c, 'name')).toBeTruthy()
+    expect(guardDeep(c, 'age')).toBeTruthy()
+    expect(guardDeep(c, 'name', 'age')).toBeTruthy()
+    expect(guardDeep(c, 'age', 'name')).toBeTruthy()
+    expect(guardDeep(c, 'name')).toBeTruthy()
+    expect(guardDeep(c, 'version')).toBeTruthy()
+    expect(guardDeep(c, 'name', 'version')).toBeTruthy()
+    expect(guardDeep(c, 'version', 'name')).toBeTruthy()
+    expect(guardDeep(c, 'age', 'name')).toBeTruthy()
+    expect(guardDeep(c, 'name')).toBeTruthy()
+    expect(guardDeep(c, 'version')).toBeTruthy()
+    expect(guardDeep(c, 'name', 'version')).toBeTruthy()
+    expect(guardDeep(c, 'version', 'name')).toBeTruthy()
+
+    const name = 'name'
+    const age = 38
+    const version = 0
+    const neg = -1
+    const isTrue = true
+    const isFalse = false
+    const tricky1: boolean | undefined | null = true
+    const tricky2: boolean | undefined | null = void 0
+    const tricky3: boolean | undefined | null = null
+    const tuple = [ null, 'hello world' ] as const
+    const tupleEmpty = [] as const
+
+    expect(guardDeep(name)).toBeTruthy()
+    expect(guardDeep(age)).toBeTruthy()
+    expect(guardDeep(version)).toBeTruthy()
+    expect(guardDeep(neg)).toBeTruthy()
+    expect(guardDeep(isTrue)).toBeTruthy()
+    expect(guardDeep(isFalse)).toBeTruthy()
+    expect(guardDeep(tricky1)).toBeTruthy()
+    expect(guardDeep(tricky2)).toBeFalsy()
+    expect(guardDeep(tricky3)).toBeFalsy()
+    expect(guardDeep(tuple)).toBeFalsy()
+    expect(guardDeep(tupleEmpty)).toBeTruthy()
   })
 })

@@ -53,10 +53,14 @@ function validate<T>(data: unknown, ...keys: (keyof T)[]): data is T {
   return true
 }
 
-/**
- * Checks if a data is a subtype or equal to `T`.
- */
 export function guard<T>(data: unknown, ...keys: (keyof T)[]): data is T {
+  if (Array.isArray(data)) {
+    return true
+  }
+  return validate<T>(data as T, ...keys)
+}
+
+export function guardDeep<T>(data: unknown, ...keys: (keyof T)[]): data is T {
   if (Array.isArray(data)) {
     for (const x of data) {
       if (!validate<T>(x, ...keys)) {
@@ -64,5 +68,5 @@ export function guard<T>(data: unknown, ...keys: (keyof T)[]): data is T {
       }
     }
   }
-  return validate<T>(data as T, ...keys)
+  return guard<T>(data as T, ...keys)
 }

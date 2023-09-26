@@ -61,7 +61,7 @@ import {
   PickRequired,
   PickNullable,
   PickPartial,
-} from '@/internal'
+} from '@/index'
 
 type A = {
   name: string

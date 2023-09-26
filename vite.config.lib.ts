@@ -63,7 +63,7 @@ const plugins = [
   dts()
 ] as PluginOption[]
 
-export default defineConfig(() => ({
+export default defineConfig({
   resolve: {
     alias,
   },
@@ -83,4 +83,4 @@ export default defineConfig(() => ({
       },
     },
   },
-}))
+})

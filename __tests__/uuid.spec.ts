@@ -41,13 +41,14 @@ import {
   ValidationError,
 } from 'yup'
 
-import { uuidv4 } from '@/internal'
+import {
+  uuidv4,
+} from '@/index'
 
 describe('UUID', () => {
   it('success', () => {
     const uuid = uuidv4()
 
-    expect('string' === typeof uuid)
     expect(uuid.length).toBe(36)
     expect(uuid.replace(/-/g, '').length).toBe(32)
     expect(uuid, string().uuid().defined().strict(true).validateSync(uuid))
