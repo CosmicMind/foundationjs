@@ -64,7 +64,7 @@ export function guard<T>(data: unknown, ...keys: (keyof T)[]): data is T {
   return validate<T>(data as T, ...keys)
 }
 
-export function guardIterator<T>(data: unknown, ...keys: (keyof T)[]): data is T {
+export function guardIterator<T>(data: Iterable<T>, ...keys: (keyof T)[]): data is Iterable<T> {
   if (guard<Generator<InferArrayType<T>>>(data) && typeof data[Symbol.iterator] === 'function') {
     for (const x of data) {
       if (!validate<T>(x, ...keys)) {
