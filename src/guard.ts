@@ -34,6 +34,12 @@
  * @module Guard
  */
 
+import {
+  InferArrayType,
+} from '@/type-defs'
+
+type InferArrayType<T> = T extends Array<infer I> ? I : "never"
+
 function validate<T>(data: unknown, ...keys: (keyof T)[]): data is T {
   if (null === data || 'undefined' === typeof data) {
     return false
@@ -60,8 +66,8 @@ export function guard<T>(data: unknown, ...keys: (keyof T)[]): data is T {
   return validate<T>(data as T, ...keys)
 }
 
-export function guardDeep<T>(data: unknown, ...keys: (keyof T)[]): data is T {
-  if (Array.isArray(data)) {
+export function guardIterator<T>(data: unknown, ...keys: (keyof T)[]): data is T {
+  if (guard<Generator<InferArrayType<T>>>(data) && typeof data[Symbol.iterator] === 'function') {
     for (const x of data) {
       if (!validate<T>(x, ...keys)) {
         return false

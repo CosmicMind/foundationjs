@@ -38,7 +38,7 @@ import {
 
 import {
   guard,
-  guardDeep,
+  guardIterator,
 } from '@/index'
 
 type A = {
@@ -53,7 +53,7 @@ type B = {
 
 type C = A & B
 
-describe('Guards', () => {
+describe('Guard', () => {
   it('guard', () => {
     const a: A = {
       name: 'person',
@@ -120,7 +120,7 @@ describe('Guards', () => {
     expect(guard(tupleEmpty)).toBeTruthy()
   })
 
-  it('guardDeep', () => {
+  it('guardIterator', () => {
     const a: A = {
       name: 'person',
       age: 38,
@@ -137,29 +137,29 @@ describe('Guards', () => {
       version: 1,
     }
 
-    expect(guardDeep(a, 'name')).toBeTruthy()
-    expect(guardDeep(a, 'age')).toBeTruthy()
-    expect(guardDeep(a, 'name', 'age')).toBeTruthy()
-    expect(guardDeep(a, 'age', 'name')).toBeTruthy()
+    expect(guardIterator(a, 'name')).toBeTruthy()
+    expect(guardIterator(a, 'age')).toBeTruthy()
+    expect(guardIterator(a, 'name', 'age')).toBeTruthy()
+    expect(guardIterator(a, 'age', 'name')).toBeTruthy()
 
-    expect(guardDeep(b, 'name')).toBeTruthy()
-    expect(guardDeep(b, 'version')).toBeTruthy()
-    expect(guardDeep(b, 'name', 'version')).toBeTruthy()
-    expect(guardDeep(b, 'version', 'name')).toBeTruthy()
+    expect(guardIterator(b, 'name')).toBeTruthy()
+    expect(guardIterator(b, 'version')).toBeTruthy()
+    expect(guardIterator(b, 'name', 'version')).toBeTruthy()
+    expect(guardIterator(b, 'version', 'name')).toBeTruthy()
 
-    expect(guardDeep(c, 'name')).toBeTruthy()
-    expect(guardDeep(c, 'age')).toBeTruthy()
-    expect(guardDeep(c, 'name', 'age')).toBeTruthy()
-    expect(guardDeep(c, 'age', 'name')).toBeTruthy()
-    expect(guardDeep(c, 'name')).toBeTruthy()
-    expect(guardDeep(c, 'version')).toBeTruthy()
-    expect(guardDeep(c, 'name', 'version')).toBeTruthy()
-    expect(guardDeep(c, 'version', 'name')).toBeTruthy()
-    expect(guardDeep(c, 'age', 'name')).toBeTruthy()
-    expect(guardDeep(c, 'name')).toBeTruthy()
-    expect(guardDeep(c, 'version')).toBeTruthy()
-    expect(guardDeep(c, 'name', 'version')).toBeTruthy()
-    expect(guardDeep(c, 'version', 'name')).toBeTruthy()
+    expect(guardIterator(c, 'name')).toBeTruthy()
+    expect(guardIterator(c, 'age')).toBeTruthy()
+    expect(guardIterator(c, 'name', 'age')).toBeTruthy()
+    expect(guardIterator(c, 'age', 'name')).toBeTruthy()
+    expect(guardIterator(c, 'name')).toBeTruthy()
+    expect(guardIterator(c, 'version')).toBeTruthy()
+    expect(guardIterator(c, 'name', 'version')).toBeTruthy()
+    expect(guardIterator(c, 'version', 'name')).toBeTruthy()
+    expect(guardIterator(c, 'age', 'name')).toBeTruthy()
+    expect(guardIterator(c, 'name')).toBeTruthy()
+    expect(guardIterator(c, 'version')).toBeTruthy()
+    expect(guardIterator(c, 'name', 'version')).toBeTruthy()
+    expect(guardIterator(c, 'version', 'name')).toBeTruthy()
 
     const name = 'name'
     const age = 38
@@ -173,16 +173,16 @@ describe('Guards', () => {
     const tuple = [ null, 'hello world' ] as const
     const tupleEmpty = [] as const
 
-    expect(guardDeep(name)).toBeTruthy()
-    expect(guardDeep(age)).toBeTruthy()
-    expect(guardDeep(version)).toBeTruthy()
-    expect(guardDeep(neg)).toBeTruthy()
-    expect(guardDeep(isTrue)).toBeTruthy()
-    expect(guardDeep(isFalse)).toBeTruthy()
-    expect(guardDeep(tricky1)).toBeTruthy()
-    expect(guardDeep(tricky2)).toBeFalsy()
-    expect(guardDeep(tricky3)).toBeFalsy()
-    expect(guardDeep(tuple)).toBeFalsy()
-    expect(guardDeep(tupleEmpty)).toBeTruthy()
+    expect(guardIterator(name)).toBeTruthy()
+    expect(guardIterator(age)).toBeTruthy()
+    expect(guardIterator(version)).toBeTruthy()
+    expect(guardIterator(neg)).toBeTruthy()
+    expect(guardIterator(isTrue)).toBeTruthy()
+    expect(guardIterator(isFalse)).toBeTruthy()
+    expect(guardIterator(tricky1)).toBeTruthy()
+    expect(guardIterator(tricky2)).toBeFalsy()
+    expect(guardIterator(tricky3)).toBeFalsy()
+    expect(guardIterator(tuple)).toBeFalsy()
+    expect(guardIterator(tupleEmpty)).toBeTruthy()
   })
 })

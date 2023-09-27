@@ -38,6 +38,8 @@ export type Nullable<T> = T | null
 export type Optional<T> = T | undefined
 export type Voidable<T> = T | void
 
+export type InferArrayType<T> = T extends Array<infer I> ? I : 'never'
+
 export type Compare<A, B, Q = A, R = never> =
   (<T>() => T extends A ? 1 : 2) extends
   (<T>() => T extends B ? 1 : 2) ? Q : R

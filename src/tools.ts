@@ -38,53 +38,10 @@
  * A helper function that queues a `microtask` queue. A clear method is
  * returned that can can cancel the timeout call.
  */
-export const timeout = (fn: () => void, timeout = 25): () => void => {
-  const id = setTimeout(fn, timeout)
+export const timeout = (fn: () => void, delay = 25): () => void => {
+  const id = setTimeout(fn, delay)
   return (): void => clearTimeout(id)
 }
-
-/**
- * Multistep, is a function that iterates through an array of tasks and
- * then executes a final callback once done.
- * Discovered this in High Performance JavaScript,
- * https://learning.oreilly.com/library/view/high-performance-javascript/9781449382308/ch06.html#timed_code
- */
-export const multistep = <T extends unknown[]>(steps: ((...args: T) => void)[], cb: () => void, ...args: T): void => {
-  const tasks = steps.concat()
-
-  timeout(function () {
-    const task = tasks.shift()
-
-    if ('function' === typeof task) {
-      task(...args)
-    }
-
-    if (0 < tasks.length) {
-      timeout(arguments.callee as () => void, 25)
-    }
-    else {
-      cb()
-    }
-  }, 25)
-}
-
-/**
- * Deep clones the passed value using JSON stringify and parse methods.
- */
-export const clone = <T extends object>(value: T): T =>
-  JSON.parse(JSON.stringify(value)) as T
-
-/**
- * Checks equality of two objects by comparing their JSON string.
- */
-export const equals = <T extends object>(a: T, b: T): boolean =>
-  JSON.stringify(a) === JSON.stringify(b)
-
-/**
- * Filters the `Array` and returns only the unique values.
- */
-export const unique = <T>(data: T[]): T[] =>
-  [ ...new Set(data) ]
 
 /**
  * Define a new `assign` function that works like
@@ -121,19 +78,4 @@ export const assign = <T, U>(target: T, ...sources: U[]): T => {
     }
   }
   return target
-}
-
-/**
- * Swap the values from a `source` object to a `target` object. The `target`
- * values are updated. The values swapped out from the `target` are returned.
- */
-export const swapProps = <T>(source: T, target: typeof source): T => {
-  const swapped = {} as T
-
-  for (const key in source) {
-    swapped[key] = target[key]
-    target[key] = source[key]
-  }
-
-  return swapped
 }

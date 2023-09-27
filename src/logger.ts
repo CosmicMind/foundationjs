@@ -35,6 +35,7 @@
 /**
  * @module Logger
  */
+
 const assert = (condition: boolean, data: string): void => console.assert(condition, data)
 const clear = (): void => console.clear()
 const count = (label?: string): void => console.count(label)
