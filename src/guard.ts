@@ -38,8 +38,6 @@ import {
   InferArrayType,
 } from '@/type-defs'
 
-type InferArrayType<T> = T extends Array<infer I> ? I : "never"
-
 function validate<T>(data: unknown, ...keys: (keyof T)[]): data is T {
   if (null === data || 'undefined' === typeof data) {
     return false
