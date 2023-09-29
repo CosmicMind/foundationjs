@@ -71,6 +71,7 @@ export function guardIterator<T>(data: Iterable<T>, ...keys: (keyof T)[]): data 
         return false
       }
     }
+    return true
   }
-  return guard<T>(data as T, ...keys)
+  return false
 }
