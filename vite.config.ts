@@ -60,6 +60,10 @@ export default ({ mode }: ConfigEnv): UserConfigExport => {
     '@': fileURLToPath(new URL(srcDir, import.meta.url)),
   }
 
+  const external = [
+    'lib0/random.js'
+  ]
+
   const plugins = [
     dts()
   ] as PluginOption[]
@@ -81,6 +85,9 @@ export default ({ mode }: ConfigEnv): UserConfigExport => {
         entry,
         formats,
         fileName,
+      },
+      rollupOptions: {
+        external,
       },
     },
   })
