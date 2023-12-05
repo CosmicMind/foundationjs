@@ -43,7 +43,7 @@ import {
 
 import {
   uuidv4,
-} from '@/index'
+} from '@/'
 
 describe('UUID', () => {
   it('success', () => {

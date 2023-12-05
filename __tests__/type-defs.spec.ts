@@ -61,7 +61,7 @@ import {
   PickRequired,
   PickNullable,
   PickPartial,
-} from '@/index'
+} from '@/'
 
 type A = {
   name: string

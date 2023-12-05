@@ -39,7 +39,7 @@ import {
 import {
   guard,
   guardIterator,
-} from '@/index'
+} from '@/'
 
 type A = {
   name: string

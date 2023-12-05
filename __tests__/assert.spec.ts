@@ -40,7 +40,7 @@ import {
   assert,
   AssertError,
   FoundationError,
-} from '@/index'
+} from '@/'
 
 describe('Assert', () => {
   it('Assert: success', () => {
