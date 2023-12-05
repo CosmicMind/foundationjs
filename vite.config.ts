@@ -54,7 +54,7 @@ export default ({ mode }: ConfigEnv): UserConfigExport => {
   const fileName = 'lib-[format]'
   const formats: LibraryFormats[] = [ 'es', 'cjs' ]
   const emptyOutDir = true
-  const minify = 'development' !== mode ? 'terser' : false
+  const minify = 'development' !== mode
 
   const alias = {
     '@': fileURLToPath(new URL(srcDir, import.meta.url)),
@@ -68,15 +68,13 @@ export default ({ mode }: ConfigEnv): UserConfigExport => {
     resolve: {
       alias,
     },
+    esbuild: {
+      minifyIdentifiers: true,
+      keepNames: true,
+    },
     plugins,
     build: {
       minify,
-      terserOptions: {
-        mangle: true,
-        compress: true,
-        keep_fnames: false,
-        keep_classnames: true,
-      },
       emptyOutDir,
       lib: {
         name,
