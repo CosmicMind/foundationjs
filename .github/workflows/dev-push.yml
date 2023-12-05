@@ -12,6 +12,10 @@ jobs:
       NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
   codeql:
     uses: cosmicmind/github-actions/.github/workflows/codeql.yml@release
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
   build:
     uses: cosmicmind/github-actions/.github/workflows/lib-build.yml@release
     with:
