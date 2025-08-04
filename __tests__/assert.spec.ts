@@ -52,13 +52,13 @@ describe('Assert', () => {
             expect(assert(false, 'not a number')).toBeTruthy()
             expect(false).toBeTruthy()
         }
-        catch (e) {
-            expect(e instanceof FoundationError).toBeTruthy()
-            expect(e instanceof AssertError).toBeTruthy()
+        catch (err) {
+            expect(err instanceof FoundationError).toBeTruthy()
+            expect(err instanceof AssertError).toBeTruthy()
 
-            if (e instanceof AssertError) {
-                expect(e.name).toBe('AssertError')
-                expect(e.message).toBe('not a number')
+            if (err instanceof AssertError) {
+                expect(err.name).toBe('AssertError')
+                expect(err.message).toBe('not a number')
             }
         }
     })
