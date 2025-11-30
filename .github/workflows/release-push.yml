@@ -37,5 +37,4 @@ jobs:
       - codeql
     uses: cosmicmind/actions/.github/workflows/publish-package.yml@release
     secrets:
-      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       GHCR_TOKEN: ${{ secrets.GHCR_TOKEN }}
