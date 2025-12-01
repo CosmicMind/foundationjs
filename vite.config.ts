@@ -42,6 +42,7 @@ import {
     defineConfig,
     UserConfigExport,
 } from 'vite'
+
 import dts from 'vite-plugin-dts'
 
 export default ({ mode }: ConfigEnv): UserConfigExport => {
@@ -49,7 +50,7 @@ export default ({ mode }: ConfigEnv): UserConfigExport => {
     const srcDir = 'src'
     const entry = `${srcDir}/index.ts`
     const fileName = 'lib-[format]'
-    const formats: LibraryFormats[] = [ 'es', 'cjs' ]
+    const formats: LibraryFormats[] = ['es', 'cjs']
     const emptyOutDir = true
     const minify = 'production' === mode ? 'terser' : false
 
