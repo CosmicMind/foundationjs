@@ -174,6 +174,7 @@ describe('Guard', () => {
         const tupleEmpty = [] as const
 
         expect(guardIterator([ name ])).toBeTruthy()
+        // @ts-expect-error Runtime rejection is intentional.
         expect(guardIterator(age)).toBeFalsy()
         expect(guardIterator([ version ])).toBeTruthy()
         expect(guardIterator([ neg ])).toBeTruthy()
@@ -182,6 +183,7 @@ describe('Guard', () => {
         expect(guardIterator([ tricky1 ])).toBeTruthy()
         expect(guardIterator([ tricky2 ])).toBeFalsy()
         expect(guardIterator([ tricky3 ])).toBeFalsy()
+        // @ts-expect-error Runtime rejection is intentional.
         expect(guardIterator(tuple)).toBeFalsy()
         expect(guardIterator([ tupleEmpty ])).toBeTruthy()
     })

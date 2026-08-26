@@ -59,16 +59,12 @@ export default ({ mode }: ConfigEnv): UserConfigExport => {
     }
 
     const plugins = [
-        dts()
+        dts({ include: [srcDir] })
     ] as PluginOption[]
 
     return defineConfig({
         resolve: {
             alias,
-        },
-        esbuild: {
-            minifyIdentifiers: true,
-            keepNames: true,
         },
         plugins,
         build: {
@@ -79,6 +75,11 @@ export default ({ mode }: ConfigEnv): UserConfigExport => {
                 entry,
                 formats,
                 fileName,
+            },
+            rolldownOptions: {
+                output: {
+                    keepNames: true,
+                },
             },
         },
     })
